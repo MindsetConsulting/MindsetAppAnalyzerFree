@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:ovp="sap.ovp.ui" xmlns:layout="sap.ui.layout"
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
+	<VBox class="panel bgWhite" height="14em">
+		<Toolbar class="toolbarbottamdesign" height="3em">
+			<Title text="{i18n>AvgFioriAppLaunchTime}" titleStyle="H4" level="H4" class="cursor" wrapping="true"/>
+		</Toolbar>
+		<Toolbar class="toolbarbottamdesign" height="2em"></Toolbar>
+		<FlexBox alignItems="Center" justifyContent="Center">
+			<items>
+				<Title text="3056" titleStyle="H1" level="H1" class="userloggedCnt"/>
+				<Title text="ms" titleStyle="H4" level="H6" class="margin20"/>
+			</items>
+		</FlexBox>
+		<Toolbar class="toolbarbottamdesign">
+			<Title text="{i18n>note}" titleStyle="H4" level="H4"/>
+			<Title text="mock-up" titleStyle="H4" level="H4"/>
+		</Toolbar>
+	</VBox>
+</core:FragmentDefinition>

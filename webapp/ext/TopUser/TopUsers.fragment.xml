@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:ovp="sap.ovp.ui" xmlns:layout="sap.ui.layout"
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
+	<VBox class="bgWhite" height="22em">
+		<Toolbar class="toolbarbottamdesign" height="3em">
+			<Title text="{i18n>TopUsers}" titleStyle="H4" level="H4" class="cursor"/>
+		</Toolbar>
+		<List enableBusyIndicator="true" showSeparators="None" growing="true" items="{ path: 'oUserPerAppModel>/TopUsers' }">
+			<StandardListItem title="{oUserPerAppModel>User}" description="{oUserPerAppModel>Hours}" icon="{oUserPerAppModel>image}"
+				iconDensityAware="false" iconInset="false"/>
+		</List>
+		<Toolbar class="toolbarbottamdesign">
+			<Title text="{i18n>note}" titleStyle="H4" level="H4"/>
+			<Title text="mock-up" titleStyle="H4" level="H4"/>
+		</Toolbar>
+	</VBox>
+</core:FragmentDefinition>
