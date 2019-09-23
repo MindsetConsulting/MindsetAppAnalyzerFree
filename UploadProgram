@@ -1,0 +1,112 @@
+REPORT zmnd_upload_to_app_server.
+TYPES: BEGIN OF ty_file,
+         orblk TYPE x LENGTH       2550,
+       END OF ty_file.
+DATA: lv_filename      TYPE string,
+      lv_file_length   TYPE i,
+      lt_data_tab      TYPE STANDARD TABLE OF ty_file,
+      " OCCURS 10 WITH HEADER LINE.
+      lg_max_len       TYPE i  VALUE 2550,
+      lv_len           TYPE i,
+      lv_all_lines_len TYPE i,
+      lv_lines         TYPE i,
+      lv_subrc         TYPE i,
+      lv_diff_len      TYPE i.
+
+PARAMETERS: p_pcfile  TYPE char80 OBLIGATORY,
+            p_appfl TYPE text80 OBLIGATORY DEFAULT '/usr/sap/trans/*.*'.
+
+START-OF-SELECTION.
+  lv_filename = p_pcfile.
+  CALL METHOD cl_gui_frontend_services=>gui_upload
+    EXPORTING
+      filename                = lv_filename
+      filetype                = 'BIN' "l_filetype
+      header_length           = 0
+    IMPORTING
+      filelength              = lv_file_length
+    CHANGING
+      data_tab                = lt_data_tab[]
+    EXCEPTIONS
+      file_open_error         = 1
+      file_read_error         = 2
+      no_batch                = 3
+      gui_refuse_filetransfer = 4
+      invalid_type            = 5
+      no_authority            = 6
+      unknown_error           = 7
+      bad_data_format         = 8
+      header_not_allowed      = 9
+      separator_not_allowed   = 10
+      header_too_long         = 11
+      unknown_dp_error        = 12
+      access_denied           = 13
+      dp_out_of_memory        = 14
+      disk_full               = 15
+      dp_timeout              = 16
+      not_supported_by_gui    = 17
+      error_no_gui            = 18
+      OTHERS                  = 19.
+  IF sy-subrc NE 0.
+    MESSAGE ID sy-msgid TYPE 'S' NUMBER sy-msgno WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4 DISPLAY LIKE 'E'.
+    LEAVE TO LIST-PROCESSING.
+  ENDIF.
+
+
+  DESCRIBE TABLE lt_data_tab LINES lv_lines.
+
+  CATCH SYSTEM-EXCEPTIONS open_dataset_no_authority = 1
+                          dataset_too_many_files = 2
+                          OTHERS = 4.
+    OPEN DATASET p_appfl FOR OUTPUT IN BINARY MODE.
+    lv_subrc = sy-subrc.
+  ENDCATCH.
+  IF NOT sy-subrc IS INITIAL OR
+     NOT  lv_subrc IS INITIAL.
+*    RAISE open_failed.
+* End Correction 20.11.2005 899632 *********************
+  ELSE.
+    lv_len = lg_max_len.
+
+*   If no I_FILE_SIZE then I_LINES has to be 0.
+
+    IF lv_file_length = 0.
+      lv_lines = 0.
+    ENDIF.
+
+    LOOP AT lt_data_tab INTO DATA(ls_data).
+*     last line is shorter perhaps
+      IF sy-tabix = lv_lines.
+        lv_all_lines_len = lg_max_len * ( lv_lines - 1 ).
+        lv_diff_len = lv_file_length - lv_all_lines_len.
+        lv_len = lv_diff_len.
+      ENDIF.
+*     write data in file
+* Begin Correction 20.11.2005 899632 *******************
+      CATCH SYSTEM-EXCEPTIONS dataset_write_error = 1
+                              OTHERS = 4.
+        TRANSFER ls_data  TO p_appfl LENGTH lv_len.
+      ENDCATCH.
+* End Correction 20.11.2005 899632 *********************
+* Begin Correction 0682669 20.11.2003 **********************************
+      IF NOT sy-subrc IS INITIAL.
+*        RAISE write_failed.
+        EXIT.
+      ENDIF.
+* End Correction 0682669 20.11.2003 ************************************
+
+    ENDLOOP.
+  ENDIF.
+
+* close the dataset
+* Begin Correction 20.11.2005 899632 *******************
+  CATCH SYSTEM-EXCEPTIONS dataset_cant_close = 1
+                          OTHERS = 4.
+    CLOSE DATASET p_appfl.
+  ENDCATCH.
+* End Correction 20.11.2005 899632 *********************
+* Begin Correction 0682669 20.11.2003 **********************************
+  IF NOT sy-subrc IS INITIAL.
+*    RAISE close_failed.
+    EXIT.
+  ENDIF.
