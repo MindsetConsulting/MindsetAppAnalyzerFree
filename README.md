@@ -36,4 +36,5 @@ K900744.S4H & R900744.S4H <- Transport of copies containing all code and configu
  ### Validation 
  1. It may be possible that that Odata service is not active. In which case, go to /IWFND/MAINT_SERVICE and activate the ICF node for /MINDSET/FIORI_MONITOR_SRV.
  
- 
+ ### License
+ The Mindset App Analyzer product follows the GNUAGPL3 Licensing terms.  Please see attached GNUAGPL3_License.txt file in this repository.
