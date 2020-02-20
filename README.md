@@ -1,4 +1,7 @@
 # Fiori Monitor
+
+To get updates on product releases or for questions e-mail: jonathanbragg@mindsetconsulting.com  
+
 Fiori Monitor App description
 
 This repository contains the Fiori Monitor UI5 app code and, the SAP transports for gateway service and the deployed UI5 apps. The UI5 code for the launchpad extension can be found at https://github.com/MindsetConsulting/FLPExtMonitor.
