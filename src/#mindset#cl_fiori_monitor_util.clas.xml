@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>/MINDSET/CL_FIORI_MONITOR_UTIL</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Fiori Monitor Util</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CLSNAME>/MINDSET/CL_FIORI_MONITOR_UTIL</CLSNAME>
+     <CMPNAME>C_TIMEOUT_PERIOD</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Login timeout</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>/MINDSET/CL_FIORI_MONITOR_UTIL</CLSNAME>
+     <CMPNAME>V_CUTOFF_TIME</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>UTC Time Stamp in Short Form (YYYYMMDDhhmmss)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>/MINDSET/CL_FIORI_MONITOR_UTIL</CLSNAME>
+     <CMPNAME>V_NOW</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>UTC Time Stamp in Short Form (YYYYMMDDhhmmss)</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>
