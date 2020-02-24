@@ -16,3 +16,4 @@ APIExternalProducer.js
 AppVariantPreviewPayload.zip
 mergedManifestDescriptor.json
 /mta_archives/
+/node_modules/
