@@ -1,0 +1,17 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Node.js for use with actions
+      uses: actions/setup-node@v1.1.0
+    - run: npm install
+    - run: npx eslint webapp
+    - name: abaplint Action
+      uses: abaplint/actions-abaplint@0.2.1
