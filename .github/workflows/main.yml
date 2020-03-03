@@ -11,7 +11,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: Setup Node.js for use with actions
       uses: actions/setup-node@v1.1.0
-    - run: npm install
-    - run: npx eslint webapp
+    - name: NPM Install
+      run: npm ci
+    - name: eslint Action
+      run: npx eslint webapp
     - name: abaplint Action
       uses: abaplint/actions-abaplint@0.2.1
+      if: always()
