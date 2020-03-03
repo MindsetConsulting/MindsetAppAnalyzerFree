@@ -17,11 +17,15 @@ jobs:
       uses: actions/setup-node@v1.1.0
     - name: NPM Install
       run: npm ci
-    - name: ESLint Action
-      uses: hallee/eslint-action@1.0.1
-      with:
-        repo-token: ${{secrets.GITHUB_TOKEN}}
-      
+#     - name: ESLint Action
+#       uses: hallee/eslint-action@1.0.1
+#       with:
+#         repo-token: ${{secrets.GITHUB_TOKEN}}
+    - name: abaplint Action
+      uses: abaplint/actions-abaplint@0.2.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+
 #     - name: eslint Action
 #       run: npx eslint webapp
 #     - name: abaplint Action
