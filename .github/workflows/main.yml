@@ -21,4 +21,6 @@ jobs:
       run: npx eslint webapp
     - name: abaplint Action
       uses: abaplint/actions-abaplint@0.2.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
       if: always()
