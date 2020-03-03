@@ -19,6 +19,8 @@ jobs:
       run: npm ci
     - name: ESLint Action
       uses: hallee/eslint-action@1.0.1
+      with:
+        repo-token: ${{secrets.GITHUB_TOKEN}}
       
 #     - name: eslint Action
 #       run: npx eslint webapp
