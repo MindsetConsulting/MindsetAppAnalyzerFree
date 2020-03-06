@@ -1,8 +1,8 @@
 {
-	"_version": "1.7.0",
+	"_version": "1.8.0",
 	"start_url": "start.html",
 	"sap.app": {
-		"id": "com.mindset.fiorimoni",
+		"id": "com.mindset.appanalyzer",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"applicationVersion": {
@@ -15,10 +15,8 @@
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
-					"localUri": "localService/fiorimoni/metadata.xml",
-					"annotations": [
-						"AvgAppUsageToday"
-					]
+					"localUri": "localService/appanalyzer/metadata.xml",
+					"annotations": ["AvgAppUsageToday"]
 				}
 			},
 			"AvgAppUsageToday": {
@@ -44,9 +42,7 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": [
-			"sap_belize"
-		]
+		"supportedThemes": ["sap_belize"]
 	},
 	"sap.ui5": {
 		"dependencies": {
@@ -68,11 +64,9 @@
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css"
+			}]
 		},
 		"models": {
 			"i18n": {
@@ -108,7 +102,7 @@
 		"cards": {
 			"card00": {
 				"model": "fiorimoni",
-				"template": "com.mindset.fiorimoni.ext.fragment",
+				"template": "com.mindset.appanalyzer.ext.fragment",
 				"settings": {
 					"title": "{{UserLoggedIn}}",
 					"entitySet": "FLPLogInSet",
@@ -177,5 +171,9 @@
 				}
 			}
 		}
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/mindset/app_analyzer/webapp",
+		"_version": "1.1.0"
 	}
 }
