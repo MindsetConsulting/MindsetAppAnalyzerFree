@@ -3,7 +3,7 @@
 
 	/* controller for custom card  */
 
-	sap.ui.controller("com.mindset.fiorimoni.ext.fragment.UserLoggedIn", {
+	sap.ui.controller("com.mindset.appanalyzer.ext.fragment.UserLoggedIn", {
 
 		onInit: function () {
 			var me = this;

@@ -3,15 +3,15 @@
 
 	/* controller for custom card  */
 
-	sap.ui.controller("com.mindset.fiorimoni.ext.Broswertype.BroserTypes", {
+	sap.ui.controller("com.mindset.appanalyzer.ext.Broswertype.BroserTypes", {
 
 		onInit: function () {
 			var me = this;
 			var oView = me.getView();
-			var schromeImagePath = $.sap.getModulePath("com.mindset.fiorimoni", "/images/Chrome.png");
-			var sMicrosoftEdgeImagePath = $.sap.getModulePath("com.mindset.fiorimoni", "/images/MicrosoftEdge.png");
-			var sFireFoxImagePath = $.sap.getModulePath("com.mindset.fiorimoni", "/images/FireFox.png");
-			var sSafariImagePath = $.sap.getModulePath("com.mindset.fiorimoni", "/images/Safari.png");
+			var schromeImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Chrome.png");
+			var sMicrosoftEdgeImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/MicrosoftEdge.png");
+			var sFireFoxImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/FireFox.png");
+			var sSafariImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Safari.png");
 			var sChromeimage = oView.byId("Chromeimage");
 			var sSafariimage = oView.byId("Safariimage");
 			var sMicrosoftEdgeimage = oView.byId("MicroSoftimage");

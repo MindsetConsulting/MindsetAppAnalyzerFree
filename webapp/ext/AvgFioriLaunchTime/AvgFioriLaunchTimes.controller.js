@@ -3,7 +3,7 @@
 
 	/* controller for custom card  */
 
-	sap.ui.controller("com.mindset.fiorimoni.ext.AvgFioriLaunchTime.AvgFioriLaunchTimes", {
+	sap.ui.controller("com.mindset.appanalyzer.ext.AvgFioriLaunchTime.AvgFioriLaunchTimes", {
 
 		onInit: function () {
 			var me = this;
