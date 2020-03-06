@@ -3,7 +3,7 @@
 
 	/* controller for custom card  */
 
-	sap.ui.controller("com.mindset.fiorimoni.ext.UserPerApp.UserPerApps", {
+	sap.ui.controller("com.mindset.appanalyzer.ext.UserPerApp.UserPerApps", {
 
 		onInit: function () {
 			var me = this;
@@ -13,7 +13,7 @@
 				
 					"card07": {
 				"model": "fiorimoni",
-				"template": "com.mindset.fiorimoni.ext.UserPerApp",
+				"template": "com.mindset.appanalyzer.ext.UserPerApp",
 				"settings": {
 					"title": "{{UserPerApp}}",
 					"defaultSpan": {

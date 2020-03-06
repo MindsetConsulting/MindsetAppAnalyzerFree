@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (MockServer) {
 	"use strict";
 	var oMockServer,
-		_sAppModulePath = "com.mindset.fiorimoni/";
+		_sAppModulePath = "com.mindset.appanalyzer/";
 
 	return {
 		/**

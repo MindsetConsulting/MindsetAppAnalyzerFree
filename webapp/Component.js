@@ -7,11 +7,11 @@
 	 *   OData service.
 	 * @version @version@
 	 */
-	jQuery.sap.declare("com.mindset.fiorimoni.Component");
+	jQuery.sap.declare("com.mindset.appanalyzer.Component");
 
 	jQuery.sap.require("sap.ovp.app.Component");
 
-	sap.ovp.app.Component.extend("com.mindset.fiorimoni.Component", {
+	sap.ovp.app.Component.extend("com.mindset.appanalyzer.Component", {
 		metadata: {
 			manifest: "json"
 		}
