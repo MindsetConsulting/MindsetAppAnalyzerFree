@@ -117,7 +117,7 @@
 			},
 			"card01": {
 				"model": "fiorimoni",
-				"template": "com.mindset.fiorimoni.ext.Broswertype",
+				"template": "com.mindset.appanalyzer.ext.Broswertype",
 				"settings": {
 					"title": "{{BrowserTypes}}",
 					"stopResizing": true
@@ -125,7 +125,7 @@
 			},
 			"card02": {
 				"model": "fiorimoni",
-				"template": "com.mindset.fiorimoni.ext.DeviceType",
+				"template": "com.mindset.appanalyzer.ext.DeviceType",
 				"settings": {
 					"title": "{{DeviceType}}",
 					"stopResizing": true
@@ -133,7 +133,7 @@
 			},
 			"card03": {
 				"model": "fiorimoni",
-				"template": "com.mindset.fiorimoni.ext.AvgFioriLaunchTime",
+				"template": "com.mindset.appanalyzer.ext.AvgFioriLaunchTime",
 				"settings": {
 					"title": "{{AvgFioriAppLaunchTime}}",
 					"stopResizing": true
@@ -141,14 +141,14 @@
 			},
 			"card04": {
 				"model": "fiorimoni",
-				"template": "com.mindset.fiorimoni.ext.TopError",
+				"template": "com.mindset.appanalyzer.ext.TopError",
 				"settings": {
 					"title": "{{Top5Errors}}"
 				}
 			},
 			"card05": {
 				"model": "fiorimoni",
-				"template": "com.mindset.fiorimoni.ext.TopUser",
+				"template": "com.mindset.appanalyzer.ext.TopUser",
 				"settings": {
 					"title": "{{TopUsers}}",
 					"stopResizing": true
@@ -156,7 +156,7 @@
 			},
 			"card06": {
 				"model": "fiorimoni",
-				"template": "com.mindset.fiorimoni.ext.UserPerApp",
+				"template": "com.mindset.appanalyzer.ext.UserPerApp",
 				"settings": {
 					"title": "{{UserPerApp}}",
 					"defaultSpan": {
@@ -167,7 +167,7 @@
 			},
 			"card07": {
 				"model": "fiorimoni",
-				"template": "com.mindset.fiorimoni.ext.Region",
+				"template": "com.mindset.appanalyzer.ext.Region",
 				"settings": {
 					"title": "{{Region}}",
 					"defaultSpan": {
