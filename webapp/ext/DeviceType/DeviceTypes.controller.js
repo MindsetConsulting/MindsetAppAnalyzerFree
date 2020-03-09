@@ -3,14 +3,14 @@
 
 	/* controller for custom card  */
 
-	sap.ui.controller("com.mindset.fiorimoni.ext.DeviceType.DeviceTypes", {
+	sap.ui.controller("com.mindset.appanalyzer.ext.DeviceType.DeviceTypes", {
 
 		onInit: function () {
 			var me = this;
 			var oView = me.getView();
-          var sMobilepath = $.sap.getModulePath("com.mindset.fiorimoni", "/images/Mobile.jpg");
-			var stabletpath = $.sap.getModulePath("com.mindset.fiorimoni", "/images/Tablet.jpg");
-			var sSystemPath = $.sap.getModulePath("com.mindset.fiorimoni", "/images/System.jpg");
+          var sMobilepath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Mobile.jpg");
+			var stabletpath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Tablet.jpg");
+			var sSystemPath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/System.jpg");
 			var MobileImage = oView.byId("MobileImage");
 			var TabletImage = oView.byId("TabletImage");
 			var SystemImage = oView.byId("SystemImage");

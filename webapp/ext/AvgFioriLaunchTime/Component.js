@@ -3,16 +3,16 @@
 
 	/* component for custom card */
 
-	jQuery.sap.declare("com.mindset.fiorimoni.ext.AvgFioriLaunchTime.Component");
+	jQuery.sap.declare("com.mindset.appanalyzer.ext.AvgFioriLaunchTime.Component");
 	jQuery.sap.require("sap.ovp.cards.custom.Component");
 
-	sap.ovp.cards.custom.Component.extend("com.mindset.fiorimoni.ext.AvgFioriLaunchTime.Component", {
+	sap.ovp.cards.custom.Component.extend("com.mindset.appanalyzer.ext.AvgFioriLaunchTime.Component", {
 		// use inline declaration instead of component.json to save 1 round trip
 		metadata: {
 			properties: {
 				"contentFragment": {
 					"type": "string",
-					"defaultValue": "com.mindset.fiorimoni.ext.AvgFioriLaunchTime.AvgFioriLaunchTimes"
+					"defaultValue": "com.mindset.appanalyzer.ext.AvgFioriLaunchTime.AvgFioriLaunchTimes"
 				},
 				"headerFragment": {
 					"type": "string",
@@ -38,7 +38,7 @@
 			customizing: {
 				"sap.ui.controllerExtensions": {
 					"sap.ovp.cards.generic.Card": {
-						controllerName: "com.mindset.fiorimoni.ext.AvgFioriLaunchTime.AvgFioriLaunchTimes"
+						controllerName: "com.mindset.appanalyzer.ext.AvgFioriLaunchTime.AvgFioriLaunchTimes"
 					}
 				}
 			}

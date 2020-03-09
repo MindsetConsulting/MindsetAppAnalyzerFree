@@ -2,7 +2,7 @@
 	"_version": "1.7.0",
 	"start_url": "start.html",
 	"sap.app": {
-		"id": "com.mindset.fiorimoni",
+		"id": "com.mindset.appanalyzer",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"applicationVersion": {
@@ -15,7 +15,7 @@
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
-					"localUri": "localService/fiorimoni/metadata.xml",
+					"localUri": "localService/appanalyzer/metadata.xml",
 					"annotations": [
 						"AvgAppUsageToday"
 					]
@@ -108,7 +108,7 @@
 		"cards": {
 			"card00": {
 				"model": "fiorimoni",
-				"template": "com.mindset.fiorimoni.ext.fragment",
+				"template": "com.mindset.appanalyzer.ext.fragment",
 				"settings": {
 					"title": "{{UserLoggedIn}}",
 					"entitySet": "FLPLogInSet",
@@ -117,7 +117,7 @@
 			},
 			"card01": {
 				"model": "fiorimoni",
-				"template": "com.mindset.fiorimoni.ext.Broswertype",
+				"template": "com.mindset.appanalyzer.ext.Broswertype",
 				"settings": {
 					"title": "{{BrowserTypes}}",
 					"stopResizing": true
@@ -125,7 +125,7 @@
 			},
 			"card02": {
 				"model": "fiorimoni",
-				"template": "com.mindset.fiorimoni.ext.DeviceType",
+				"template": "com.mindset.appanalyzer.ext.DeviceType",
 				"settings": {
 					"title": "{{DeviceType}}",
 					"stopResizing": true
@@ -133,7 +133,7 @@
 			},
 			"card03": {
 				"model": "fiorimoni",
-				"template": "com.mindset.fiorimoni.ext.AvgFioriLaunchTime",
+				"template": "com.mindset.appanalyzer.ext.AvgFioriLaunchTime",
 				"settings": {
 					"title": "{{AvgFioriAppLaunchTime}}",
 					"stopResizing": true
@@ -141,14 +141,14 @@
 			},
 			"card04": {
 				"model": "fiorimoni",
-				"template": "com.mindset.fiorimoni.ext.TopError",
+				"template": "com.mindset.appanalyzer.ext.TopError",
 				"settings": {
 					"title": "{{Top5Errors}}"
 				}
 			},
 			"card05": {
 				"model": "fiorimoni",
-				"template": "com.mindset.fiorimoni.ext.TopUser",
+				"template": "com.mindset.appanalyzer.ext.TopUser",
 				"settings": {
 					"title": "{{TopUsers}}",
 					"stopResizing": true
@@ -156,7 +156,7 @@
 			},
 			"card06": {
 				"model": "fiorimoni",
-				"template": "com.mindset.fiorimoni.ext.UserPerApp",
+				"template": "com.mindset.appanalyzer.ext.UserPerApp",
 				"settings": {
 					"title": "{{UserPerApp}}",
 					"defaultSpan": {
@@ -167,7 +167,7 @@
 			},
 			"card07": {
 				"model": "fiorimoni",
-				"template": "com.mindset.fiorimoni.ext.Region",
+				"template": "com.mindset.appanalyzer.ext.Region",
 				"settings": {
 					"title": "{{Region}}",
 					"defaultSpan": {
@@ -177,5 +177,9 @@
 				}
 			}
 		}
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/mindset/app_analyzer/webapp",
+		"_version": "1.1.0"
 	}
 }

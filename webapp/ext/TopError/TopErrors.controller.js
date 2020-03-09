@@ -3,7 +3,7 @@
 
 	/* controller for custom card  */
 
-	sap.ui.controller("com.mindset.fiorimoni.ext.TopError.TopErrors", {
+	sap.ui.controller("com.mindset.appanalyzer.ext.TopError.TopErrors", {
 
 		onInit: function () {
 			var me = this;
