@@ -37,7 +37,7 @@
 			},
 			applications: {
 				"OVP-display": {
-					"additionalInformation": "SAPUI5.Component=com.mindset.fiorimoni",
+					"additionalInformation": "SAPUI5.Component=com.mindset.appanalyzer",
 					"applicationType": "URL",
 					"url": "../"
 				}
@@ -53,7 +53,7 @@
 			data-sap-ui-libs="sap.m, sap.ushell"
 			data-sap-ui-theme="sap_belize"
 			data-sap-ui-compatVersion="edge"
-			data-sap-ui-resourceroots='{"com.mindset.fiorimoni": "../"}'
+			data-sap-ui-resourceroots='{"com.mindset.appanalyzer": "../"}'
 			data-sap-ui-frameOptions='allow'> // NON-SECURE setting for testing environment
 	</script>
 
@@ -62,7 +62,7 @@
 	        //Fake LREP
 	        jQuery.sap.require("sap.ui.fl.FakeLrepConnector");
 	        sap.ui.fl.FakeLrepConnector.enableFakeConnector("fakeLRep.json");
-	        var sNamespace = "com.mindset.fiorimoni";
+	        var sNamespace = "com.mindset.appanalyzer";
 	        sNamespace = sNamespace.replace(/\./g, "/");
 			sap.ui.require([
 				sNamespace + "/localService/mockserver"

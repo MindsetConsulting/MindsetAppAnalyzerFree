@@ -3,16 +3,16 @@
 
 	/* component for custom card */
 
-	jQuery.sap.declare("com.mindset.fiorimoni.ext.TopError.Component");
+	jQuery.sap.declare("com.mindset.appanalyzer.ext.TopError.Component");
 	jQuery.sap.require("sap.ovp.cards.custom.Component");
 
-	sap.ovp.cards.custom.Component.extend("com.mindset.fiorimoni.ext.TopError.Component", {
+	sap.ovp.cards.custom.Component.extend("com.mindset.appanalyzer.ext.TopError.Component", {
 		// use inline declaration instead of component.json to save 1 round trip
 		metadata: {
 			properties: {
 				"contentFragment": {
 					"type": "string",
-					"defaultValue": "com.mindset.fiorimoni.ext.TopError.TopErrors"
+					"defaultValue": "com.mindset.appanalyzer.ext.TopError.TopErrors"
 				},
 				"headerFragment": {
 					"type": "string",
@@ -38,7 +38,7 @@
 			customizing: {
 				"sap.ui.controllerExtensions": {
 					"sap.ovp.cards.generic.Card": {
-						controllerName: "com.mindset.fiorimoni.ext.TopError.TopErrors"
+						controllerName: "com.mindset.appanalyzer.ext.TopError.TopErrors"
 					}
 				}
 			}

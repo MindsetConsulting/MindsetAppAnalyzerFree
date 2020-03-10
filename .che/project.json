@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"type":"sap.web","builders":{"configs":{}},"runners":{"configs":{}},"attributes":{"sap.watt.common.setting":["{\"projectType\":[\"sap.watt.uitools.ide.web\",\"sap.watt.uitools.ide.fiori\"],\"deploy\":{\"destination\":\"S4H\",\"name\":\"/MINDSET/FIORIMONI\"}}"]},"description":"","mixinTypes":[]}
+=======
+{"type":"sap.web","builders":{"configs":{}},"runners":{"configs":{}},"attributes":{"sap.watt.common.setting":["{\"projectType\":[\"sap.watt.uitools.ide.web\",\"sap.watt.uitools.ide.fiori\"],\"deploy\":{\"destination\":\"S4H\",\"name\":\"/MINDSET/APP_ANALYZER\"}}"]},"description":"","mixinTypes":[]}
+>>>>>>> refs/heads/master

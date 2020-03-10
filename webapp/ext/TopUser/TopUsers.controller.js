@@ -3,7 +3,7 @@
 
 	/* controller for custom card  */
 
-	sap.ui.controller("com.mindset.fiorimoni.ext.TopUser.TopUsers", {
+	sap.ui.controller("com.mindset.appanalyzer.ext.TopUser.TopUsers", {
 
 		onInit: function () {
             	var me = this;
@@ -51,19 +51,19 @@
 				"TopUsers": [{
 					"User": "Ajay",
 					"Hours":"4hrs 15m",
-					"image":$.sap.getModulePath("com.mindset.fiorimoni", "/images/team4.png")
+					"image":$.sap.getModulePath("com.mindset.appanalyzer", "/images/team4.png")
 				}, {
 					"User": "Hari Krishna",
 					"Hours":"3hrs 20m",
-					"image":$.sap.getModulePath("com.mindset.fiorimoni", "/images/team2.png")
+					"image":$.sap.getModulePath("com.mindset.appanalyzer", "/images/team2.png")
 				}, {
 					"User": "Angie Santoni",
 					"Hours":"2hrs 45m",
-					"image":$.sap.getModulePath("com.mindset.fiorimoni", "/images/team5.png") 
+					"image":$.sap.getModulePath("com.mindset.appanalyzer", "/images/team5.png") 
 				}, {
 					"User": "Selena Long",
 					"Hours":"1hrs 25m",
-					"image":$.sap.getModulePath("com.mindset.fiorimoni", "/images/team3.png") 
+					"image":$.sap.getModulePath("com.mindset.appanalyzer", "/images/team3.png") 
 				}]
 			};
 			/*	, {
