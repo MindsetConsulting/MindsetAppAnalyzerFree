@@ -9,10 +9,10 @@
 			<items>
 				<Title text="{oUserLogonModel>/NoUsersLoggedIn}" titleStyle="H1" level="H1" class="userloggedCnt"/>
 			</items>
-<!--			<ObjectHeader
-			title="{oUserLogonModel>/NoUsersLoggedIn}" class="userloggedCnt"
-			titleActive="true"
-			titlePress="handleUserLoggedPressed"/>-->
+			<ObjectAttribute
+			text="Details"
+			active="true"
+			press="handleUserLoggedPressed"/>
 		</FlexBox>
 	</VBox>
 </core:FragmentDefinition>
