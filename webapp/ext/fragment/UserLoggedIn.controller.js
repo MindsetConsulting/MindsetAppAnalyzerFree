@@ -32,6 +32,10 @@
 			});
 
 		},
+		
+		handleUserLoggedPressed: function (oEvent) {
+			
+		},
 
 		onAfterRendering: function () {
 

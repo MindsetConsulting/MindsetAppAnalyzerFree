@@ -6,9 +6,13 @@
 		</Toolbar>
 		<Toolbar class="toolbarbottamdesign" height="2em"></Toolbar>
 		<FlexBox alignItems="Center" justifyContent="Center">
-			<items>
+<!--			<items>
 				<Title text="{oUserLogonModel>/NoUsersLoggedIn}" titleStyle="H1" level="H1" class="userloggedCnt"/>
-			</items>
+			</items>-->
+			<ObjectAttribute
+			text="{oUserLogonModel>/NoUsersLoggedIn}" class="userloggedCnt"
+			active="true"
+			press="handleUserLoggedPressed"/>
 		</FlexBox>
 	</VBox>
 </core:FragmentDefinition>
