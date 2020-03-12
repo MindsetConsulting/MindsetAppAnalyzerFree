@@ -1,0 +1,23 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core" >
+   <Dialog
+      title="List of Users">
+   	<Table id="isUserList"
+   	inset="false"
+   	items="{/FLPLogInSet}">
+   	<columns>
+   		<Column>
+   			 <Text text="User" />
+   		</Column>
+   	</columns>	
+   	<items>
+   		<ColumnListItem>
+   			<cells>
+   				<Text text="{UserID}" />
+   			</cells>
+   		</ColumnListItem>
+   	</items>
+   	</Table>
+   </Dialog>
+</core:FragmentDefinition>

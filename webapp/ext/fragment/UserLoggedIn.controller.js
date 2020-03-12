@@ -34,9 +34,18 @@
 		},
 		
 		handleUserLoggedPressed: function (oEvent) {
-			
+			//var oTable = this.byId("idUserList");
+			this._getDialog().open();
 		},
-
+		
+		_getDialog: function () {
+			if (!this._oDialog) {
+				this._oDialog = sap.ui.xmlfragment("com.mindset.appanalyzer.ext.fragment.UserList");
+				this.getView().addDependent(this._oDialog);
+			}	
+			return this._oDialog;
+		},
+		
 		onAfterRendering: function () {
 
 		},
