@@ -18,7 +18,7 @@
 			// var oDataModel = me.getModel("fiorimoni");
 			var sUrl = "/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/";
 			// var sUrl = "/sap/opu/odata/sap/ZMND_FIORI_MONITOR_SRV/";
-			var oDataModel = new sap.ui.model.odata.ODataModel(sUrl, true, "", "");
+			var oDataModel = new sap.ui.model.odata.ODataModel(sUrl, false);
 			oView.setModel(oDataModel);
 			var sPath = "/FLPLogInSet/$count";
 			oDataModel.read(sPath, {
