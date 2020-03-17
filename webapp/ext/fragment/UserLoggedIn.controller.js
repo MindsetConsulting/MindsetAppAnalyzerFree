@@ -47,7 +47,11 @@
 		},
 		
 		onAfterRendering: function () {
-
+			
+		},
+		
+		onDialogClose: function () {
+			this._oDialog.close();
 		},
 
 		onExit: function () {

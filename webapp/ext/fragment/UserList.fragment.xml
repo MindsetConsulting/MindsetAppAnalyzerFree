@@ -1,20 +1,20 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<Dialog title="List of Users">
+	<Dialog title="List of Users" resizable="true">
 		<Table id="isUserList" inset="false" items="{/FLPLogInSet}">
 			<columns>
 				<Column>
 					<Text text="User"/>
 				</Column>
-								<Column>
+				<Column>
 					<Text text="Application"/>
 				</Column>
 				<Column>
 					<Text text="Last Login"/>
 				</Column>
-								<Column>
+				<Column>
 					<Text text="Browser"/>
 				</Column>
-								<Column>
+				<Column>
 					<Text text="Device Type"/>
 				</Column>
 			</columns>
@@ -30,5 +30,8 @@
 				</ColumnListItem>
 			</items>
 		</Table>
+		<endButton>
+			<Button text="Close" press="onDialogClose"/>
+		</endButton>
 	</Dialog>
 </core:FragmentDefinition>
