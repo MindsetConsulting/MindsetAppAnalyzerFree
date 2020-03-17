@@ -164,19 +164,6 @@ CLASS /MINDSET/CL_FIORI_MONITOR_UTIL IMPLEMENTATION.
       lt_session_list TYPE ssi_session_list,
       lo_server_info  TYPE REF TO cl_server_info.
 
-*    TRY.
-*        CREATE OBJECT lo_server_info.
-*        lt_session_list = lo_server_info->get_session_list( with_application_info = 1 ).
-*        DELETE lt_session_list WHERE NOT application_info CP '*P=/sap/opu/odata/*'.
-*        SORT lt_session_list BY user_name.
-*        DELETE ADJACENT DUPLICATES FROM lt_session_list COMPARING user_name.
-*        rt_sessions = lt_session_list.
-**        DESCRIBE TABLE lt_session_list LINES rv_count.
-*      CATCH cx_ssi_no_auth.
-**        MESSAGE e150 WITH text-100.
-*    ENDTRY.
-*    get cut off time.
-
     SELECT DISTINCT user_id AS user_id,
            MAX( log_time ) AS last_login_at FROM /mindset/flpinfo
       INTO TABLE @rt_logins WHERE log_time GE @v_cutoff_time

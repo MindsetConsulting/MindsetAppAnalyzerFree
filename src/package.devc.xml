@@ -3,7 +3,8 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <DEVC>
-    <CTEXT>Fiori Monitor App</CTEXT>
+    <CTEXT>App Analyzer: Back-End Components</CTEXT>
+    <TPCLASS>X</TPCLASS>
    </DEVC>
   </asx:values>
  </asx:abap>

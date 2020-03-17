@@ -98,6 +98,10 @@ CLASS /MINDSET/CL_FIORI_MONI_DPC_EXT IMPLEMENTATION.
 
 
   METHOD flploginset_get_entityset.
-    es_response_context-count = es_response_context-inlinecount = lines( o_util->get_flp_logins( ) ).
+*   es_response_context-count = es_response_context-inlinecount = lines( o_util->get_flp_logins( ) ).
+
+    et_entityset = o_util->get_flp_logins( ).
+
+    es_response_context-count = es_response_context-inlinecount = lines( et_entityset ).
   ENDMETHOD.
 ENDCLASS.
