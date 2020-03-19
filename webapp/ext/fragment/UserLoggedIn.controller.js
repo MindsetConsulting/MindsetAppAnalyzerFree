@@ -51,7 +51,7 @@
 		},
 		
 		onDialogClose: function () {
-			this._oDialog.close();
+			this._getDialog().close();
 		},
 
 		onExit: function () {
