@@ -57,7 +57,7 @@
 		
 		_getDialog: function () {
 			if (!this._oDialog) {
-				this._oDialog = sap.ui.xmlfragment("com.mindset.appanalyzer.ext.fragment.UserList");
+				this._oDialog = sap.ui.xmlfragment("com.mindset.appanalyzer.ext.Broswertype.BrowserList");
 				this.getView().addDependent(this._oDialog);
 			}	
 			return this._oDialog;

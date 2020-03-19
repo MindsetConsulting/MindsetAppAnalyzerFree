@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<Dialog title="List of Users" resizable="true">
-		<Table id="isUserList" inset="false" items="{/FLPLogInSet}">
+		<Table id="isBrowserList" inset="false" items="{/FLPLogInSet}">
 			<columns>
 				<Column>
 					<Text text="User"/>
