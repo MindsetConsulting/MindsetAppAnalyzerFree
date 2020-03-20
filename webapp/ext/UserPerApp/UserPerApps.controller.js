@@ -69,7 +69,7 @@
 				}
 			});
 			oVizFrame.setModel(oUserPerAppModel);
-      	var sUrl = "/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/";
+			var sUrl = "/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/";
 			// var sUrl = "/sap/opu/odata/sap/ZMND_FIORI_MONITOR_SRV/";
 			var oDataModel = new sap.ui.model.odata.ODataModel(sUrl, true, "", "");
 			oView.setModel(oDataModel);
@@ -85,17 +85,19 @@
 				}
 			});
 			this.byId("idVizFrame").setLegendVisible(false);
+			var oPopOver = this.getView().byId("idPopOver");
+            oPopOver.connect(oVizFrame.getVizUid());
 		},
-        dataSort: function(dataset) {
-            //let data sorted by revenue
-            if (dataset && dataset.hasOwnProperty("results")) {
-                var arr = dataset.results;
-                arr = arr.sort(function (a, b) {
-                    return b.Pageviews - a.Pageviews;
-                });
-                return dataset;
-            }
-        },
+		dataSort: function (dataset) {
+			//let data sorted by revenue
+			if (dataset && dataset.hasOwnProperty("results")) {
+				var arr = dataset.results;
+				arr = arr.sort(function (a, b) {
+					return b.Pageviews - a.Pageviews;
+				});
+				return dataset;
+			}
+		},
 		onAfterRendering: function () {
 
 		},

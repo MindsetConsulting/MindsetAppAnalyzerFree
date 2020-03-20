@@ -3,6 +3,8 @@
 	<VBox class="panel bgWhite" height="14em">
 		<Toolbar class="toolbarbottamdesign" height="3em">
 			<Title text="{i18n>DeviceType}" titleStyle="H4" level="H4" class="cursor"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://display" press="handleUserLoggedPressed"/>
 		</Toolbar>
 		<FlexBox alignItems="Center" class="marginTop sapUiMediumMarginBegin sapUiMediumMarginEnd" justifyContent="SpaceBetween">
 			<items>

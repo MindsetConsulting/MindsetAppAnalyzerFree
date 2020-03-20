@@ -175,6 +175,14 @@
 						"rows": 8
 					}
 				}
+			},
+			"card08": {
+				"model": "fiorimoni",
+				"template": "com.mindset.appanalyzer.ext.Contact",
+				"settings": {
+					"title": "{{ContactUs}}",
+					"stopResizing": false
+				}
 			}
 		}
 	},

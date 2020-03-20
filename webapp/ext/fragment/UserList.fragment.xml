@@ -1,0 +1,38 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="List of Users" resizable="true">
+		<Table id="isUserList" inset="false" items="{/FLPLogInSet}">
+			<columns>
+				<Column>
+					<Text text="User"/>
+				</Column>
+<!--				<Column>
+					<Text text="Application"/>
+				</Column>-->
+				<Column>
+					<Text text="Last Login"/>
+				</Column>
+				<Column>
+					<Text text="Browser"/>
+				</Column>
+				<Column>
+					<Text text="Device Type"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{UserID}"/>
+					<!--	<Text text="{App}"/>-->
+						<Text
+							text="{ path: 'LastLoginAt', type: 'sap.ui.model.type.DateTime', formatOptions: { source: { pattern: 'yyyyMMddTHHmmss' }, style: 'long' }}"/>
+						<Text text="{Browser}"/>
+						<Text text="{DeviceType}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<!--<endButton>
+			<Button text="Close" press=".onDialogClose"/>
+		</endButton>-->
+	</Dialog>
+</core:FragmentDefinition>
