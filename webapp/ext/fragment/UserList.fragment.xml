@@ -5,9 +5,9 @@
 				<Column>
 					<Text text="User"/>
 				</Column>
-				<Column>
+<!--				<Column>
 					<Text text="Application"/>
-				</Column>
+				</Column>-->
 				<Column>
 					<Text text="Last Login"/>
 				</Column>
@@ -22,15 +22,16 @@
 				<ColumnListItem>
 					<cells>
 						<Text text="{UserID}"/>
-						<Text text="{App}"/>
-						<Text text="{LastLoginAt}"/>
+					<!--	<Text text="{App}"/>-->
+						<Text
+							text="{ path: 'LastLoginAt', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyyMMddHHmmss' }, style: 'medium' }}"/>
 						<Text text="{Browser}"/>
 						<Text text="{DeviceType}"/>
 					</cells>
 				</ColumnListItem>
 			</items>
 		</Table>
-<!--<endButton>
+		<!--<endButton>
 			<Button text="Close" press=".onDialogClose"/>
 		</endButton>-->
 	</Dialog>

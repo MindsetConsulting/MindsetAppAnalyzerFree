@@ -3,29 +3,31 @@
 		<Table id="isDeviceList" inset="false" items="{/FLPLogInSet}">
 			<columns>
 				<Column>
-					<Text text="User"/>
+					<Text text="Device Type"/>
 				</Column>
 				<Column>
-					<Text text="Application"/>
+					<Text text="User"/>
 				</Column>
+				<!--<Column>
+					<Text text="Application"/>
+				</Column>-->
 				<Column>
 					<Text text="Last Login"/>
 				</Column>
 				<Column>
 					<Text text="Browser"/>
 				</Column>
-				<Column>
-					<Text text="Device Type"/>
-				</Column>
+				
 			</columns>
 			<items>
 				<ColumnListItem>
 					<cells>
-						<Text text="{UserID}"/>
-						<Text text="{App}"/>
-						<Text text="{LastLoginAt}"/>
-						<Text text="{Browser}"/>
 						<Text text="{DeviceType}"/>
+						<Text text="{UserID}"/>
+					<!--	<Text text="{App}"/>-->
+						<Text text="{ path: 'LastLoginAt', type: 'sap.ui.model.type.DateTime', formatOptions: { source: { pattern: 'yyyyMMddTHHmmss' }, style: 'long' }}"/>
+						<Text text="{Browser}"/>
+						
 					</cells>
 				</ColumnListItem>
 			</items>
