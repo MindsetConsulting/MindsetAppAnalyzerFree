@@ -67,7 +67,7 @@ CLASS /MINDSET/CL_FIORI_MONITOR_UTIL IMPLEMENTATION.
 
   METHOD CONSTRUCTOR.
     GET TIME STAMP FIELD v_now.
-    v_cutoff_time = cl_abap_tstmp=>subtractsecs( secs = c_timeout_period tstmp = v_now ).
+    v_cutoff_time = cl_abap_tstmp=>subtractsecs( secs = 3600 tstmp = v_now ).
   ENDMETHOD.
 
 
@@ -159,15 +159,26 @@ CLASS /MINDSET/CL_FIORI_MONITOR_UTIL IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD GET_FLP_LOGINS.
+  METHOD get_flp_logins.
     DATA:
       lt_session_list TYPE ssi_session_list,
       lo_server_info  TYPE REF TO cl_server_info.
 
-    SELECT DISTINCT user_id AS user_id,
-           MAX( log_time ) AS last_login_at FROM /mindset/flpinfo
-      INTO TABLE @rt_logins WHERE log_time GE @v_cutoff_time
-      GROUP BY user_id.
+    SELECT DISTINCT user_id, MAX( log_time ) AS log_time
+           FROM /mindset/flpinfo
+           WHERE log_time GE @v_cutoff_time
+           GROUP BY user_id
+           INTO TABLE @DATA(lt_logins).
+
+    IF lt_logins IS NOT INITIAL.
+      SELECT * FROM /mindset/flpinfo FOR ALL ENTRIES IN @lt_logins
+        WHERE user_id = @lt_logins-user_id AND
+              log_time = @lt_logins-log_time
+        INTO TABLE @DATA(lt_temp).
+
+        MOVE-CORRESPONDING lt_temp TO rt_logins.
+    ENDIF.
+
   ENDMETHOD.
 
 

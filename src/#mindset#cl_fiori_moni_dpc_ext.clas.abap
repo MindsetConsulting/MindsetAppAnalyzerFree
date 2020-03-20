@@ -102,6 +102,21 @@ CLASS /MINDSET/CL_FIORI_MONI_DPC_EXT IMPLEMENTATION.
 
     et_entityset = o_util->get_flp_logins( ).
 
+    SELECT user_id, log_time, app_description FROM /mindset/appinfo FOR ALL ENTRIES IN @et_entityset
+        WHERE user_id = @et_entityset-user_id AND
+              log_time = @et_entityset-log_time
+        INTO table @DATA(lt_appname).
+
+      LOOP AT et_entityset ASSIGNING FIELD-SYMBOL(<fs_login>).
+        READ TABLE lt_appname INTO DATA(ls_appname) WITH KEY user_id = <fs_login>-user_id
+                                                             log_time = <fs_login>-log_time.
+
+        IF sy-subrc = 0.
+            <fs_login>-appdescription = ls_appname-app_description.
+        ENDIF.
+
+      ENDLOOP.
+
     es_response_context-count = es_response_context-inlinecount = lines( et_entityset ).
   ENDMETHOD.
 ENDCLASS.

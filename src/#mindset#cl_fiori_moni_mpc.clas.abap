@@ -51,8 +51,16 @@ TT_DEVICELOGIN type standard table of TS_DEVICELOGIN .
 TT_FLPINFO type standard table of TS_FLPINFO .
   types:
   begin of TS_FLPLOGIN,
+     BROWSER_VERSION type C length 20,
      USER_ID type SYUNAME,
-     LAST_LOGIN_AT type TIMESTAMP,
+     BROWSER type string,
+     LATITUDE type C length 20,
+     DEVICE_TYPE type string,
+     LONGITUDE type C length 20,
+     LOG_TIME type TIMESTAMP,
+     OS type C length 30,
+     OS_DETAILS type C length 30,
+     APPDESCRIPTION type C length 60,
   end of TS_FLPLOGIN .
   types:
 TT_FLPLOGIN type standard table of TS_FLPLOGIN .
@@ -765,6 +773,19 @@ lo_entity_type = model->create_entity_type( iv_entity_type_name = 'FLPLogIn' iv_
 *Properties
 ***********************************************************************************************************************************
 
+lo_property = lo_entity_type->create_property( iv_property_name = 'BrowserVersion' iv_abap_fieldname = 'BROWSER_VERSION' ). "#EC NOTEXT
+lo_property->set_label_from_text_element( iv_text_element_symbol = '033' iv_text_element_container = gc_incl_name ).  "#EC NOTEXT
+lo_property->set_type_edm_string( ).
+lo_property->set_maxlength( iv_max_length = 20 ). "#EC NOTEXT
+lo_property->set_creatable( abap_false ).
+lo_property->set_updatable( abap_false ).
+lo_property->set_sortable( abap_false ).
+lo_property->set_nullable( abap_false ).
+lo_property->set_filterable( abap_false ).
+lo_property->/iwbep/if_mgw_odata_annotatabl~create_annotation( 'sap' )->add(
+      EXPORTING
+        iv_key      = 'unicode'
+        iv_value    = 'false' ).
 lo_property = lo_entity_type->create_property( iv_property_name = 'UserID' iv_abap_fieldname = 'USER_ID' ). "#EC NOTEXT
 lo_property->set_is_key( ).
 lo_property->set_type_edm_string( ).
@@ -777,9 +798,96 @@ lo_property->/iwbep/if_mgw_odata_annotatabl~create_annotation( 'sap' )->add(
       EXPORTING
         iv_key      = 'unicode'
         iv_value    = 'false' ).
-lo_property = lo_entity_type->create_property( iv_property_name = 'LastLoginAt' iv_abap_fieldname = 'LAST_LOGIN_AT' ). "#EC NOTEXT
+lo_property = lo_entity_type->create_property( iv_property_name = 'Browser' iv_abap_fieldname = 'BROWSER' ). "#EC NOTEXT
+lo_property->set_type_edm_string( ).
+lo_property->set_creatable( abap_false ).
+lo_property->set_updatable( abap_false ).
+lo_property->set_sortable( abap_false ).
+lo_property->set_nullable( abap_false ).
+lo_property->set_filterable( abap_false ).
+lo_property->/iwbep/if_mgw_odata_annotatabl~create_annotation( 'sap' )->add(
+      EXPORTING
+        iv_key      = 'unicode'
+        iv_value    = 'false' ).
+lo_property = lo_entity_type->create_property( iv_property_name = 'Latitude' iv_abap_fieldname = 'LATITUDE' ). "#EC NOTEXT
+lo_property->set_label_from_text_element( iv_text_element_symbol = '034' iv_text_element_container = gc_incl_name ).  "#EC NOTEXT
+lo_property->set_type_edm_string( ).
+lo_property->set_maxlength( iv_max_length = 20 ). "#EC NOTEXT
+lo_property->set_creatable( abap_false ).
+lo_property->set_updatable( abap_false ).
+lo_property->set_sortable( abap_false ).
+lo_property->set_nullable( abap_false ).
+lo_property->set_filterable( abap_false ).
+lo_property->/iwbep/if_mgw_odata_annotatabl~create_annotation( 'sap' )->add(
+      EXPORTING
+        iv_key      = 'unicode'
+        iv_value    = 'false' ).
+lo_property = lo_entity_type->create_property( iv_property_name = 'DeviceType' iv_abap_fieldname = 'DEVICE_TYPE' ). "#EC NOTEXT
+lo_property->set_type_edm_string( ).
+lo_property->set_creatable( abap_false ).
+lo_property->set_updatable( abap_false ).
+lo_property->set_sortable( abap_false ).
+lo_property->set_nullable( abap_false ).
+lo_property->set_filterable( abap_false ).
+lo_property->/iwbep/if_mgw_odata_annotatabl~create_annotation( 'sap' )->add(
+      EXPORTING
+        iv_key      = 'unicode'
+        iv_value    = 'false' ).
+lo_property = lo_entity_type->create_property( iv_property_name = 'Longitude' iv_abap_fieldname = 'LONGITUDE' ). "#EC NOTEXT
+lo_property->set_label_from_text_element( iv_text_element_symbol = '035' iv_text_element_container = gc_incl_name ).  "#EC NOTEXT
+lo_property->set_type_edm_string( ).
+lo_property->set_maxlength( iv_max_length = 20 ). "#EC NOTEXT
+lo_property->set_creatable( abap_false ).
+lo_property->set_updatable( abap_false ).
+lo_property->set_sortable( abap_false ).
+lo_property->set_nullable( abap_false ).
+lo_property->set_filterable( abap_false ).
+lo_property->/iwbep/if_mgw_odata_annotatabl~create_annotation( 'sap' )->add(
+      EXPORTING
+        iv_key      = 'unicode'
+        iv_value    = 'false' ).
+lo_property = lo_entity_type->create_property( iv_property_name = 'LastLoginAt' iv_abap_fieldname = 'LOG_TIME' ). "#EC NOTEXT
 lo_property->set_label_from_text_element( iv_text_element_symbol = '024' iv_text_element_container = gc_incl_name ).  "#EC NOTEXT
 lo_property->set_type_edm_decimal( ).
+lo_property->set_creatable( abap_false ).
+lo_property->set_updatable( abap_false ).
+lo_property->set_sortable( abap_false ).
+lo_property->set_nullable( abap_false ).
+lo_property->set_filterable( abap_false ).
+lo_property->/iwbep/if_mgw_odata_annotatabl~create_annotation( 'sap' )->add(
+      EXPORTING
+        iv_key      = 'unicode'
+        iv_value    = 'false' ).
+lo_property = lo_entity_type->create_property( iv_property_name = 'Os' iv_abap_fieldname = 'OS' ). "#EC NOTEXT
+lo_property->set_label_from_text_element( iv_text_element_symbol = '036' iv_text_element_container = gc_incl_name ).  "#EC NOTEXT
+lo_property->set_type_edm_string( ).
+lo_property->set_maxlength( iv_max_length = 30 ). "#EC NOTEXT
+lo_property->set_creatable( abap_false ).
+lo_property->set_updatable( abap_false ).
+lo_property->set_sortable( abap_false ).
+lo_property->set_nullable( abap_false ).
+lo_property->set_filterable( abap_false ).
+lo_property->/iwbep/if_mgw_odata_annotatabl~create_annotation( 'sap' )->add(
+      EXPORTING
+        iv_key      = 'unicode'
+        iv_value    = 'false' ).
+lo_property = lo_entity_type->create_property( iv_property_name = 'OsDetails' iv_abap_fieldname = 'OS_DETAILS' ). "#EC NOTEXT
+lo_property->set_label_from_text_element( iv_text_element_symbol = '037' iv_text_element_container = gc_incl_name ).  "#EC NOTEXT
+lo_property->set_type_edm_string( ).
+lo_property->set_maxlength( iv_max_length = 30 ). "#EC NOTEXT
+lo_property->set_creatable( abap_false ).
+lo_property->set_updatable( abap_false ).
+lo_property->set_sortable( abap_false ).
+lo_property->set_nullable( abap_false ).
+lo_property->set_filterable( abap_false ).
+lo_property->/iwbep/if_mgw_odata_annotatabl~create_annotation( 'sap' )->add(
+      EXPORTING
+        iv_key      = 'unicode'
+        iv_value    = 'false' ).
+lo_property = lo_entity_type->create_property( iv_property_name = 'AppDescription' iv_abap_fieldname = 'APPDESCRIPTION' ). "#EC NOTEXT
+lo_property->set_label_from_text_element( iv_text_element_symbol = '038' iv_text_element_container = gc_incl_name ).  "#EC NOTEXT
+lo_property->set_type_edm_string( ).
+lo_property->set_maxlength( iv_max_length = 60 ). "#EC NOTEXT
 lo_property->set_creatable( abap_false ).
 lo_property->set_updatable( abap_false ).
 lo_property->set_sortable( abap_false ).
@@ -917,7 +1025,7 @@ lo_entity_set->set_filter_required( abap_false ).
 *&---------------------------------------------------------------------*
 
 
-  CONSTANTS: lc_gen_date_time TYPE timestamp VALUE '20190306205746'.                  "#EC NOTEXT
+  CONSTANTS: lc_gen_date_time TYPE timestamp VALUE '20200319162022'.                  "#EC NOTEXT
   rv_last_modified = super->get_last_modified( ).
   IF rv_last_modified LT lc_gen_date_time.
     rv_last_modified = lc_gen_date_time.
@@ -1110,11 +1218,53 @@ APPEND ls_text_element TO rt_text_elements.
 
 
 clear ls_text_element.
+ls_text_element-artifact_name          = 'BrowserVersion'.                 "#EC NOTEXT
+ls_text_element-artifact_type          = 'PROP'.                                       "#EC NOTEXT
+ls_text_element-parent_artifact_name   = 'FLPLogIn'.                            "#EC NOTEXT
+ls_text_element-parent_artifact_type   = 'ETYP'.                                       "#EC NOTEXT
+ls_text_element-text_symbol            = '033'.              "#EC NOTEXT
+APPEND ls_text_element TO rt_text_elements.
+clear ls_text_element.
+ls_text_element-artifact_name          = 'Latitude'.                 "#EC NOTEXT
+ls_text_element-artifact_type          = 'PROP'.                                       "#EC NOTEXT
+ls_text_element-parent_artifact_name   = 'FLPLogIn'.                            "#EC NOTEXT
+ls_text_element-parent_artifact_type   = 'ETYP'.                                       "#EC NOTEXT
+ls_text_element-text_symbol            = '034'.              "#EC NOTEXT
+APPEND ls_text_element TO rt_text_elements.
+clear ls_text_element.
+ls_text_element-artifact_name          = 'Longitude'.                 "#EC NOTEXT
+ls_text_element-artifact_type          = 'PROP'.                                       "#EC NOTEXT
+ls_text_element-parent_artifact_name   = 'FLPLogIn'.                            "#EC NOTEXT
+ls_text_element-parent_artifact_type   = 'ETYP'.                                       "#EC NOTEXT
+ls_text_element-text_symbol            = '035'.              "#EC NOTEXT
+APPEND ls_text_element TO rt_text_elements.
+clear ls_text_element.
 ls_text_element-artifact_name          = 'LastLoginAt'.                 "#EC NOTEXT
 ls_text_element-artifact_type          = 'PROP'.                                       "#EC NOTEXT
 ls_text_element-parent_artifact_name   = 'FLPLogIn'.                            "#EC NOTEXT
 ls_text_element-parent_artifact_type   = 'ETYP'.                                       "#EC NOTEXT
 ls_text_element-text_symbol            = '024'.              "#EC NOTEXT
+APPEND ls_text_element TO rt_text_elements.
+clear ls_text_element.
+ls_text_element-artifact_name          = 'Os'.                 "#EC NOTEXT
+ls_text_element-artifact_type          = 'PROP'.                                       "#EC NOTEXT
+ls_text_element-parent_artifact_name   = 'FLPLogIn'.                            "#EC NOTEXT
+ls_text_element-parent_artifact_type   = 'ETYP'.                                       "#EC NOTEXT
+ls_text_element-text_symbol            = '036'.              "#EC NOTEXT
+APPEND ls_text_element TO rt_text_elements.
+clear ls_text_element.
+ls_text_element-artifact_name          = 'OsDetails'.                 "#EC NOTEXT
+ls_text_element-artifact_type          = 'PROP'.                                       "#EC NOTEXT
+ls_text_element-parent_artifact_name   = 'FLPLogIn'.                            "#EC NOTEXT
+ls_text_element-parent_artifact_type   = 'ETYP'.                                       "#EC NOTEXT
+ls_text_element-text_symbol            = '037'.              "#EC NOTEXT
+APPEND ls_text_element TO rt_text_elements.
+clear ls_text_element.
+ls_text_element-artifact_name          = 'AppDescription'.                 "#EC NOTEXT
+ls_text_element-artifact_type          = 'PROP'.                                       "#EC NOTEXT
+ls_text_element-parent_artifact_name   = 'FLPLogIn'.                            "#EC NOTEXT
+ls_text_element-parent_artifact_type   = 'ETYP'.                                       "#EC NOTEXT
+ls_text_element-text_symbol            = '038'.              "#EC NOTEXT
 APPEND ls_text_element TO rt_text_elements.
 
 
