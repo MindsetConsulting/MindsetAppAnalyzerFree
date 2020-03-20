@@ -24,7 +24,7 @@
 						<Text text="{UserID}"/>
 					<!--	<Text text="{App}"/>-->
 						<Text
-							text="{ path: 'LastLoginAt', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyyMMddHHmmss' }, style: 'medium' }}"/>
+							text="{ path: 'LastLoginAt', type: 'sap.ui.model.type.DateTime', formatOptions: { source: { pattern: 'yyyyMMddTHHmmss' }, style: 'long' }}"/>
 						<Text text="{Browser}"/>
 						<Text text="{DeviceType}"/>
 					</cells>
