@@ -3,6 +3,8 @@
 	<VBox class="bgWhite" height="14em">
 		<Toolbar class="toolbarbottamdesign" height="3em">
 			<Title text="{i18n>UserLoggedIn}" titleStyle="H4" level="H4" class="cursor"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://display" press="handleUserLoggedPressed"/>
 		</Toolbar>
 		<Toolbar class="toolbarbottamdesign" height="2em"></Toolbar>
 		<FlexBox alignItems="Center" justifyContent="Center">
