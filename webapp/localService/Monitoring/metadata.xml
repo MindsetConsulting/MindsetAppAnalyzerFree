@@ -75,13 +75,20 @@
 					sap:sortable="false" sap:filterable="false"/></EntityType>
 			<EntityContainer Name="MINDSET_FIORI_MONITOR_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
 				<EntitySet Name="AppLogInSet" EntityType="MINDSET.FIORI_MONITOR_SRV.AppLogIn" sap:creatable="false" sap:updatable="false"
-					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="BrowserLogInSet" EntityType="MINDSET.FIORI_MONITOR_SRV.BrowserLogIn" sap:creatable="false" sap:updatable="false"
-					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="DeviceLogInSet" EntityType="MINDSET.FIORI_MONITOR_SRV.DeviceLogIn" sap:creatable="false" sap:updatable="false"
-					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="FLPInfoSet" EntityType="MINDSET.FIORI_MONITOR_SRV.FLPInfo" sap:creatable="false" sap:updatable="false"
-					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="FLPLogInSet" EntityType="MINDSET.FIORI_MONITOR_SRV.FLPLogIn" sap:creatable="false" sap:updatable="false"
-					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="AppInfoSet" EntityType="MINDSET.FIORI_MONITOR_SRV.AppInfo" sap:creatable="false" sap:updatable="false"
-					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="GeoLogInSet" EntityType="MINDSET.FIORI_MONITOR_SRV.GeoLogIn" sap:creatable="false" sap:updatable="false"
-					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/></EntityContainer>
+					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+					<EntitySet Name="BrowserLogInSet" EntityType="MINDSET.FIORI_MONITOR_SRV.BrowserLogIn" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+					<EntitySet Name="DeviceLogInSet" EntityType="MINDSET.FIORI_MONITOR_SRV.DeviceLogIn" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+					<EntitySet Name="FLPInfoSet" EntityType="MINDSET.FIORI_MONITOR_SRV.FLPInfo" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+					<EntitySet Name="FLPLogInSet" EntityType="MINDSET.FIORI_MONITOR_SRV.FLPLogIn" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:addressable="true" sap:content-version="1"/>
+					<EntitySet Name="AppInfoSet" EntityType="MINDSET.FIORI_MONITOR_SRV.AppInfo" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+					<EntitySet Name="GeoLogInSet" EntityType="MINDSET.FIORI_MONITOR_SRV.GeoLogIn" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				</EntityContainer>
 			<atom:link rel="self" href="http://vhcals4hci.mindsetconsulting.com:50000/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/$metadata"
 				xmlns:atom="http://www.w3.org/2005/Atom"/><atom:link rel="latest-version" href="http://vhcals4hci.mindsetconsulting.com:50000/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/$metadata"
 				xmlns:atom="http://www.w3.org/2005/Atom"/></Schema>
