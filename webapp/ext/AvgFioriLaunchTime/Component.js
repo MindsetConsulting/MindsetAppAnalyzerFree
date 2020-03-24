@@ -1,7 +1,7 @@
 /* global sap */
-sap.ui.define(["sap/ovp/cards/generic/Component", "jquery.sap.global"],
+sap.ui.define(["sap/ovp/cards/generic/Component"],
  
-    function (CardComponent, jQuery) {
+    function (CardComponent) {
         "use strict";
  
         return CardComponent.extend("com.mindset.appanalyzer.ext.AvgFioriLaunchTime.Component", {
