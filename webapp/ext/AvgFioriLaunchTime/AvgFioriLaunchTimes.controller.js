@@ -20,7 +20,7 @@
 			var sPath = "/AppInfoSet(' ')";
 			oDataModel.read(sPath, {
 				success: function (oData, oRes) {
-					oLoadTimeModel.setProperty("/LoadTime", oRes.LoadTime);
+					oLoadTimeModel.setProperty("/LoadTime", oRes.data.LoadTime);
 					oLoadTimeModel.updateBindings(true);
 				},
 				error: function (data) {
