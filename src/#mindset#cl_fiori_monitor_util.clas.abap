@@ -1,25 +1,27 @@
-class /MINDSET/CL_FIORI_MONITOR_UTIL definition
-  public
-  final
-  create public .
+CLASS /mindset/cl_fiori_monitor_util DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
 
-public section.
+  PUBLIC SECTION.
 
-  types:
-    ty_flpinfo_t TYPE STANDARD TABLE OF /mindset/flpinfo WITH DEFAULT KEY .
-  types:
-    ty_flplogin_t TYPE STANDARD TABLE OF /mindset/cl_fiori_moni_mpc_ext=>ts_flplogin WITH DEFAULT KEY .
-  types:
-    ty_applogin_t TYPE STANDARD TABLE OF /mindset/cl_fiori_moni_mpc_ext=>ts_applogin WITH DEFAULT KEY .
-  types:
-    ty_device_login_t TYPE STANDARD TABLE OF /mindset/cl_fiori_moni_mpc_ext=>ts_devicelogin WITH DEFAULT KEY .
-  types:
-    ty_browser_login_t TYPE STANDARD TABLE OF /mindset/cl_fiori_moni_mpc_ext=>ts_browserlogin WITH DEFAULT KEY .
-  types:
-    ty_geo_login_t TYPE STANDARD TABLE OF /mindset/cl_fiori_moni_mpc_ext=>ts_geologin WITH DEFAULT KEY .
+    TYPES:
+      ty_flpinfo_t TYPE STANDARD TABLE OF /mindset/flpinfo WITH DEFAULT KEY .
+    TYPES:
+      ty_flplogin_t TYPE STANDARD TABLE OF /mindset/cl_fiori_moni_mpc_ext=>ts_flplogin WITH DEFAULT KEY .
+    TYPES:
+      ty_applogin_t TYPE STANDARD TABLE OF /mindset/cl_fiori_moni_mpc_ext=>ts_applogin WITH DEFAULT KEY .
+    TYPES:
+      ty_device_login_t TYPE STANDARD TABLE OF /mindset/cl_fiori_moni_mpc_ext=>ts_devicelogin WITH DEFAULT KEY .
+    TYPES:
+      ty_browser_login_t TYPE STANDARD TABLE OF /mindset/cl_fiori_moni_mpc_ext=>ts_browserlogin WITH DEFAULT KEY .
+    TYPES:
+      ty_geo_login_t TYPE STANDARD TABLE OF /mindset/cl_fiori_moni_mpc_ext=>ts_geologin WITH DEFAULT KEY .
+    TYPES:
+      ty_avg_load_time TYPE /mindset/appinfo-load_time .
 
-  constants:
-    BEGIN OF cs_browsers,
+    CONSTANTS:
+      BEGIN OF cs_browsers,
         ie      TYPE char20 VALUE 'IE',
         edge    TYPE char20 VALUE 'EDGE',
         chrome  TYPE char20 VALUE 'CHROME',
@@ -27,33 +29,36 @@ public section.
         firefox TYPE char20 VALUE 'FIREFOX',
         safari  TYPE char20 VALUE 'SAFARI',
       END OF cs_browsers .
-  constants:
-    BEGIN OF cs_devices,
+    CONSTANTS:
+      BEGIN OF cs_devices,
         phone   TYPE char20 VALUE 'PHONE',
         tablet  TYPE char20 VALUE 'TABLET',
         desktop TYPE char20 VALUE 'DESKTOP',
       END OF cs_devices .
-  constants C_TIMEOUT_PERIOD type INT4 value 3600 ##NO_TEXT.
-  data V_NOW type TIMESTAMP .
+    CONSTANTS c_timeout_period TYPE int4 VALUE 3600 ##NO_TEXT.
+    DATA v_now TYPE timestamp .
 
-  methods GET_FLP_LOGINS
-    returning
-      value(RT_LOGINS) type TY_FLPLOGIN_T .
-  methods GET_BROWSER_LOGINS
-    returning
-      value(RT_LOGINS) type TY_BROWSER_LOGIN_T .
-  methods GET_DEVICE_LOGINS
-    returning
-      value(RT_LOGINS) type TY_DEVICE_LOGIN_T .
-  methods CONSTRUCTOR .
-  methods GET_GEO_LOGINS
-    returning
-      value(RT_LOGINS) type TY_GEO_LOGIN_T .
-  methods GET_APP_LOGINS
-    returning
-      value(RT_LOGINS) type TY_APPLOGIN_T .
-  methods GET_TOP_USERS .
-  methods GET_TOP_ERRORS .
+    METHODS get_load_time
+      RETURNING
+        VALUE(rv_loadtime) TYPE ty_avg_load_time .
+    METHODS get_flp_logins
+      RETURNING
+        VALUE(rt_logins) TYPE ty_flplogin_t .
+    METHODS get_browser_logins
+      RETURNING
+        VALUE(rt_logins) TYPE ty_browser_login_t .
+    METHODS get_device_logins
+      RETURNING
+        VALUE(rt_logins) TYPE ty_device_login_t .
+    METHODS constructor .
+    METHODS get_geo_logins
+      RETURNING
+        VALUE(rt_logins) TYPE ty_geo_login_t .
+    METHODS get_app_logins
+      RETURNING
+        VALUE(rt_logins) TYPE ty_applogin_t .
+    METHODS get_top_users .
+    METHODS get_top_errors .
   PROTECTED SECTION.
   PRIVATE SECTION.
 
@@ -65,13 +70,13 @@ ENDCLASS.
 CLASS /MINDSET/CL_FIORI_MONITOR_UTIL IMPLEMENTATION.
 
 
-  METHOD CONSTRUCTOR.
+  METHOD constructor.
     GET TIME STAMP FIELD v_now.
     v_cutoff_time = cl_abap_tstmp=>subtractsecs( secs = 3600 tstmp = v_now ).
   ENDMETHOD.
 
 
-  METHOD GET_APP_LOGINS.
+  METHOD get_app_logins.
     TYPES: BEGIN OF lty_apptime,
              semantic_object TYPE string,
              semantic_action TYPE string,
@@ -119,7 +124,7 @@ CLASS /MINDSET/CL_FIORI_MONITOR_UTIL IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD GET_BROWSER_LOGINS.
+  METHOD get_browser_logins.
     DATA: ls_logins TYPE LINE OF ty_browser_login_t.
 
     SELECT COUNT( DISTINCT user_id ) AS user_count,
@@ -139,7 +144,7 @@ CLASS /MINDSET/CL_FIORI_MONITOR_UTIL IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD GET_DEVICE_LOGINS.
+  METHOD get_device_logins.
     DATA: ls_logins TYPE LINE OF ty_device_login_t.
 
     SELECT COUNT( DISTINCT user_id ) AS user_count,
@@ -176,13 +181,13 @@ CLASS /MINDSET/CL_FIORI_MONITOR_UTIL IMPLEMENTATION.
               log_time = @lt_logins-log_time
         INTO TABLE @DATA(lt_temp).
 
-        MOVE-CORRESPONDING lt_temp TO rt_logins.
+      MOVE-CORRESPONDING lt_temp TO rt_logins.
     ENDIF.
 
   ENDMETHOD.
 
 
-  METHOD GET_GEO_LOGINS.
+  METHOD get_geo_logins.
     DATA: ls_logins TYPE LINE OF ty_geo_login_t.
 *
 **   Geo Region Cutoff
@@ -204,10 +209,22 @@ CLASS /MINDSET/CL_FIORI_MONITOR_UTIL IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD GET_TOP_ERRORS.
+  METHOD get_load_time.
+
+    DATA(lv_past_24h) = cl_abap_tstmp=>subtractsecs( EXPORTING secs = 86400 tstmp = v_now ).
+
+    SELECT AVG( load_time ) FROM /mindset/appinfo
+      WHERE log_time GE @lv_past_24h
+      INTO @rv_loadtime.
+
+
+    ENDMETHOD.
+
+
+  METHOD get_top_errors.
   ENDMETHOD.
 
 
-  METHOD GET_TOP_USERS.
+  METHOD get_top_users.
   ENDMETHOD.
 ENDCLASS.

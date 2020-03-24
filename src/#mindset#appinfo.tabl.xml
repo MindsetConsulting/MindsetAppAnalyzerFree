@@ -88,6 +88,14 @@
      <MASK>  CHAR</MASK>
      <DDTEXT>App Description</DDTEXT>
     </DD03P>
+    <DD03P>
+     <TABNAME>/MINDSET/APPINFO</TABNAME>
+     <FIELDNAME>LOAD_TIME</FIELDNAME>
+     <POSITION>0007</POSITION>
+     <ROLLNAME>INT4</ROLLNAME>
+     <ADMINFIELD>0</ADMINFIELD>
+     <COMPTYPE>E</COMPTYPE>
+    </DD03P>
    </DD03P_TABLE>
   </asx:values>
  </asx:abap>

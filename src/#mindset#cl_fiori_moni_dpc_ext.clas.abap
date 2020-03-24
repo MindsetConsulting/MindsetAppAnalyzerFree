@@ -1,32 +1,34 @@
-CLASS /mindset/cl_fiori_moni_dpc_ext DEFINITION
-  PUBLIC
-  INHERITING FROM /mindset/cl_fiori_moni_dpc
-  CREATE PUBLIC .
+class /MINDSET/CL_FIORI_MONI_DPC_EXT definition
+  public
+  inheriting from /MINDSET/CL_FIORI_MONI_DPC
+  create public .
 
-  PUBLIC SECTION.
+public section.
 
-    DATA o_util TYPE REF TO /mindset/cl_fiori_monitor_util .
+  data O_UTIL type ref to /MINDSET/CL_FIORI_MONITOR_UTIL .
 
-    METHODS /iwbep/if_mgw_core_srv_runtime~init
-        REDEFINITION .
-  PROTECTED SECTION.
+  methods /IWBEP/IF_MGW_CORE_SRV_RUNTIME~INIT
+    redefinition .
+protected section.
 
-    METHODS apploginset_get_entity
-        REDEFINITION .
-    METHODS apploginset_get_entityset
-        REDEFINITION .
-    METHODS browserloginset_get_entityset
-        REDEFINITION .
-    METHODS deviceloginset_get_entityset
-        REDEFINITION .
-    METHODS flpinfoset_create_entity
-        REDEFINITION .
-    METHODS flploginset_get_entity
-        REDEFINITION .
-    METHODS flploginset_get_entityset
-        REDEFINITION .
-    METHODS appinfoset_create_entity
-        REDEFINITION .
+  methods APPINFOSET_CREATE_ENTITY
+    redefinition .
+  methods APPLOGINSET_GET_ENTITY
+    redefinition .
+  methods APPLOGINSET_GET_ENTITYSET
+    redefinition .
+  methods BROWSERLOGINSET_GET_ENTITYSET
+    redefinition .
+  methods DEVICELOGINSET_GET_ENTITYSET
+    redefinition .
+  methods FLPINFOSET_CREATE_ENTITY
+    redefinition .
+  methods FLPLOGINSET_GET_ENTITY
+    redefinition .
+  methods FLPLOGINSET_GET_ENTITYSET
+    redefinition .
+  methods APPINFOSET_GET_ENTITY
+    redefinition .
   PRIVATE SECTION.
 ENDCLASS.
 
@@ -57,6 +59,11 @@ CLASS /MINDSET/CL_FIORI_MONI_DPC_EXT IMPLEMENTATION.
     GET TIME STAMP FIELD ls_appinfo_db-log_time.
     INSERT /mindset/appinfo FROM ls_appinfo_db.
   ENDMETHOD.
+
+
+  method APPINFOSET_GET_ENTITY.
+    er_entity-load_time = o_util->get_load_time( ).
+  endmethod.
 
 
   METHOD apploginset_get_entity.
