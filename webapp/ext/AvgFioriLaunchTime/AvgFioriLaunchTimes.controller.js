@@ -17,7 +17,7 @@
 			var sUrl = "/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/";
 			var oDataModel = new sap.ui.model.odata.ODataModel(sUrl, false);
 			oView.setModel(oDataModel);
-			var sPath = "/AppLogIn('')";
+			var sPath = "/AppLogInSet()";
 			oDataModel.read(sPath, {
 				success: function (oData, oRes) {
 					oLoadTimeModel.setProperty("/LoadTime", oRes.LoadTime);

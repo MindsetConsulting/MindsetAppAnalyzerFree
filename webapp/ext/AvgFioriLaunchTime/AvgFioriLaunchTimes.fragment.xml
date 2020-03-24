@@ -7,7 +7,7 @@
 		<Toolbar class="toolbarbottamdesign" height="2em"></Toolbar>
 		<FlexBox alignItems="Center" justifyContent="Center">
 			<items>
-				<Title text="3056" titleStyle="H1" level="H1" class="userloggedCnt"/>
+				<Title text="{oLoadTimeModel>/LoadTime}" titleStyle="H1" level="H1" class="userloggedCnt"/>
 				<Title text="ms" titleStyle="H4" level="H6" class="margin20"/>
 			</items>
 		</FlexBox>
