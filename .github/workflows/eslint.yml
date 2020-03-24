@@ -1,4 +1,4 @@
-name: CI
+name: ESLint
 
 on:
   pull_request:
@@ -16,17 +16,9 @@ jobs:
     - name: Setup Node.js for use with actions
       uses: actions/setup-node@v1.1.0
     - name: NPM Install
-      run: npm ci
-#     - name: ESLint Action
-#       uses: hallee/eslint-action@1.0.1
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+      run: npm ci 
     - name: ESlint Runner Action
       uses: tinovyatkin/action-eslint@v1
       with:
         # Token for the repo. Can be passed in using {{ secrets.GITHUB_TOKEN }}
         repo-token: ${{ secrets.GITHUB_TOKEN }} 
-    - name: abaplint Action
-      uses: abaplint/actions-abaplint@0.2.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
