@@ -1,13 +1,10 @@
-(function () {
-	"use strict";
+sap.ui.define(["sap/ovp/cards/generic/Component", "jquery.sap.global"],
+ 
+    function (CardComponent, jQuery) {
+        "use strict";
+ 
+        return CardComponent.extend("com.mindset.appanalyzer.ext.AvgFioriLaunchTime.Component", {
 
-	/* component for custom card */
-
-	jQuery.sap.declare("com.mindset.appanalyzer.ext.AvgFioriLaunchTime.Component");
-	jQuery.sap.require("sap.ovp.cards.custom.Component");
-
-	sap.ovp.cards.custom.Component.extend("com.mindset.appanalyzer.ext.AvgFioriLaunchTime.Component", {
-		// use inline declaration instead of component.json to save 1 round trip
 		metadata: {
 			properties: {
 				"contentFragment": {
