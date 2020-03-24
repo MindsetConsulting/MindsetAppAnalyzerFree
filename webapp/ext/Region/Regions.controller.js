@@ -1,3 +1,4 @@
+/* global sap */
 sap.ui.define([
 	"sap/ui/vbm/AnalyticMap", "sap/ui/model/json/JSONModel", "sap/ui/Device"
 ],
