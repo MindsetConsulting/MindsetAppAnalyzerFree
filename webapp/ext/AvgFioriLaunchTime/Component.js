@@ -42,4 +42,4 @@ sap.ui.define(["sap/ovp/cards/generic/Component"],
 			}
 		}
 	});
-})();
+});

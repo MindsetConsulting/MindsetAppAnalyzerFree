@@ -40,4 +40,4 @@ function (Controller, JSONModel, ODataModel) {
 		}
 
 	});
-})();
+});
