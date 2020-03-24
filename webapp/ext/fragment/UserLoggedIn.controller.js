@@ -1,3 +1,4 @@
+/* global sap */
 sap.ui.define(["sap/ovp/cards/generic/Card.controller", 
 			"sap/ui/model/json/JSONModel",
 			"sap/ui/model/odata/ODataModel"],
