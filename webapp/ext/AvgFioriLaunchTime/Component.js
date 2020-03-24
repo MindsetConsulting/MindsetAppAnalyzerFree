@@ -12,6 +12,10 @@ sap.ui.define(["sap/ovp/cards/generic/Component"],
 					"type": "string",
 					"defaultValue": "com.mindset.appanalyzer.ext.AvgFioriLaunchTime.AvgFioriLaunchTimes"
 				},
+				"controllerName": {
+                        "type": "string",
+                        "defaultValue": "com.mindset.appanalyzer.ext.AvgFioriLaunchTime.AvgFioriLaunchTimes"
+                },
 				"headerFragment": {
 					"type": "string",
 					"defaultValue": ""
@@ -32,14 +36,14 @@ sap.ui.define(["sap/ovp/cards/generic/Component"],
 				libs: ["sap.m"],
 				components: []
 			},
-			config: {},
-			customizing: {
+			config: {}
+			/*customizing: {
 				"sap.ui.controllerExtensions": {
 					"sap.ovp.cards.generic.Card": {
 						controllerName: "com.mindset.appanalyzer.ext.AvgFioriLaunchTime.AvgFioriLaunchTimes"
 					}
 				}
-			}
+			}*/
 		}
 	});
 });
