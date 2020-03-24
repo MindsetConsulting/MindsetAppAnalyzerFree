@@ -58,4 +58,4 @@ function (Controller, JSONModel, ODataModel) {
 		}
 
 	});
-})();
+});
