@@ -1,13 +1,9 @@
-(function () {
-	"use strict";
-
-	/* component for custom card */
-
-	jQuery.sap.declare("com.mindset.appanalyzer.ext.fragment.Component");
-	jQuery.sap.require("sap.ovp.cards.custom.Component");
-
-	sap.ovp.cards.custom.Component.extend("com.mindset.appanalyzer.ext.fragment.Component", {
-		// use inline declaration instead of component.json to save 1 round trip
+sap.ui.define(["sap/ovp/cards/generic/Component"],
+ 
+    function (CardComponent) {
+        "use strict";
+ 
+        return CardComponent.extend("com.mindset.appanalyzer.ext.fragment.Component", {
 		metadata: {
 			properties: {
 				"contentFragment": {
