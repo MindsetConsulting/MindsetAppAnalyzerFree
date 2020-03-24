@@ -1,3 +1,4 @@
+/* global sap */
 sap.ui.define(["sap/ovp/cards/generic/Component", "jquery.sap.global"],
  
     function (CardComponent, jQuery) {
