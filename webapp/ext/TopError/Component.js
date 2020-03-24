@@ -1,19 +1,20 @@
-(function () {
-	"use strict";
+/* global sap */
+sap.ui.define(["sap/ovp/cards/generic/Component"],
 
-	/* component for custom card */
+	function (CardComponent) {
+		"use strict";
 
-	jQuery.sap.declare("com.mindset.appanalyzer.ext.TopError.Component");
-	jQuery.sap.require("sap.ovp.cards.custom.Component");
-
-	sap.ovp.cards.custom.Component.extend("com.mindset.appanalyzer.ext.TopError.Component", {
-		// use inline declaration instead of component.json to save 1 round trip
-		metadata: {
-			properties: {
-				"contentFragment": {
-					"type": "string",
-					"defaultValue": "com.mindset.appanalyzer.ext.TopError.TopErrors"
-				},
+		return CardComponent.extend("com.mindset.appanalyzer.ext.TopError.Component", {
+			metadata: {
+				properties: {
+					"contentFragment": {
+						"type": "string",
+						"defaultValue": "com.mindset.appanalyzer.ext.TopError.TopErrors"
+					},
+					"controllerName": {
+						"type": "string",
+						"defaultValue": "com.mindset.appanalyzer.ext.TopError.TopErrors"
+					},
 				"headerFragment": {
 					"type": "string",
 					"defaultValue": ""
@@ -44,4 +45,4 @@
 			}
 		}
 	});
-})();
+});

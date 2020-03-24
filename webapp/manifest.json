@@ -50,21 +50,16 @@
 	},
 	"sap.ui5": {
 		"dependencies": {
-			"minUI5Version": "${sap.ui5.dist.version}",
+			"minUI5Version": "1.52.15",
 			"libs": {
-				"sap.ovp": {},
-				"sap.ui.core": {
-					"minVersion": ""
+				"sap.ovp": {
+					"minVersion": "1.52.3"
 				},
-				"sap.ui.layout": {
-					"minVersion": ""
-				},
-				"sap.ui.vbm": {
-					"minVersion": ""
-				},
-				"sap.viz": {
-					"minVersion": ""
-				}
+				"sap.ui.core": {},
+				"sap.ui.layout": {},
+				"sap.ui.vbm": {},
+				"sap.viz": {},
+				"sap.m": {}
 			}
 		},
 		"resources": {
@@ -112,7 +107,7 @@
 				"settings": {
 					"title": "{{UserLoggedIn}}",
 					"entitySet": "FLPLogInSet",
-					"stopResizing": true
+					"stopResizing": false
 				}
 			},
 			"card01": {
@@ -120,7 +115,7 @@
 				"template": "com.mindset.appanalyzer.ext.Broswertype",
 				"settings": {
 					"title": "{{BrowserTypes}}",
-					"stopResizing": true
+					"stopResizing": false
 				}
 			},
 			"card02": {
@@ -128,7 +123,7 @@
 				"template": "com.mindset.appanalyzer.ext.DeviceType",
 				"settings": {
 					"title": "{{DeviceType}}",
-					"stopResizing": true
+					"stopResizing": false
 				}
 			},
 			"card03": {
@@ -136,7 +131,7 @@
 				"template": "com.mindset.appanalyzer.ext.AvgFioriLaunchTime",
 				"settings": {
 					"title": "{{AvgFioriAppLaunchTime}}",
-					"stopResizing": true
+					"stopResizing": false
 				}
 			},
 			"card04": {
@@ -151,7 +146,7 @@
 				"template": "com.mindset.appanalyzer.ext.TopUser",
 				"settings": {
 					"title": "{{TopUsers}}",
-					"stopResizing": true
+					"stopResizing": false
 				}
 			},
 			"card06": {

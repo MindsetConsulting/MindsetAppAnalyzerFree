@@ -1,19 +1,20 @@
-(function () {
-	"use strict";
+/* global sap */
+sap.ui.define(["sap/ovp/cards/generic/Component"],
 
-	/* component for custom card */
+	function (CardComponent) {
+		"use strict";
 
-	jQuery.sap.declare("com.mindset.appanalyzer.ext.UserPerApp.Component");
-	jQuery.sap.require("sap.ovp.cards.custom.Component");
-
-	sap.ovp.cards.custom.Component.extend("com.mindset.appanalyzer.ext.UserPerApp.Component", {
-		// use inline declaration instead of component.json to save 1 round trip
-		metadata: {
-			properties: {
-				"contentFragment": {
-					"type": "string",
-					"defaultValue": "com.mindset.appanalyzer.ext.UserPerApp.UserPerApps"
-				},
+		return CardComponent.extend("com.mindset.appanalyzer.ext.UserPerApp.Component", {
+			metadata: {
+				properties: {
+					"contentFragment": {
+						"type": "string",
+						"defaultValue": "com.mindset.appanalyzer.ext.UserPerApp.UserPerApps"
+					},
+					"controllerName": {
+						"type": "string",
+						"defaultValue": "com.mindset.appanalyzer.ext.UserPerApp.UserPerApps"
+					},
 				"headerFragment": {
 					"type": "string",
 					"defaultValue": ""
@@ -44,4 +45,4 @@
 			}
 		}
 	});
-})();
+});
