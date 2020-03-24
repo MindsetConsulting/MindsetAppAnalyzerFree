@@ -6,9 +6,27 @@
 	sap.ui.controller("com.mindset.appanalyzer.ext.AvgFioriLaunchTime.AvgFioriLaunchTimes", {
 
 		onInit: function () {
-			var me = this;
-			//Call the method when the route and pattern matches
-			var oView = me.getView();
+			var that = this;
+			var oView = that.getView();
+
+			var oLoadTimeData = {
+				"LoadTime": ""
+			};
+			var oLoadTimeModel = new sap.ui.model.json.JSONModel(oLoadTimeData);
+			oView.setModel(oLoadTimeModel, "oLoadTimeModel");
+			var sUrl = "/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/";
+			var oDataModel = new sap.ui.model.odata.ODataModel(sUrl, false);
+			oView.setModel(oDataModel);
+			var sPath = "/AppLogIn('')";
+			oDataModel.read(sPath, {
+				success: function (oData, oRes) {
+					oLoadTimeModel.setProperty("/LoadTime", oRes.LoadTime);
+					oLoadTimeModel.updateBindings(true);
+				},
+				error: function (data) {
+
+				}
+			});
 
 		},
 
