@@ -1,4 +1,4 @@
-name: ESLint
+name: Main CI Checks
 
 on:
   pull_request:
@@ -17,8 +17,28 @@ jobs:
       uses: actions/setup-node@v1.1.0
     - name: NPM Install
       run: npm ci 
+      
+  eslint:
+    
+    runs-on: [ubuntu-latest]
+    name: ESLint
+    needs: [build]
+    
+    steps:
     - name: ESlint Runner Action
       uses: tinovyatkin/action-eslint@v1
       with:
         # Token for the repo. Can be passed in using {{ secrets.GITHUB_TOKEN }}
         repo-token: ${{ secrets.GITHUB_TOKEN }} 
+
+  abaplint:
+
+    runs-on: ubuntu-latest
+    name: ABAPLint
+    needs: [build]
+
+    steps:
+    - name: abaplint Action
+      uses: abaplint/actions-abaplint@0.2.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
