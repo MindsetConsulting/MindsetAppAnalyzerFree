@@ -4,7 +4,7 @@ To get updates on product releases or for questions e-mail: jonathanbragg@mindse
 
 Welcome to the Mindset Fiori App Analyzer.  This is a free application that let's you see how your end users are using deployed Fiori Apps in your SAP environment!
 
-This repository contains the Fiori App Analyzer UI5 code in case you want to check it out in Web IDE and the SAP transport for backend gateway service code and the deployed UI5 apps. The UI5 code for the launchpad extension can be found at https://github.com/MindsetConsulting/FLPExtMonitor.
+This repository contains the Fiori App Analyzer UI5 code in case you want to check it out in Web IDE and the SAP transport for backend gateway service code and the deployed UI5 apps. 
 
 There are 2 files in the ABAPTransports folder
 K901131.S4H & R901131.S4H <- Transport of copies containing all code and configurations
