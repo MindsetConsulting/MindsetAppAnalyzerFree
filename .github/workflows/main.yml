@@ -25,6 +25,11 @@ jobs:
     needs: [build]
     
     steps:
+    - uses: actions/checkout@v2
+    - name: Setup Node.js for use with actions
+      uses: actions/setup-node@v1.1.0
+    - name: NPM Install
+      run: npm ci 
     - name: ESlint Runner Action
       uses: tinovyatkin/action-eslint@v1
       with:
