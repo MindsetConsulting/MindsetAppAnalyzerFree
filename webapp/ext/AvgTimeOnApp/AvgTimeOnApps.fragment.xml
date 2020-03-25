@@ -4,6 +4,8 @@
 	<VBox class="bgWhite" height="36em">
 		<Toolbar class="toolbarbottamdesign" height="3em">
 			<Title text="{i18n>AvgTimeOnApps}" titleStyle="H4" level="H4" class="cursor" wrapping="true"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://display" press="detailNav"/>
 		</Toolbar>
 		<viz:VizFrame id="idAvgTimeOnAppsViz" uiConfig="{applicationSet:'fiori'}" vizType='vertical_bullet'>
 			<viz:dataset>
