@@ -29,10 +29,10 @@ K901131.S4H & R901131.S4H <- Transport of copies containing all code and configu
  ### License
  The Mindset App Analyzer product follows the MIT Licensing terms.  Please see attached LICENSE.txt file in this repository.
  
- ##  Release Notes - Version 2.1
+ ###  Release Notes - Version 2.1
  In this sprint we’ve added detailed informational popovers for 3 cards.  Total Active Users, Browser Types, and Device Type cards can now have a button users can click to show specific details behind the numbers you see on the card.  You access this popover by clicking on the glasses button in the upper right corner of the card.  This showcases a table of information for the users that are logged in including:  SAP UserName, Last logged on time stamp, Internet Browser the user logged in with, and the Device Type the user logged in with.  
 
-##  Question:  What other data fields would you like to see here?
+####  Question:  What other data fields would you like to see here?
 
 
 
@@ -41,7 +41,7 @@ K901131.S4H & R901131.S4H <- Transport of copies containing all code and configu
 
 
  We have added a bit of context to the Appviews Today by App card.  Now, once you click on an application in the card you will see a contextual popup with the Application name (semantic object) and the number of times the application has been opened today.  Our current sprint is very focused on creating a more detailed application view of each application that shows in this card.  More to come once this sprint ends on April 3rd!  
-## Question:  What data is important to you to see about each application?  
+#### Question:  What data is important to you to see about each application?  
 
 
  Average Loading Time now shows real response times.  The Average Loading Time card is not a mockup card any longer.  This shows real response time in your SAP system.  We’re using weblogs here, so the time you see is the average time it takes for a user to click on an application tile in the Fiori Launchpad to the time your internet browser calls that page completely loaded.  This includes the tile navigation, page loading, GW service call, backend wait time, response to the browser, and all frontend object load time.  In the screenshot below, it is roughly 2.67 seconds to launch an application in our development system.  We’re looking forward to getting application by application load time in a future sprint!
