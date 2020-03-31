@@ -35,15 +35,3 @@ jobs:
       with:
         # Token for the repo. Can be passed in using {{ secrets.GITHUB_TOKEN }}
         repo-token: ${{ secrets.GITHUB_TOKEN }} 
-
-  abaplint:
-
-    runs-on: ubuntu-latest
-    name: ABAPLint
-    needs: [build]
-
-    steps:
-    - name: abaplint Action
-      uses: abaplint/actions-abaplint@0.2.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
