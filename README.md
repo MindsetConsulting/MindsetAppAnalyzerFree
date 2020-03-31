@@ -10,7 +10,7 @@ There are 2 files in the ABAPTransports folder
 K901131.S4H & R901131.S4H <- Transport of copies containing all code and configurations
 
 
-### Installation Steps
+## Installation Steps
 1.  Go to the Transports folder in this repository and download the transports to your local machine.
 2.  Log on to the SAP System that houses all Gateway components.  In an embedded deployment, this is your ECC or S/4HANA system.  In a Central Hub deployment, this is your Gateway server. 
 3.  Contact your basis team to manually import these transports into your development or sandbox systems.  This includes importing the  data and cofiles files into the /usr/sap/trans directories, added them into the STMS import queue, and importing into the system.  There may be a need to check the box for invalid component versioning in the transport process depending on what version of ECC or S/4 you are running.  We have not seen any inconsistencies with the install when checking this button.  If you have questions on the import of these transports and/or your basis team has questions please reach out to jonathanbragg@mindsetconsulting.com
