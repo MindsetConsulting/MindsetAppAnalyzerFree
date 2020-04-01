@@ -61,8 +61,8 @@
 				<Annotation Term="UI.Identification" Qualifier="userDetail1">
 					<Collection>
 						<Record Type="UI.DataFieldForIntentBasedNavigation">
-							<PropertyValue Property="SemanticObject" String="Display"/>
-							<PropertyValue Property="Display" String="AnalyzerDetail"/>
+							<PropertyValue Property="SemanticObject" String="AnalyzerDetail"/>
+							<PropertyValue Property="Action" String="display"/>
 						</Record>
 					</Collection>
 				</Annotation>

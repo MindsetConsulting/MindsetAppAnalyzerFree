@@ -35,7 +35,10 @@ function (Controller, JSONModel, ODataModel) {
 		
 		handleUserLoggedPressed: function (oEvent) {
 			//var oTable = this.byId("idUserList");
-			this._getDialog().open();
+			//this._getDialog().open();
+			
+			window.open("https://s4hana.mindsetconsulting.com:44301/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html#AnalyzerDetail-display", "_blank");
+			
 		},
 		
 		_getDialog: function () {
