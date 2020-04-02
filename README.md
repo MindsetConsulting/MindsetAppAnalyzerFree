@@ -24,7 +24,7 @@ K901131.S4H & R901131.S4H <- Transport of copies containing all code and configu
     <BR>**YS_APPANALYZER_ENDUSER** End User Tracking Security Role
  
  ### Validation steps
- 1. It may be possible that that Odata service and/or applications are not active in the ICF. In which case, go to SICF and search for service names by **MINDSET**.  Activate any services you see that are not active under the Mindset folders in the ICF and retry the applications.
+ 1. It may be possible that that Odata service and/or applications are not active in the ICF. In which case, go to SICF and search for service names by **MINDSET**.  Activate any services you see that are not active under the Mindset folders in the ICF and retry the applications.  Everything you see in the nodes below should be active.
  <img src="http://www.mindsetconsulting.com/wp-content/uploads/2020/04/SICFnodes.jpg">
  
  ### License
