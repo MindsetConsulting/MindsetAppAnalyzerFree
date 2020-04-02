@@ -188,25 +188,31 @@ CLASS /MINDSET/CL_FIORI_MONITOR_UTIL IMPLEMENTATION.
 
 
   METHOD get_geo_logins.
-    DATA: ls_logins TYPE LINE OF ty_geo_login_t.
-*
-**   Geo Region Cutoff
-*
-*    SELECT COUNT( DISTINCT user_id ) AS user_count,
-*           browser AS browser,
-*           MAX( log_time ) AS log_time
-*      FROM /mindset/flpinfo INTO TABLE @DATA(lt_flpinfo)
-*      WHERE log_time GE @v_cutoff_time
-*      GROUP BY browser
-*      .
-*    LOOP AT lt_flpinfo INTO DATA(ls_flpinfo).
-*      ASSIGN COMPONENT ls_flpinfo-browser OF STRUCTURE ls_logins TO FIELD-SYMBOL(<fs_login>).
-*      IF sy-subrc EQ 0.
-*        <fs_login> = ls_flpinfo-user_count.
-*      ENDIF.
-*    ENDLOOP.
-*    APPEND ls_logins TO rt_logins.
-  ENDMETHOD.
+    DATA: ls_geo TYPE LINE OF ty_geo_login_t,
+          lt_geo TYPE ty_geo_login_t.
+
+    SELECT DISTINCT user_id, MAX( log_time ) AS log_time
+       FROM /mindset/flpinfo
+       WHERE log_time GE @v_cutoff_time
+       GROUP BY user_id
+       INTO TABLE @DATA(lt_logins).
+
+    IF lt_logins IS NOT INITIAL.
+      SELECT * FROM /mindset/flpinfo FOR ALL ENTRIES IN @lt_logins
+        WHERE user_id = @lt_logins-user_id AND
+              log_time = @lt_logins-log_time
+        INTO TABLE @DATA(lt_temp).
+    ENDIF.
+
+    LOOP AT lt_temp INTO DATA(ls_temp).
+      ls_geo-pos = | { ls_temp-longitude };{ ls_temp-latitude };0 |.
+      ls_geo-radius = '10'.
+      APPEND ls_geo TO lt_geo.
+    ENDLOOP.
+
+    RT_LOGINS = LT_GEO.
+
+    ENDMETHOD.
 
 
   METHOD get_load_time.

@@ -13,6 +13,8 @@ protected section.
 
   methods APPINFOSET_CREATE_ENTITY
     redefinition .
+  methods APPINFOSET_GET_ENTITY
+    redefinition .
   methods APPLOGINSET_GET_ENTITY
     redefinition .
   methods APPLOGINSET_GET_ENTITYSET
@@ -27,7 +29,7 @@ protected section.
     redefinition .
   methods FLPLOGINSET_GET_ENTITYSET
     redefinition .
-  methods APPINFOSET_GET_ENTITY
+  methods GEOLOGINSET_GET_ENTITYSET
     redefinition .
   PRIVATE SECTION.
 ENDCLASS.
@@ -50,14 +52,24 @@ CLASS /MINDSET/CL_FIORI_MONI_DPC_EXT IMPLEMENTATION.
 
   METHOD appinfoset_create_entity.
     DATA: ls_appinfo    TYPE /mindset/cl_fiori_moni_mpc_ext=>ts_appinfo,
-          ls_appinfo_db TYPE /mindset/appinfo.
-
+          ls_appinfo_db TYPE /mindset/appinfo,
+          ls_flpinfo_db TYPE /mindset/flpinfo.
+*** FILL appinfo and flpinfo every time a user clicks a semantic object
     io_data_provider->read_entry_data( IMPORTING es_data = ls_appinfo ).
 
+
     ls_appinfo_db         = CORRESPONDING #( ls_appinfo ).
+    ls_flpinfo_db         = CORRESPONDING #( ls_appinfo ).
+
     ls_appinfo_db-user_id = sy-uname.
+
     GET TIME STAMP FIELD ls_appinfo_db-log_time.
+    GET TIME STAMP FIELD ls_flpinfo_db-log_time.
+
     INSERT /mindset/appinfo FROM ls_appinfo_db.
+
+    INSERT /mindset/flpinfo FROM ls_flpinfo_db.
+
   ENDMETHOD.
 
 
@@ -125,5 +137,12 @@ CLASS /MINDSET/CL_FIORI_MONI_DPC_EXT IMPLEMENTATION.
       ENDLOOP.
 
     es_response_context-count = es_response_context-inlinecount = lines( et_entityset ).
+  ENDMETHOD.
+
+
+  METHOD geologinset_get_entityset.
+
+    et_entityset = o_util->get_geo_logins( ).
+
   ENDMETHOD.
 ENDCLASS.
