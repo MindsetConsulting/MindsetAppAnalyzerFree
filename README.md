@@ -1,4 +1,4 @@
-# Fiori Monitor
+# Mindset's Fiori App Analyzer
 
 To get updates on product releases or for questions e-mail: jonathanbragg@mindsetconsulting.com  
 
