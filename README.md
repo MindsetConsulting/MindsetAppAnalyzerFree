@@ -25,7 +25,7 @@ K901131.S4H & R901131.S4H <- Transport of copies containing all code and configu
  
  ### Validation steps
  1. It may be possible that that Odata service and/or applications are not active in the ICF. In which case, go to SICF and search for service names by **MINDSET**.  Activate any services you see that are not active under the Mindset folders in the ICF and retry the applications.
- <img src="https://drive.google.com/open?id=1xMhk18RXqQJhIM_3s6q0VYi33P96Aj1S">
+ <img src="http://www.mindsetconsulting.com/wp-content/uploads/2020/04/SICFnodes.jpg">
  
  ### License
  The Mindset App Analyzer product follows the MIT Licensing terms.  Please see attached LICENSE.txt file in this repository.
