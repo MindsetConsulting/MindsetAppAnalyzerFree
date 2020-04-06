@@ -8,6 +8,9 @@ public section.
 
   interfaces /IWBEP/IF_SB_DPC_COMM_SERVICES .
   interfaces /IWBEP/IF_SB_GEN_DPC_INJECTION .
+  interfaces IF_SADL_GW_DPC_UTIL .
+  interfaces IF_SADL_GW_EXTENSION_CONTROL .
+  interfaces IF_SADL_GW_QUERY_CONTROL .
 
   methods /IWBEP/IF_MGW_APPL_SRV_RUNTIME~GET_ENTITYSET
     redefinition .
@@ -18,6 +21,16 @@ public section.
   methods /IWBEP/IF_MGW_APPL_SRV_RUNTIME~CREATE_ENTITY
     redefinition .
   methods /IWBEP/IF_MGW_APPL_SRV_RUNTIME~DELETE_ENTITY
+    redefinition .
+  methods /IWBEP/IF_MGW_APPL_SRV_RUNTIME~CREATE_DEEP_ENTITY
+    redefinition .
+  methods /IWBEP/IF_MGW_APPL_SRV_RUNTIME~EXECUTE_ACTION
+    redefinition .
+  methods /IWBEP/IF_MGW_APPL_SRV_RUNTIME~GET_IS_CONDITIONAL_IMPLEMENTED
+    redefinition .
+  methods /IWBEP/IF_MGW_APPL_SRV_RUNTIME~GET_IS_CONDI_IMPLE_FOR_ACTION
+    redefinition .
+  methods /IWBEP/IF_MGW_APPL_SRV_RUNTIME~PATCH_ENTITY
     redefinition .
 protected section.
 
@@ -315,6 +328,79 @@ protected section.
     raising
       /IWBEP/CX_MGW_BUSI_EXCEPTION
       /IWBEP/CX_MGW_TECH_EXCEPTION .
+  methods DETAILSET_UPDATE_ENTITY
+    importing
+      !IV_ENTITY_NAME type STRING
+      !IV_ENTITY_SET_NAME type STRING
+      !IV_SOURCE_NAME type STRING
+      !IT_KEY_TAB type /IWBEP/T_MGW_NAME_VALUE_PAIR
+      !IO_TECH_REQUEST_CONTEXT type ref to /IWBEP/IF_MGW_REQ_ENTITY_U optional
+      !IT_NAVIGATION_PATH type /IWBEP/T_MGW_NAVIGATION_PATH
+      !IO_DATA_PROVIDER type ref to /IWBEP/IF_MGW_ENTRY_PROVIDER optional
+    exporting
+      !ER_ENTITY type /MINDSET/CL_FIORI_MONI_MPC=>TS_DETAIL
+    raising
+      /IWBEP/CX_MGW_BUSI_EXCEPTION
+      /IWBEP/CX_MGW_TECH_EXCEPTION .
+  methods DETAILSET_GET_ENTITYSET
+    importing
+      !IV_ENTITY_NAME type STRING
+      !IV_ENTITY_SET_NAME type STRING
+      !IV_SOURCE_NAME type STRING
+      !IT_FILTER_SELECT_OPTIONS type /IWBEP/T_MGW_SELECT_OPTION
+      !IS_PAGING type /IWBEP/S_MGW_PAGING
+      !IT_KEY_TAB type /IWBEP/T_MGW_NAME_VALUE_PAIR
+      !IT_NAVIGATION_PATH type /IWBEP/T_MGW_NAVIGATION_PATH
+      !IT_ORDER type /IWBEP/T_MGW_SORTING_ORDER
+      !IV_FILTER_STRING type STRING
+      !IV_SEARCH_STRING type STRING
+      !IO_TECH_REQUEST_CONTEXT type ref to /IWBEP/IF_MGW_REQ_ENTITYSET optional
+    exporting
+      !ET_ENTITYSET type /MINDSET/CL_FIORI_MONI_MPC=>TT_DETAIL
+      !ES_RESPONSE_CONTEXT type /IWBEP/IF_MGW_APPL_SRV_RUNTIME=>TY_S_MGW_RESPONSE_CONTEXT
+    raising
+      /IWBEP/CX_MGW_BUSI_EXCEPTION
+      /IWBEP/CX_MGW_TECH_EXCEPTION .
+  methods DETAILSET_GET_ENTITY
+    importing
+      !IV_ENTITY_NAME type STRING
+      !IV_ENTITY_SET_NAME type STRING
+      !IV_SOURCE_NAME type STRING
+      !IT_KEY_TAB type /IWBEP/T_MGW_NAME_VALUE_PAIR
+      !IO_REQUEST_OBJECT type ref to /IWBEP/IF_MGW_REQ_ENTITY optional
+      !IO_TECH_REQUEST_CONTEXT type ref to /IWBEP/IF_MGW_REQ_ENTITY optional
+      !IT_NAVIGATION_PATH type /IWBEP/T_MGW_NAVIGATION_PATH
+    exporting
+      !ER_ENTITY type /MINDSET/CL_FIORI_MONI_MPC=>TS_DETAIL
+      !ES_RESPONSE_CONTEXT type /IWBEP/IF_MGW_APPL_SRV_RUNTIME=>TY_S_MGW_RESPONSE_ENTITY_CNTXT
+    raising
+      /IWBEP/CX_MGW_BUSI_EXCEPTION
+      /IWBEP/CX_MGW_TECH_EXCEPTION .
+  methods DETAILSET_DELETE_ENTITY
+    importing
+      !IV_ENTITY_NAME type STRING
+      !IV_ENTITY_SET_NAME type STRING
+      !IV_SOURCE_NAME type STRING
+      !IT_KEY_TAB type /IWBEP/T_MGW_NAME_VALUE_PAIR
+      !IO_TECH_REQUEST_CONTEXT type ref to /IWBEP/IF_MGW_REQ_ENTITY_D optional
+      !IT_NAVIGATION_PATH type /IWBEP/T_MGW_NAVIGATION_PATH
+    raising
+      /IWBEP/CX_MGW_BUSI_EXCEPTION
+      /IWBEP/CX_MGW_TECH_EXCEPTION .
+  methods DETAILSET_CREATE_ENTITY
+    importing
+      !IV_ENTITY_NAME type STRING
+      !IV_ENTITY_SET_NAME type STRING
+      !IV_SOURCE_NAME type STRING
+      !IT_KEY_TAB type /IWBEP/T_MGW_NAME_VALUE_PAIR
+      !IO_TECH_REQUEST_CONTEXT type ref to /IWBEP/IF_MGW_REQ_ENTITY_C optional
+      !IT_NAVIGATION_PATH type /IWBEP/T_MGW_NAVIGATION_PATH
+      !IO_DATA_PROVIDER type ref to /IWBEP/IF_MGW_ENTRY_PROVIDER optional
+    exporting
+      !ER_ENTITY type /MINDSET/CL_FIORI_MONI_MPC=>TS_DETAIL
+    raising
+      /IWBEP/CX_MGW_BUSI_EXCEPTION
+      /IWBEP/CX_MGW_TECH_EXCEPTION .
   methods BROWSERLOGINSET_UPDATE_ENTITY
     importing
       !IV_ENTITY_NAME type STRING
@@ -545,28 +631,84 @@ ENDCLASS.
 CLASS /MINDSET/CL_FIORI_MONI_DPC IMPLEMENTATION.
 
 
+  method /IWBEP/IF_MGW_APPL_SRV_RUNTIME~CREATE_DEEP_ENTITY.
+    CAST /iwbep/if_mgw_appl_srv_runtime( if_sadl_gw_dpc_util~get_dpc( ) )->create_deep_entity(
+                   EXPORTING io_tech_request_context = io_tech_request_context
+                             io_data_provider        = io_data_provider
+                             io_expand               = io_expand
+                   IMPORTING er_deep_entity          = er_deep_entity ).
+  endmethod.
+
+
   method /IWBEP/IF_MGW_APPL_SRV_RUNTIME~CREATE_ENTITY.
 *&----------------------------------------------------------------------------------------------*
 *&  Include           /IWBEP/DPC_TEMP_CRT_ENTITY_BASE
-*&* This class has been generated on 24.03.2020 01:38:31 in client 100
+*&* This class has been generated on 01.04.2020 03:56:03 in client 100
 *&*
 *&*       WARNING--> NEVER MODIFY THIS CLASS <--WARNING
 *&*   If you want to change the DPC implementation, use the
 *&*   generated methods inside the DPC provider subclass - /MINDSET/CL_FIORI_MONI_DPC_EXT
 *&-----------------------------------------------------------------------------------------------*
 
- DATA appinfoset_create_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_appinfo.
- DATA apploginset_create_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_applogin.
- DATA flploginset_create_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_flplogin.
- DATA flpinfoset_create_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_flpinfo.
  DATA geologinset_create_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_geologin.
- DATA browserloginset_create_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_browserlogin.
+ DATA detailset_create_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_detail.
+ DATA appinfoset_create_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_appinfo.
+ DATA flploginset_create_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_flplogin.
+ DATA apploginset_create_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_applogin.
+ DATA flpinfoset_create_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_flpinfo.
  DATA deviceloginset_create_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_devicelogin.
+ DATA browserloginset_create_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_browserlogin.
  DATA lv_entityset_name TYPE string.
 
 lv_entityset_name = io_tech_request_context->get_entity_set_name( ).
 
 CASE lv_entityset_name.
+*-------------------------------------------------------------------------*
+*             EntitySet -  GeoLogInSet
+*-------------------------------------------------------------------------*
+     WHEN 'GeoLogInSet'.
+*     Call the entity set generated method
+    geologinset_create_entity(
+         EXPORTING iv_entity_name     = iv_entity_name
+                   iv_entity_set_name = iv_entity_set_name
+                   iv_source_name     = iv_source_name
+                   io_data_provider   = io_data_provider
+                   it_key_tab         = it_key_tab
+                   it_navigation_path = it_navigation_path
+                   io_tech_request_context = io_tech_request_context
+       	 IMPORTING er_entity          = geologinset_create_entity
+    ).
+*     Send specific entity data to the caller interfaces
+    copy_data_to_ref(
+      EXPORTING
+        is_data = geologinset_create_entity
+      CHANGING
+        cr_data = er_entity
+   ).
+
+*-------------------------------------------------------------------------*
+*             EntitySet -  DetailSet
+*-------------------------------------------------------------------------*
+     WHEN 'DetailSet'.
+*     Call the entity set generated method
+    detailset_create_entity(
+         EXPORTING iv_entity_name     = iv_entity_name
+                   iv_entity_set_name = iv_entity_set_name
+                   iv_source_name     = iv_source_name
+                   io_data_provider   = io_data_provider
+                   it_key_tab         = it_key_tab
+                   it_navigation_path = it_navigation_path
+                   io_tech_request_context = io_tech_request_context
+       	 IMPORTING er_entity          = detailset_create_entity
+    ).
+*     Send specific entity data to the caller interfaces
+    copy_data_to_ref(
+      EXPORTING
+        is_data = detailset_create_entity
+      CHANGING
+        cr_data = er_entity
+   ).
+
 *-------------------------------------------------------------------------*
 *             EntitySet -  AppInfoSet
 *-------------------------------------------------------------------------*
@@ -586,29 +728,6 @@ CASE lv_entityset_name.
     copy_data_to_ref(
       EXPORTING
         is_data = appinfoset_create_entity
-      CHANGING
-        cr_data = er_entity
-   ).
-
-*-------------------------------------------------------------------------*
-*             EntitySet -  AppLogInSet
-*-------------------------------------------------------------------------*
-     WHEN 'AppLogInSet'.
-*     Call the entity set generated method
-    apploginset_create_entity(
-         EXPORTING iv_entity_name     = iv_entity_name
-                   iv_entity_set_name = iv_entity_set_name
-                   iv_source_name     = iv_source_name
-                   io_data_provider   = io_data_provider
-                   it_key_tab         = it_key_tab
-                   it_navigation_path = it_navigation_path
-                   io_tech_request_context = io_tech_request_context
-       	 IMPORTING er_entity          = apploginset_create_entity
-    ).
-*     Send specific entity data to the caller interfaces
-    copy_data_to_ref(
-      EXPORTING
-        is_data = apploginset_create_entity
       CHANGING
         cr_data = er_entity
    ).
@@ -637,6 +756,29 @@ CASE lv_entityset_name.
    ).
 
 *-------------------------------------------------------------------------*
+*             EntitySet -  AppLogInSet
+*-------------------------------------------------------------------------*
+     WHEN 'AppLogInSet'.
+*     Call the entity set generated method
+    apploginset_create_entity(
+         EXPORTING iv_entity_name     = iv_entity_name
+                   iv_entity_set_name = iv_entity_set_name
+                   iv_source_name     = iv_source_name
+                   io_data_provider   = io_data_provider
+                   it_key_tab         = it_key_tab
+                   it_navigation_path = it_navigation_path
+                   io_tech_request_context = io_tech_request_context
+       	 IMPORTING er_entity          = apploginset_create_entity
+    ).
+*     Send specific entity data to the caller interfaces
+    copy_data_to_ref(
+      EXPORTING
+        is_data = apploginset_create_entity
+      CHANGING
+        cr_data = er_entity
+   ).
+
+*-------------------------------------------------------------------------*
 *             EntitySet -  FLPInfoSet
 *-------------------------------------------------------------------------*
      WHEN 'FLPInfoSet'.
@@ -655,52 +797,6 @@ CASE lv_entityset_name.
     copy_data_to_ref(
       EXPORTING
         is_data = flpinfoset_create_entity
-      CHANGING
-        cr_data = er_entity
-   ).
-
-*-------------------------------------------------------------------------*
-*             EntitySet -  GeoLogInSet
-*-------------------------------------------------------------------------*
-     WHEN 'GeoLogInSet'.
-*     Call the entity set generated method
-    geologinset_create_entity(
-         EXPORTING iv_entity_name     = iv_entity_name
-                   iv_entity_set_name = iv_entity_set_name
-                   iv_source_name     = iv_source_name
-                   io_data_provider   = io_data_provider
-                   it_key_tab         = it_key_tab
-                   it_navigation_path = it_navigation_path
-                   io_tech_request_context = io_tech_request_context
-       	 IMPORTING er_entity          = geologinset_create_entity
-    ).
-*     Send specific entity data to the caller interfaces
-    copy_data_to_ref(
-      EXPORTING
-        is_data = geologinset_create_entity
-      CHANGING
-        cr_data = er_entity
-   ).
-
-*-------------------------------------------------------------------------*
-*             EntitySet -  BrowserLogInSet
-*-------------------------------------------------------------------------*
-     WHEN 'BrowserLogInSet'.
-*     Call the entity set generated method
-    browserloginset_create_entity(
-         EXPORTING iv_entity_name     = iv_entity_name
-                   iv_entity_set_name = iv_entity_set_name
-                   iv_source_name     = iv_source_name
-                   io_data_provider   = io_data_provider
-                   it_key_tab         = it_key_tab
-                   it_navigation_path = it_navigation_path
-                   io_tech_request_context = io_tech_request_context
-       	 IMPORTING er_entity          = browserloginset_create_entity
-    ).
-*     Send specific entity data to the caller interfaces
-    copy_data_to_ref(
-      EXPORTING
-        is_data = browserloginset_create_entity
       CHANGING
         cr_data = er_entity
    ).
@@ -728,6 +824,29 @@ CASE lv_entityset_name.
         cr_data = er_entity
    ).
 
+*-------------------------------------------------------------------------*
+*             EntitySet -  BrowserLogInSet
+*-------------------------------------------------------------------------*
+     WHEN 'BrowserLogInSet'.
+*     Call the entity set generated method
+    browserloginset_create_entity(
+         EXPORTING iv_entity_name     = iv_entity_name
+                   iv_entity_set_name = iv_entity_set_name
+                   iv_source_name     = iv_source_name
+                   io_data_provider   = io_data_provider
+                   it_key_tab         = it_key_tab
+                   it_navigation_path = it_navigation_path
+                   io_tech_request_context = io_tech_request_context
+       	 IMPORTING er_entity          = browserloginset_create_entity
+    ).
+*     Send specific entity data to the caller interfaces
+    copy_data_to_ref(
+      EXPORTING
+        is_data = browserloginset_create_entity
+      CHANGING
+        cr_data = er_entity
+   ).
+
   when others.
     super->/iwbep/if_mgw_appl_srv_runtime~create_entity(
        EXPORTING
@@ -747,7 +866,7 @@ ENDCASE.
   method /IWBEP/IF_MGW_APPL_SRV_RUNTIME~DELETE_ENTITY.
 *&----------------------------------------------------------------------------------------------*
 *&  Include           /IWBEP/DPC_TEMP_DEL_ENTITY_BASE
-*&* This class has been generated on 24.03.2020 01:38:31 in client 100
+*&* This class has been generated on 01.04.2020 03:56:03 in client 100
 *&*
 *&*       WARNING--> NEVER MODIFY THIS CLASS <--WARNING
 *&*   If you want to change the DPC implementation, use the
@@ -759,6 +878,20 @@ ENDCASE.
 lv_entityset_name = io_tech_request_context->get_entity_set_name( ).
 
 CASE lv_entityset_name.
+*-------------------------------------------------------------------------*
+*             EntitySet -  GeoLogInSet
+*-------------------------------------------------------------------------*
+      when 'GeoLogInSet'.
+*     Call the entity set generated method
+     geologinset_delete_entity(
+          EXPORTING iv_entity_name     = iv_entity_name
+                    iv_entity_set_name = iv_entity_set_name
+                    iv_source_name     = iv_source_name
+                    it_key_tab         = it_key_tab
+                    it_navigation_path = it_navigation_path
+                    io_tech_request_context = io_tech_request_context
+     ).
+
 *-------------------------------------------------------------------------*
 *             EntitySet -  AppInfoSet
 *-------------------------------------------------------------------------*
@@ -830,11 +963,11 @@ CASE lv_entityset_name.
      ).
 
 *-------------------------------------------------------------------------*
-*             EntitySet -  AppLogInSet
+*             EntitySet -  DetailSet
 *-------------------------------------------------------------------------*
-      when 'AppLogInSet'.
+      when 'DetailSet'.
 *     Call the entity set generated method
-     apploginset_delete_entity(
+     detailset_delete_entity(
           EXPORTING iv_entity_name     = iv_entity_name
                     iv_entity_set_name = iv_entity_set_name
                     iv_source_name     = iv_source_name
@@ -844,11 +977,11 @@ CASE lv_entityset_name.
      ).
 
 *-------------------------------------------------------------------------*
-*             EntitySet -  GeoLogInSet
+*             EntitySet -  AppLogInSet
 *-------------------------------------------------------------------------*
-      when 'GeoLogInSet'.
+      when 'AppLogInSet'.
 *     Call the entity set generated method
-     geologinset_delete_entity(
+     apploginset_delete_entity(
           EXPORTING iv_entity_name     = iv_entity_name
                     iv_entity_set_name = iv_entity_set_name
                     iv_source_name     = iv_source_name
@@ -870,23 +1003,30 @@ CASE lv_entityset_name.
   endmethod.
 
 
+  method /IWBEP/IF_MGW_APPL_SRV_RUNTIME~EXECUTE_ACTION.
+    if_sadl_gw_dpc_util~get_dpc( )->execute_action( EXPORTING io_tech_request_context = io_tech_request_context
+                                                    IMPORTING er_data                 = er_data ).
+  endmethod.
+
+
   method /IWBEP/IF_MGW_APPL_SRV_RUNTIME~GET_ENTITY.
 *&-----------------------------------------------------------------------------------------------*
 *&  Include           /IWBEP/DPC_TEMP_GETENTITY_BASE
-*&* This class has been generated  on 24.03.2020 01:38:31 in client 100
+*&* This class has been generated  on 01.04.2020 03:56:03 in client 100
 *&*
 *&*       WARNING--> NEVER MODIFY THIS CLASS <--WARNING
 *&*   If you want to change the DPC implementation, use the
 *&*   generated methods inside the DPC provider subclass - /MINDSET/CL_FIORI_MONI_DPC_EXT
 *&-----------------------------------------------------------------------------------------------*
 
- DATA deviceloginset_get_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_devicelogin.
- DATA flpinfoset_get_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_flpinfo.
+ DATA detailset_get_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_detail.
  DATA geologinset_get_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_geologin.
- DATA browserloginset_get_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_browserlogin.
- DATA flploginset_get_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_flplogin.
  DATA appinfoset_get_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_appinfo.
  DATA apploginset_get_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_applogin.
+ DATA flploginset_get_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_flplogin.
+ DATA flpinfoset_get_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_flpinfo.
+ DATA browserloginset_get_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_browserlogin.
+ DATA deviceloginset_get_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_devicelogin.
  DATA lv_entityset_name TYPE string.
  DATA lr_entity TYPE REF TO data.       "#EC NEEDED
 
@@ -894,54 +1034,26 @@ lv_entityset_name = io_tech_request_context->get_entity_set_name( ).
 
 CASE lv_entityset_name.
 *-------------------------------------------------------------------------*
-*             EntitySet -  DeviceLogInSet
+*             EntitySet -  DetailSet
 *-------------------------------------------------------------------------*
-      WHEN 'DeviceLogInSet'.
+      WHEN 'DetailSet'.
 *     Call the entity set generated method
-          deviceloginset_get_entity(
+          detailset_get_entity(
                EXPORTING iv_entity_name     = iv_entity_name
                          iv_entity_set_name = iv_entity_set_name
                          iv_source_name     = iv_source_name
                          it_key_tab         = it_key_tab
                          it_navigation_path = it_navigation_path
                          io_tech_request_context = io_tech_request_context
-             	 IMPORTING er_entity          = deviceloginset_get_entity
+             	 IMPORTING er_entity          = detailset_get_entity
                          es_response_context = es_response_context
           ).
 
-        IF deviceloginset_get_entity IS NOT INITIAL.
+        IF detailset_get_entity IS NOT INITIAL.
 *     Send specific entity data to the caller interface
           copy_data_to_ref(
             EXPORTING
-              is_data = deviceloginset_get_entity
-            CHANGING
-              cr_data = er_entity
-          ).
-        ELSE.
-*         In case of initial values - unbind the entity reference
-          er_entity = lr_entity.
-        ENDIF.
-*-------------------------------------------------------------------------*
-*             EntitySet -  FLPInfoSet
-*-------------------------------------------------------------------------*
-      WHEN 'FLPInfoSet'.
-*     Call the entity set generated method
-          flpinfoset_get_entity(
-               EXPORTING iv_entity_name     = iv_entity_name
-                         iv_entity_set_name = iv_entity_set_name
-                         iv_source_name     = iv_source_name
-                         it_key_tab         = it_key_tab
-                         it_navigation_path = it_navigation_path
-                         io_tech_request_context = io_tech_request_context
-             	 IMPORTING er_entity          = flpinfoset_get_entity
-                         es_response_context = es_response_context
-          ).
-
-        IF flpinfoset_get_entity IS NOT INITIAL.
-*     Send specific entity data to the caller interface
-          copy_data_to_ref(
-            EXPORTING
-              is_data = flpinfoset_get_entity
+              is_data = detailset_get_entity
             CHANGING
               cr_data = er_entity
           ).
@@ -970,62 +1082,6 @@ CASE lv_entityset_name.
           copy_data_to_ref(
             EXPORTING
               is_data = geologinset_get_entity
-            CHANGING
-              cr_data = er_entity
-          ).
-        ELSE.
-*         In case of initial values - unbind the entity reference
-          er_entity = lr_entity.
-        ENDIF.
-*-------------------------------------------------------------------------*
-*             EntitySet -  BrowserLogInSet
-*-------------------------------------------------------------------------*
-      WHEN 'BrowserLogInSet'.
-*     Call the entity set generated method
-          browserloginset_get_entity(
-               EXPORTING iv_entity_name     = iv_entity_name
-                         iv_entity_set_name = iv_entity_set_name
-                         iv_source_name     = iv_source_name
-                         it_key_tab         = it_key_tab
-                         it_navigation_path = it_navigation_path
-                         io_tech_request_context = io_tech_request_context
-             	 IMPORTING er_entity          = browserloginset_get_entity
-                         es_response_context = es_response_context
-          ).
-
-        IF browserloginset_get_entity IS NOT INITIAL.
-*     Send specific entity data to the caller interface
-          copy_data_to_ref(
-            EXPORTING
-              is_data = browserloginset_get_entity
-            CHANGING
-              cr_data = er_entity
-          ).
-        ELSE.
-*         In case of initial values - unbind the entity reference
-          er_entity = lr_entity.
-        ENDIF.
-*-------------------------------------------------------------------------*
-*             EntitySet -  FLPLogInSet
-*-------------------------------------------------------------------------*
-      WHEN 'FLPLogInSet'.
-*     Call the entity set generated method
-          flploginset_get_entity(
-               EXPORTING iv_entity_name     = iv_entity_name
-                         iv_entity_set_name = iv_entity_set_name
-                         iv_source_name     = iv_source_name
-                         it_key_tab         = it_key_tab
-                         it_navigation_path = it_navigation_path
-                         io_tech_request_context = io_tech_request_context
-             	 IMPORTING er_entity          = flploginset_get_entity
-                         es_response_context = es_response_context
-          ).
-
-        IF flploginset_get_entity IS NOT INITIAL.
-*     Send specific entity data to the caller interface
-          copy_data_to_ref(
-            EXPORTING
-              is_data = flploginset_get_entity
             CHANGING
               cr_data = er_entity
           ).
@@ -1089,6 +1145,118 @@ CASE lv_entityset_name.
 *         In case of initial values - unbind the entity reference
           er_entity = lr_entity.
         ENDIF.
+*-------------------------------------------------------------------------*
+*             EntitySet -  FLPLogInSet
+*-------------------------------------------------------------------------*
+      WHEN 'FLPLogInSet'.
+*     Call the entity set generated method
+          flploginset_get_entity(
+               EXPORTING iv_entity_name     = iv_entity_name
+                         iv_entity_set_name = iv_entity_set_name
+                         iv_source_name     = iv_source_name
+                         it_key_tab         = it_key_tab
+                         it_navigation_path = it_navigation_path
+                         io_tech_request_context = io_tech_request_context
+             	 IMPORTING er_entity          = flploginset_get_entity
+                         es_response_context = es_response_context
+          ).
+
+        IF flploginset_get_entity IS NOT INITIAL.
+*     Send specific entity data to the caller interface
+          copy_data_to_ref(
+            EXPORTING
+              is_data = flploginset_get_entity
+            CHANGING
+              cr_data = er_entity
+          ).
+        ELSE.
+*         In case of initial values - unbind the entity reference
+          er_entity = lr_entity.
+        ENDIF.
+*-------------------------------------------------------------------------*
+*             EntitySet -  FLPInfoSet
+*-------------------------------------------------------------------------*
+      WHEN 'FLPInfoSet'.
+*     Call the entity set generated method
+          flpinfoset_get_entity(
+               EXPORTING iv_entity_name     = iv_entity_name
+                         iv_entity_set_name = iv_entity_set_name
+                         iv_source_name     = iv_source_name
+                         it_key_tab         = it_key_tab
+                         it_navigation_path = it_navigation_path
+                         io_tech_request_context = io_tech_request_context
+             	 IMPORTING er_entity          = flpinfoset_get_entity
+                         es_response_context = es_response_context
+          ).
+
+        IF flpinfoset_get_entity IS NOT INITIAL.
+*     Send specific entity data to the caller interface
+          copy_data_to_ref(
+            EXPORTING
+              is_data = flpinfoset_get_entity
+            CHANGING
+              cr_data = er_entity
+          ).
+        ELSE.
+*         In case of initial values - unbind the entity reference
+          er_entity = lr_entity.
+        ENDIF.
+*-------------------------------------------------------------------------*
+*             EntitySet -  BrowserLogInSet
+*-------------------------------------------------------------------------*
+      WHEN 'BrowserLogInSet'.
+*     Call the entity set generated method
+          browserloginset_get_entity(
+               EXPORTING iv_entity_name     = iv_entity_name
+                         iv_entity_set_name = iv_entity_set_name
+                         iv_source_name     = iv_source_name
+                         it_key_tab         = it_key_tab
+                         it_navigation_path = it_navigation_path
+                         io_tech_request_context = io_tech_request_context
+             	 IMPORTING er_entity          = browserloginset_get_entity
+                         es_response_context = es_response_context
+          ).
+
+        IF browserloginset_get_entity IS NOT INITIAL.
+*     Send specific entity data to the caller interface
+          copy_data_to_ref(
+            EXPORTING
+              is_data = browserloginset_get_entity
+            CHANGING
+              cr_data = er_entity
+          ).
+        ELSE.
+*         In case of initial values - unbind the entity reference
+          er_entity = lr_entity.
+        ENDIF.
+*-------------------------------------------------------------------------*
+*             EntitySet -  DeviceLogInSet
+*-------------------------------------------------------------------------*
+      WHEN 'DeviceLogInSet'.
+*     Call the entity set generated method
+          deviceloginset_get_entity(
+               EXPORTING iv_entity_name     = iv_entity_name
+                         iv_entity_set_name = iv_entity_set_name
+                         iv_source_name     = iv_source_name
+                         it_key_tab         = it_key_tab
+                         it_navigation_path = it_navigation_path
+                         io_tech_request_context = io_tech_request_context
+             	 IMPORTING er_entity          = deviceloginset_get_entity
+                         es_response_context = es_response_context
+          ).
+
+        IF deviceloginset_get_entity IS NOT INITIAL.
+*     Send specific entity data to the caller interface
+          copy_data_to_ref(
+            EXPORTING
+              is_data = deviceloginset_get_entity
+            CHANGING
+              cr_data = er_entity
+          ).
+        ELSE.
+*         In case of initial values - unbind the entity reference
+          er_entity = lr_entity.
+        ENDIF.
 
       WHEN OTHERS.
         super->/iwbep/if_mgw_appl_srv_runtime~get_entity(
@@ -1108,24 +1276,55 @@ CASE lv_entityset_name.
   method /IWBEP/IF_MGW_APPL_SRV_RUNTIME~GET_ENTITYSET.
 *&----------------------------------------------------------------------------------------------*
 *&  Include           /IWBEP/DPC_TMP_ENTITYSET_BASE
-*&* This class has been generated on 24.03.2020 01:38:31 in client 100
+*&* This class has been generated on 01.04.2020 03:56:03 in client 100
 *&*
 *&*       WARNING--> NEVER MODIFY THIS CLASS <--WARNING
 *&*   If you want to change the DPC implementation, use the
 *&*   generated methods inside the DPC provider subclass - /MINDSET/CL_FIORI_MONI_DPC_EXT
 *&-----------------------------------------------------------------------------------------------*
+ DATA detailset_get_entityset TYPE /mindset/cl_fiori_moni_mpc=>tt_detail.
  DATA deviceloginset_get_entityset TYPE /mindset/cl_fiori_moni_mpc=>tt_devicelogin.
- DATA flpinfoset_get_entityset TYPE /mindset/cl_fiori_moni_mpc=>tt_flpinfo.
- DATA browserloginset_get_entityset TYPE /mindset/cl_fiori_moni_mpc=>tt_browserlogin.
- DATA flploginset_get_entityset TYPE /mindset/cl_fiori_moni_mpc=>tt_flplogin.
  DATA geologinset_get_entityset TYPE /mindset/cl_fiori_moni_mpc=>tt_geologin.
+ DATA browserloginset_get_entityset TYPE /mindset/cl_fiori_moni_mpc=>tt_browserlogin.
+ DATA flpinfoset_get_entityset TYPE /mindset/cl_fiori_moni_mpc=>tt_flpinfo.
  DATA appinfoset_get_entityset TYPE /mindset/cl_fiori_moni_mpc=>tt_appinfo.
+ DATA flploginset_get_entityset TYPE /mindset/cl_fiori_moni_mpc=>tt_flplogin.
  DATA apploginset_get_entityset TYPE /mindset/cl_fiori_moni_mpc=>tt_applogin.
  DATA lv_entityset_name TYPE string.
 
 lv_entityset_name = io_tech_request_context->get_entity_set_name( ).
 
 CASE lv_entityset_name.
+*-------------------------------------------------------------------------*
+*             EntitySet -  DetailSet
+*-------------------------------------------------------------------------*
+   WHEN 'DetailSet'.
+*     Call the entity set generated method
+      detailset_get_entityset(
+        EXPORTING
+         iv_entity_name = iv_entity_name
+         iv_entity_set_name = iv_entity_set_name
+         iv_source_name = iv_source_name
+         it_filter_select_options = it_filter_select_options
+         it_order = it_order
+         is_paging = is_paging
+         it_navigation_path = it_navigation_path
+         it_key_tab = it_key_tab
+         iv_filter_string = iv_filter_string
+         iv_search_string = iv_search_string
+         io_tech_request_context = io_tech_request_context
+       IMPORTING
+         et_entityset = detailset_get_entityset
+         es_response_context = es_response_context
+       ).
+*     Send specific entity data to the caller interface
+      copy_data_to_ref(
+        EXPORTING
+          is_data = detailset_get_entityset
+        CHANGING
+          cr_data = er_entityset
+      ).
+
 *-------------------------------------------------------------------------*
 *             EntitySet -  DeviceLogInSet
 *-------------------------------------------------------------------------*
@@ -1152,96 +1351,6 @@ CASE lv_entityset_name.
       copy_data_to_ref(
         EXPORTING
           is_data = deviceloginset_get_entityset
-        CHANGING
-          cr_data = er_entityset
-      ).
-
-*-------------------------------------------------------------------------*
-*             EntitySet -  FLPInfoSet
-*-------------------------------------------------------------------------*
-   WHEN 'FLPInfoSet'.
-*     Call the entity set generated method
-      flpinfoset_get_entityset(
-        EXPORTING
-         iv_entity_name = iv_entity_name
-         iv_entity_set_name = iv_entity_set_name
-         iv_source_name = iv_source_name
-         it_filter_select_options = it_filter_select_options
-         it_order = it_order
-         is_paging = is_paging
-         it_navigation_path = it_navigation_path
-         it_key_tab = it_key_tab
-         iv_filter_string = iv_filter_string
-         iv_search_string = iv_search_string
-         io_tech_request_context = io_tech_request_context
-       IMPORTING
-         et_entityset = flpinfoset_get_entityset
-         es_response_context = es_response_context
-       ).
-*     Send specific entity data to the caller interface
-      copy_data_to_ref(
-        EXPORTING
-          is_data = flpinfoset_get_entityset
-        CHANGING
-          cr_data = er_entityset
-      ).
-
-*-------------------------------------------------------------------------*
-*             EntitySet -  BrowserLogInSet
-*-------------------------------------------------------------------------*
-   WHEN 'BrowserLogInSet'.
-*     Call the entity set generated method
-      browserloginset_get_entityset(
-        EXPORTING
-         iv_entity_name = iv_entity_name
-         iv_entity_set_name = iv_entity_set_name
-         iv_source_name = iv_source_name
-         it_filter_select_options = it_filter_select_options
-         it_order = it_order
-         is_paging = is_paging
-         it_navigation_path = it_navigation_path
-         it_key_tab = it_key_tab
-         iv_filter_string = iv_filter_string
-         iv_search_string = iv_search_string
-         io_tech_request_context = io_tech_request_context
-       IMPORTING
-         et_entityset = browserloginset_get_entityset
-         es_response_context = es_response_context
-       ).
-*     Send specific entity data to the caller interface
-      copy_data_to_ref(
-        EXPORTING
-          is_data = browserloginset_get_entityset
-        CHANGING
-          cr_data = er_entityset
-      ).
-
-*-------------------------------------------------------------------------*
-*             EntitySet -  FLPLogInSet
-*-------------------------------------------------------------------------*
-   WHEN 'FLPLogInSet'.
-*     Call the entity set generated method
-      flploginset_get_entityset(
-        EXPORTING
-         iv_entity_name = iv_entity_name
-         iv_entity_set_name = iv_entity_set_name
-         iv_source_name = iv_source_name
-         it_filter_select_options = it_filter_select_options
-         it_order = it_order
-         is_paging = is_paging
-         it_navigation_path = it_navigation_path
-         it_key_tab = it_key_tab
-         iv_filter_string = iv_filter_string
-         iv_search_string = iv_search_string
-         io_tech_request_context = io_tech_request_context
-       IMPORTING
-         et_entityset = flploginset_get_entityset
-         es_response_context = es_response_context
-       ).
-*     Send specific entity data to the caller interface
-      copy_data_to_ref(
-        EXPORTING
-          is_data = flploginset_get_entityset
         CHANGING
           cr_data = er_entityset
       ).
@@ -1277,6 +1386,66 @@ CASE lv_entityset_name.
       ).
 
 *-------------------------------------------------------------------------*
+*             EntitySet -  BrowserLogInSet
+*-------------------------------------------------------------------------*
+   WHEN 'BrowserLogInSet'.
+*     Call the entity set generated method
+      browserloginset_get_entityset(
+        EXPORTING
+         iv_entity_name = iv_entity_name
+         iv_entity_set_name = iv_entity_set_name
+         iv_source_name = iv_source_name
+         it_filter_select_options = it_filter_select_options
+         it_order = it_order
+         is_paging = is_paging
+         it_navigation_path = it_navigation_path
+         it_key_tab = it_key_tab
+         iv_filter_string = iv_filter_string
+         iv_search_string = iv_search_string
+         io_tech_request_context = io_tech_request_context
+       IMPORTING
+         et_entityset = browserloginset_get_entityset
+         es_response_context = es_response_context
+       ).
+*     Send specific entity data to the caller interface
+      copy_data_to_ref(
+        EXPORTING
+          is_data = browserloginset_get_entityset
+        CHANGING
+          cr_data = er_entityset
+      ).
+
+*-------------------------------------------------------------------------*
+*             EntitySet -  FLPInfoSet
+*-------------------------------------------------------------------------*
+   WHEN 'FLPInfoSet'.
+*     Call the entity set generated method
+      flpinfoset_get_entityset(
+        EXPORTING
+         iv_entity_name = iv_entity_name
+         iv_entity_set_name = iv_entity_set_name
+         iv_source_name = iv_source_name
+         it_filter_select_options = it_filter_select_options
+         it_order = it_order
+         is_paging = is_paging
+         it_navigation_path = it_navigation_path
+         it_key_tab = it_key_tab
+         iv_filter_string = iv_filter_string
+         iv_search_string = iv_search_string
+         io_tech_request_context = io_tech_request_context
+       IMPORTING
+         et_entityset = flpinfoset_get_entityset
+         es_response_context = es_response_context
+       ).
+*     Send specific entity data to the caller interface
+      copy_data_to_ref(
+        EXPORTING
+          is_data = flpinfoset_get_entityset
+        CHANGING
+          cr_data = er_entityset
+      ).
+
+*-------------------------------------------------------------------------*
 *             EntitySet -  AppInfoSet
 *-------------------------------------------------------------------------*
    WHEN 'AppInfoSet'.
@@ -1302,6 +1471,36 @@ CASE lv_entityset_name.
       copy_data_to_ref(
         EXPORTING
           is_data = appinfoset_get_entityset
+        CHANGING
+          cr_data = er_entityset
+      ).
+
+*-------------------------------------------------------------------------*
+*             EntitySet -  FLPLogInSet
+*-------------------------------------------------------------------------*
+   WHEN 'FLPLogInSet'.
+*     Call the entity set generated method
+      flploginset_get_entityset(
+        EXPORTING
+         iv_entity_name = iv_entity_name
+         iv_entity_set_name = iv_entity_set_name
+         iv_source_name = iv_source_name
+         it_filter_select_options = it_filter_select_options
+         it_order = it_order
+         is_paging = is_paging
+         it_navigation_path = it_navigation_path
+         it_key_tab = it_key_tab
+         iv_filter_string = iv_filter_string
+         iv_search_string = iv_search_string
+         io_tech_request_context = io_tech_request_context
+       IMPORTING
+         et_entityset = flploginset_get_entityset
+         es_response_context = es_response_context
+       ).
+*     Send specific entity data to the caller interface
+      copy_data_to_ref(
+        EXPORTING
+          is_data = flploginset_get_entityset
         CHANGING
           cr_data = er_entityset
       ).
@@ -1356,83 +1555,65 @@ CASE lv_entityset_name.
   endmethod.
 
 
+  method /IWBEP/IF_MGW_APPL_SRV_RUNTIME~GET_IS_CONDITIONAL_IMPLEMENTED.
+    TRY.
+        rv_conditional_active = if_sadl_gw_dpc_util~get_dpc( )->get_is_conditional_implemented(
+                                               iv_operation_type  = iv_operation_type
+                                               iv_entity_set_name = iv_entity_set_name ).
+      CATCH /iwbep/cx_mgw_tech_exception /iwbep/cx_mgw_busi_exception.
+        rv_conditional_active = super->/iwbep/if_mgw_appl_srv_runtime~get_is_conditional_implemented(
+                                       iv_operation_type     = iv_operation_type
+                                       iv_entity_set_name    = iv_entity_set_name ).
+    ENDTRY.
+  endmethod.
+
+
+  method /IWBEP/IF_MGW_APPL_SRV_RUNTIME~GET_IS_CONDI_IMPLE_FOR_ACTION.
+    TRY.
+        rv_conditional_active = if_sadl_gw_dpc_util~get_dpc( )->get_is_condi_imple_for_action( iv_action_name ).
+      CATCH /iwbep/cx_mgw_tech_exception /iwbep/cx_mgw_busi_exception.
+        rv_conditional_active = super->/iwbep/if_mgw_appl_srv_runtime~get_is_condi_imple_for_action( iv_action_name ).
+    ENDTRY.
+  endmethod.
+
+
+  method /IWBEP/IF_MGW_APPL_SRV_RUNTIME~PATCH_ENTITY.
+        super->/iwbep/if_mgw_appl_srv_runtime~patch_entity(
+                       EXPORTING io_tech_request_context = io_tech_request_context
+                                 io_data_provider        = io_data_provider
+                                 iv_entity_name          = iv_entity_name
+                                 iv_entity_set_name      = iv_entity_set_name
+                                 iv_source_name          = iv_source_name
+                                 it_key_tab              = it_key_tab
+                                 it_navigation_path      = it_navigation_path
+                       IMPORTING er_entity               = er_entity  ).
+  endmethod.
+
+
   method /IWBEP/IF_MGW_APPL_SRV_RUNTIME~UPDATE_ENTITY.
 *&----------------------------------------------------------------------------------------------*
 *&  Include           /IWBEP/DPC_TEMP_UPD_ENTITY_BASE
-*&* This class has been generated on 24.03.2020 01:38:31 in client 100
+*&* This class has been generated on 01.04.2020 03:56:03 in client 100
 *&*
 *&*       WARNING--> NEVER MODIFY THIS CLASS <--WARNING
 *&*   If you want to change the DPC implementation, use the
 *&*   generated methods inside the DPC provider subclass - /MINDSET/CL_FIORI_MONI_DPC_EXT
 *&-----------------------------------------------------------------------------------------------*
 
- DATA geologinset_update_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_geologin.
- DATA appinfoset_update_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_appinfo.
  DATA flploginset_update_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_flplogin.
- DATA flpinfoset_update_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_flpinfo.
- DATA deviceloginset_update_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_devicelogin.
- DATA browserloginset_update_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_browserlogin.
  DATA apploginset_update_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_applogin.
+ DATA flpinfoset_update_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_flpinfo.
+ DATA appinfoset_update_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_appinfo.
+ DATA detailset_update_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_detail.
+ DATA deviceloginset_update_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_devicelogin.
+ DATA geologinset_update_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_geologin.
+ DATA browserloginset_update_entity TYPE /mindset/cl_fiori_moni_mpc=>ts_browserlogin.
  DATA lv_entityset_name TYPE string.
  DATA lr_entity TYPE REF TO data. "#EC NEEDED
 
 lv_entityset_name = io_tech_request_context->get_entity_set_name( ).
 
 CASE lv_entityset_name.
-*-------------------------------------------------------------------------*
-*             EntitySet -  GeoLogInSet
-*-------------------------------------------------------------------------*
-      WHEN 'GeoLogInSet'.
-*     Call the entity set generated method
-          geologinset_update_entity(
-               EXPORTING iv_entity_name     = iv_entity_name
-                         iv_entity_set_name = iv_entity_set_name
-                         iv_source_name     = iv_source_name
-                         io_data_provider   = io_data_provider
-                         it_key_tab         = it_key_tab
-                         it_navigation_path = it_navigation_path
-                         io_tech_request_context = io_tech_request_context
-             	 IMPORTING er_entity          = geologinset_update_entity
-          ).
-       IF geologinset_update_entity IS NOT INITIAL.
-*     Send specific entity data to the caller interface
-          copy_data_to_ref(
-            EXPORTING
-              is_data = geologinset_update_entity
-            CHANGING
-              cr_data = er_entity
-          ).
-        ELSE.
-*         In case of initial values - unbind the entity reference
-          er_entity = lr_entity.
-        ENDIF.
-*-------------------------------------------------------------------------*
-*             EntitySet -  AppInfoSet
-*-------------------------------------------------------------------------*
-      WHEN 'AppInfoSet'.
-*     Call the entity set generated method
-          appinfoset_update_entity(
-               EXPORTING iv_entity_name     = iv_entity_name
-                         iv_entity_set_name = iv_entity_set_name
-                         iv_source_name     = iv_source_name
-                         io_data_provider   = io_data_provider
-                         it_key_tab         = it_key_tab
-                         it_navigation_path = it_navigation_path
-                         io_tech_request_context = io_tech_request_context
-             	 IMPORTING er_entity          = appinfoset_update_entity
-          ).
-       IF appinfoset_update_entity IS NOT INITIAL.
-*     Send specific entity data to the caller interface
-          copy_data_to_ref(
-            EXPORTING
-              is_data = appinfoset_update_entity
-            CHANGING
-              cr_data = er_entity
-          ).
-        ELSE.
-*         In case of initial values - unbind the entity reference
-          er_entity = lr_entity.
-        ENDIF.
 *-------------------------------------------------------------------------*
 *             EntitySet -  FLPLogInSet
 *-------------------------------------------------------------------------*
@@ -1453,6 +1634,33 @@ CASE lv_entityset_name.
           copy_data_to_ref(
             EXPORTING
               is_data = flploginset_update_entity
+            CHANGING
+              cr_data = er_entity
+          ).
+        ELSE.
+*         In case of initial values - unbind the entity reference
+          er_entity = lr_entity.
+        ENDIF.
+*-------------------------------------------------------------------------*
+*             EntitySet -  AppLogInSet
+*-------------------------------------------------------------------------*
+      WHEN 'AppLogInSet'.
+*     Call the entity set generated method
+          apploginset_update_entity(
+               EXPORTING iv_entity_name     = iv_entity_name
+                         iv_entity_set_name = iv_entity_set_name
+                         iv_source_name     = iv_source_name
+                         io_data_provider   = io_data_provider
+                         it_key_tab         = it_key_tab
+                         it_navigation_path = it_navigation_path
+                         io_tech_request_context = io_tech_request_context
+             	 IMPORTING er_entity          = apploginset_update_entity
+          ).
+       IF apploginset_update_entity IS NOT INITIAL.
+*     Send specific entity data to the caller interface
+          copy_data_to_ref(
+            EXPORTING
+              is_data = apploginset_update_entity
             CHANGING
               cr_data = er_entity
           ).
@@ -1488,6 +1696,60 @@ CASE lv_entityset_name.
           er_entity = lr_entity.
         ENDIF.
 *-------------------------------------------------------------------------*
+*             EntitySet -  AppInfoSet
+*-------------------------------------------------------------------------*
+      WHEN 'AppInfoSet'.
+*     Call the entity set generated method
+          appinfoset_update_entity(
+               EXPORTING iv_entity_name     = iv_entity_name
+                         iv_entity_set_name = iv_entity_set_name
+                         iv_source_name     = iv_source_name
+                         io_data_provider   = io_data_provider
+                         it_key_tab         = it_key_tab
+                         it_navigation_path = it_navigation_path
+                         io_tech_request_context = io_tech_request_context
+             	 IMPORTING er_entity          = appinfoset_update_entity
+          ).
+       IF appinfoset_update_entity IS NOT INITIAL.
+*     Send specific entity data to the caller interface
+          copy_data_to_ref(
+            EXPORTING
+              is_data = appinfoset_update_entity
+            CHANGING
+              cr_data = er_entity
+          ).
+        ELSE.
+*         In case of initial values - unbind the entity reference
+          er_entity = lr_entity.
+        ENDIF.
+*-------------------------------------------------------------------------*
+*             EntitySet -  DetailSet
+*-------------------------------------------------------------------------*
+      WHEN 'DetailSet'.
+*     Call the entity set generated method
+          detailset_update_entity(
+               EXPORTING iv_entity_name     = iv_entity_name
+                         iv_entity_set_name = iv_entity_set_name
+                         iv_source_name     = iv_source_name
+                         io_data_provider   = io_data_provider
+                         it_key_tab         = it_key_tab
+                         it_navigation_path = it_navigation_path
+                         io_tech_request_context = io_tech_request_context
+             	 IMPORTING er_entity          = detailset_update_entity
+          ).
+       IF detailset_update_entity IS NOT INITIAL.
+*     Send specific entity data to the caller interface
+          copy_data_to_ref(
+            EXPORTING
+              is_data = detailset_update_entity
+            CHANGING
+              cr_data = er_entity
+          ).
+        ELSE.
+*         In case of initial values - unbind the entity reference
+          er_entity = lr_entity.
+        ENDIF.
+*-------------------------------------------------------------------------*
 *             EntitySet -  DeviceLogInSet
 *-------------------------------------------------------------------------*
       WHEN 'DeviceLogInSet'.
@@ -1515,6 +1777,33 @@ CASE lv_entityset_name.
           er_entity = lr_entity.
         ENDIF.
 *-------------------------------------------------------------------------*
+*             EntitySet -  GeoLogInSet
+*-------------------------------------------------------------------------*
+      WHEN 'GeoLogInSet'.
+*     Call the entity set generated method
+          geologinset_update_entity(
+               EXPORTING iv_entity_name     = iv_entity_name
+                         iv_entity_set_name = iv_entity_set_name
+                         iv_source_name     = iv_source_name
+                         io_data_provider   = io_data_provider
+                         it_key_tab         = it_key_tab
+                         it_navigation_path = it_navigation_path
+                         io_tech_request_context = io_tech_request_context
+             	 IMPORTING er_entity          = geologinset_update_entity
+          ).
+       IF geologinset_update_entity IS NOT INITIAL.
+*     Send specific entity data to the caller interface
+          copy_data_to_ref(
+            EXPORTING
+              is_data = geologinset_update_entity
+            CHANGING
+              cr_data = er_entity
+          ).
+        ELSE.
+*         In case of initial values - unbind the entity reference
+          er_entity = lr_entity.
+        ENDIF.
+*-------------------------------------------------------------------------*
 *             EntitySet -  BrowserLogInSet
 *-------------------------------------------------------------------------*
       WHEN 'BrowserLogInSet'.
@@ -1534,33 +1823,6 @@ CASE lv_entityset_name.
           copy_data_to_ref(
             EXPORTING
               is_data = browserloginset_update_entity
-            CHANGING
-              cr_data = er_entity
-          ).
-        ELSE.
-*         In case of initial values - unbind the entity reference
-          er_entity = lr_entity.
-        ENDIF.
-*-------------------------------------------------------------------------*
-*             EntitySet -  AppLogInSet
-*-------------------------------------------------------------------------*
-      WHEN 'AppLogInSet'.
-*     Call the entity set generated method
-          apploginset_update_entity(
-               EXPORTING iv_entity_name     = iv_entity_name
-                         iv_entity_set_name = iv_entity_set_name
-                         iv_source_name     = iv_source_name
-                         io_data_provider   = io_data_provider
-                         it_key_tab         = it_key_tab
-                         it_navigation_path = it_navigation_path
-                         io_tech_request_context = io_tech_request_context
-             	 IMPORTING er_entity          = apploginset_update_entity
-          ).
-       IF apploginset_update_entity IS NOT INITIAL.
-*     Send specific entity data to the caller interface
-          copy_data_to_ref(
-            EXPORTING
-              is_data = apploginset_update_entity
             CHANGING
               cr_data = er_entity
           ).
@@ -1823,6 +2085,38 @@ lo_logger = /iwbep/if_mgw_conv_srv_runtime~get_logger( ).
   endmethod.
 
 
+  method DETAILSET_CREATE_ENTITY.
+    if_sadl_gw_dpc_util~get_dpc( )->create_entity( EXPORTING io_data_provider        = io_data_provider
+                                                             io_tech_request_context = io_tech_request_context
+                                                   IMPORTING es_data                 = er_entity ).
+  endmethod.
+
+
+  method DETAILSET_DELETE_ENTITY.
+    if_sadl_gw_dpc_util~get_dpc( )->delete_entity( io_tech_request_context ).
+  endmethod.
+
+
+  method DETAILSET_GET_ENTITY.
+    if_sadl_gw_dpc_util~get_dpc( )->get_entity( EXPORTING io_tech_request_context = io_tech_request_context
+                                                IMPORTING es_data                 = er_entity ).
+  endmethod.
+
+
+  method DETAILSET_GET_ENTITYSET.
+    if_sadl_gw_dpc_util~get_dpc( )->get_entityset( EXPORTING io_tech_request_context = io_tech_request_context
+                                                   IMPORTING et_data                 = et_entityset
+                                                             es_response_context     = es_response_context ).
+  endmethod.
+
+
+  method DETAILSET_UPDATE_ENTITY.
+    if_sadl_gw_dpc_util~get_dpc( )->update_entity( EXPORTING io_tech_request_context = io_tech_request_context
+                                                             io_data_provider        = io_data_provider
+                                                   IMPORTING es_data                 = er_entity ).
+  endmethod.
+
+
   method DEVICELOGINSET_CREATE_ENTITY.
   RAISE EXCEPTION TYPE /iwbep/cx_mgw_not_impl_exc
     EXPORTING
@@ -1980,5 +2274,53 @@ lo_logger = /iwbep/if_mgw_conv_srv_runtime~get_logger( ).
     EXPORTING
       textid = /iwbep/cx_mgw_not_impl_exc=>method_not_implemented
       method = 'GEOLOGINSET_UPDATE_ENTITY'.
+  endmethod.
+
+
+  method IF_SADL_GW_DPC_UTIL~GET_DPC.
+    TYPES ty_/MINDSET/INFO_V_1 TYPE /mindset/info_v ##NEEDED. " reference for where-used list
+
+    DATA(lv_sadl_xml) =
+               |<?xml version="1.0" encoding="utf-16"?>| &
+               |<sadl:definition xmlns:sadl="http://sap.com/sap.nw.f.sadl" syntaxVersion="V2" >| &
+               | <sadl:dataSource type="DDIC" name="DetailSet" binding="/MINDSET/INFO_V" />| &
+               |<sadl:resultSet>| &
+               |<sadl:structure name="DetailSet" dataSource="DetailSet" maxEditMode="RO" >| &
+               | <sadl:query name="EntitySetDefault">| &
+               | </sadl:query>| &
+               | <sadl:attribute name="SEMANTIC_ACTION" binding="SEMANTIC_ACTION" isOutput="TRUE" isKey="TRUE" />| &
+               | <sadl:attribute name="APP_DESCRIPTION" binding="APP_DESCRIPTION" isOutput="TRUE" isKey="TRUE" />| &
+               | <sadl:attribute name="LOAD_TIME" binding="LOAD_TIME" isOutput="TRUE" isKey="TRUE" />| &
+               | <sadl:attribute name="BROWSER" binding="BROWSER" isOutput="TRUE" isKey="TRUE" />| &
+               | <sadl:attribute name="BROWSER_VERSION" binding="BROWSER_VERSION" isOutput="TRUE" isKey="TRUE" />| &
+               | <sadl:attribute name="LATITUDE" binding="LATITUDE" isOutput="TRUE" isKey="TRUE" />| &
+               | <sadl:attribute name="USER_ID" binding="USER_ID" isOutput="TRUE" isKey="TRUE" />| &
+               | <sadl:attribute name="LONGITUDE" binding="LONGITUDE" isOutput="TRUE" isKey="TRUE" />| &
+               | <sadl:attribute name="DEVICE_TYPE" binding="DEVICE_TYPE" isOutput="TRUE" isKey="TRUE" />| &
+               | <sadl:attribute name="OS" binding="OS" isOutput="TRUE" isKey="TRUE" />| &
+               | <sadl:attribute name="OS_DETAILS" binding="OS_DETAILS" isOutput="TRUE" isKey="TRUE" />| &
+               | <sadl:attribute name="LOG_TIME" binding="LOG_TIME" isOutput="TRUE" isKey="TRUE" />| &
+               | <sadl:attribute name="SEMANTIC_OBJECT" binding="SEMANTIC_OBJECT" isOutput="TRUE" isKey="TRUE" />| &
+               |</sadl:structure>| &
+               |</sadl:resultSet>| &
+               |</sadl:definition>| .
+    ro_dpc = cl_sadl_gw_dpc_factory=>create_for_sadl( iv_sadl_xml   = lv_sadl_xml
+               iv_timestamp         = 20200401035608
+               iv_uuid              = '/MINDSET/FIORI_MONITOR'
+               io_query_control     = me
+               io_extension_control = me
+               io_context           = me->mo_context ).
+  endmethod.
+
+
+  method IF_SADL_GW_EXTENSION_CONTROL~SET_EXTENSION_MAPPING.
+" Intended to be overwritten
+RETURN.
+  endmethod.
+
+
+  method IF_SADL_GW_QUERY_CONTROL~SET_QUERY_OPTIONS.
+" Intended to be overwritten
+RETURN.
   endmethod.
 ENDCLASS.
