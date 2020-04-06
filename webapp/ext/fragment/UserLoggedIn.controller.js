@@ -34,8 +34,9 @@ function (Controller, JSONModel, ODataModel) {
 		},
 		
 		handleUserLoggedPressed: function (oEvent) {
-			//var oTable = this.byId("idUserList");
+			
 			this._getDialog().open();
+			
 		},
 		
 		_getDialog: function () {

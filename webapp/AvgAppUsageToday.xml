@@ -58,6 +58,14 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Identification" Qualifier="userDetail1">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="AnalyzerDetail"/>
+							<PropertyValue Property="Action" String="display"/>
+						</Record>
+					</Collection>
+				</Annotation>
 			</Annotations>
 		</Schema>
 	</edmx:DataServices>
