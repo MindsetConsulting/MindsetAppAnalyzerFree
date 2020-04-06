@@ -1,4 +1,30 @@
 specVersion: '1.0'
 metadata:
-  name: fiorimoni
+  name: MindsetAppAnalyzerFree
 type: application
+resources:
+  configuration:
+    propertiesFileSourceEncoding: UTF-8
+builder:
+  customTasks:
+    - name: webide-extension-task-updateNeoApp
+      afterTask: generateVersionInfo
+      configuration:
+        destDir: dist
+        appFolder: webapp
+        nameSpace: com/mindset/appanalyzer
+    - name: webide-extension-task-updateManifestJson
+      afterTask: webide-extension-task-updateNeoApp
+      configuration:
+        appFolder: webapp
+        destDir: dist
+    - name: webide-extension-task-lint
+      afterTask: webide-extension-task-updateManifestJson
+      configuration:
+        destDir: dist
+        appFolder: webapp
+        nameSpace: com/mindset/appanalyzer
+    - name: webide-extension-task-resources
+      afterTask: webide-extension-task-lint
+      configuration:
+        nameSpace: com/mindset/appanalyzer
