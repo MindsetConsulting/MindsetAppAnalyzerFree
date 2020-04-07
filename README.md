@@ -6,8 +6,8 @@ Welcome to the Mindset Fiori App Analyzer.  This is a free application that let'
 
 This repository contains the Fiori App Analyzer UI5 code in case you want to check it out in Web IDE and the SAP transport for backend gateway service code and the deployed UI5 apps. 
 
-There are 2 files in the ABAPTransports folder
-K901131.S4H & R901131.S4H <- Transport of copies containing all code and configurations
+There are 2 files in the ABAPTransports folder in the .zip file.
+K901146.S4H & R901146.S4H <- Transport of copies containing all code and configurations
 
 
 ## Installation Steps
