@@ -19,3 +19,5 @@ mergedManifestDescriptor.json
 /node_modules/
 /.che/
 .env
+appanalyzer/node_modules/
+appanalyzer/dist/

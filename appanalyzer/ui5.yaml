@@ -1,7 +1,24 @@
-specVersion: '1.0'
+specVersion: '2.0'
 metadata:
   name: MindsetAppAnalyzerFree
 type: application
+framework:
+  name: SAPUI5
+  version: 1.76.1
+  libraries:
+    - name: sap.ui.core
+    - name: sap.ui.rta
+    - name: sap.ui.vbm
+    - name: sap.m
+    - name: sap.ovp
+    - name: sap.ui.comp
+    - name: sap.ushell
+      development: true
+    - name: themelib_sap_fiori_3
+    - name: themelib_sap_belize
+      optional: true
+    - name: themelib_sap_bluecrystal
+      optional: true
 resources:
   configuration:
     propertiesFileSourceEncoding: UTF-8
