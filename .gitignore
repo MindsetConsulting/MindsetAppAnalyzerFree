@@ -18,3 +18,4 @@ mergedManifestDescriptor.json
 /mta_archives/
 /node_modules/
 /.che/
+.env
