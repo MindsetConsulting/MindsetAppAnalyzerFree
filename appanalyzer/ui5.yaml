@@ -45,3 +45,41 @@ builder:
       afterTask: webide-extension-task-lint
       configuration:
         nameSpace: com/mindset/appanalyzer
+    - name: ui5-task-nwabap-deployer
+      afterTask: generateVersionInfo
+      configuration: 
+        resources:
+          pattern: "**/*.*"
+        connection:
+          server: https://s4hana.mindsetconsulting.com:44301  
+        # authentication:
+        #   user: myUser
+        #   password: myPassword
+        ui5:
+          language: EN
+          package: $TMP #/MINDSET/ANALYZER_UI5
+          bspContainer: ZTEST #/MINDSET/APP_ANALYZER
+          bspContainerText: App Analyzer
+          transportUseLocked: true
+          createTransport: true
+          transportText: Mindset App Analyzer Transport
+          transportUseUserMatch: true
+          calculateApplicationIndex: true      
+server:
+  customMiddleware:
+    - name: ui5-middleware-simpleproxy
+      afterMiddleware: compression
+      mountPath: /sap
+      configuration:
+        baseUri: "https://s4hana.mindsetconsulting.com:44301/sap"
+        strictSSL: false
+    - name: ui5-middleware-index
+      afterMiddleware: compression
+      configuration:
+        index: "test/testOVP.html"
+    # - name: ui5-middleware-simpleproxy
+    #   afterMiddleware: compression
+    #   mountPath: /resources
+    #   configuration:
+    #     baseUri: "https://sapui5.hana.ondemand.com/1.71.16/resources"
+    #     strictSSL: false
