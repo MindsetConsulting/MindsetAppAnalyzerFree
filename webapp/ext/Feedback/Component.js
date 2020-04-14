@@ -10,6 +10,10 @@ sap.ui.define(["sap/ovp/cards/custom/Component"], function (Component) {
 					"type": "string",
 					"defaultValue": "com.mindset.appanalyzer.ext.Feedback.Feedback"
 				},
+				"controllerName": {
+                        "type": "string",
+                        "defaultValue": "com.mindset.appanalyzer.ext.Feedback.Feedback"
+                },
 				"headerFragment": {
 					"type": "string",
 					"defaultValue": ""

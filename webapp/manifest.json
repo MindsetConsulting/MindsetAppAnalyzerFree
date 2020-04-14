@@ -173,9 +173,10 @@
 				}
 			},
 			"card08": {
+				"model": "fiorimoni",
 				"template": "com.mindset.appanalyzer.ext.Feedback",
 				"settings": {
-					"title": "{{card02_title}}"
+					"title": "{{VoE}}"
 				}
 			}
 		}
