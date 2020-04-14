@@ -171,6 +171,12 @@
 					"title": "{{ContactUs}}",
 					"stopResizing": false
 				}
+			},
+			"card08": {
+				"template": "com.mindset.appanalyzer.ext.Feedback",
+				"settings": {
+					"title": "{{card02_title}}"
+				}
 			}
 		}
 	},
