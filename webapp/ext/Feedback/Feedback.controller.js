@@ -1,44 +1,33 @@
 /* global sap */
-sap.ui.define(["sap/ovp/cards/generic/Card.controller",
-		"com/mindset/appanalyzer/lib/googlecharts/loader"
+sap.ui.define(["sap/ovp/cards/generic/Card.controller"
 	],
-	function (Controller, loader) {
+	function (Controller) {
 		"use strict";
 		return Controller.extend("com.mindset.appanalyzer.ext.Feedback.Feedback", {
 		
 			onInit: function () {
+			var oView = this.getView();
+			var that = this;
+			var oUserFeedbackModelData = {
+				"AVGRating": ""
+			};
+			var oUserFeedbackModel = new sap.ui.model.json.JSONModel(oUserFeedbackModelData);
+			oView.setModel(oUserFeedbackModel, "oUserLogonModel");
+			var sUrl = "/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/";
+			var oDataModel = new sap.ui.model.odata.ODataModel(sUrl, false);
+			oView.setModel(oDataModel);
+			var sPath = "/FeedbackSet/$count";
+			oDataModel.read(sPath, {
+				success: function (oData, oRes) {
+					oUserFeedbackModel.setProperty("/AVGRating", oRes.body);
+					oUserFeedbackModel.updateBindings(true);
+				},
+				error: function (data) {
 
-				google.charts.load('current', {
-					'packages': ['gauge']
-				});
-				google.charts.setOnLoadCallback(this.drawChart(this));
-			},
+				}
+			});
 
-			drawChart: function (oEv) {
-				var data = google.visualization.arrayToDataTable([
-					['Label', 'Value'],
-					['Memory', 80]
-				]);
-
-				var options = {
-					width: 400,
-					height: 120,
-					redFrom: 90,
-					redTo: 100,
-					yellowFrom: 75,
-					yellowTo: 90,
-					minorTicks: 5
-				};
-
-				var chart = new google.visualization.Gauge(oEv.getView().byId("chart_div"));
-
-				chart.draw(data, options);
-
-				setInterval(function () {
-					data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-					chart.draw(data, options);
-				}, 13000);
-
+				
 			},
 
 			onAfterRendering: function () {

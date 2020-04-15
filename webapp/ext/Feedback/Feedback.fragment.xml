@@ -8,7 +8,9 @@
 		</Toolbar>
 		<Toolbar class="toolbarbottamdesign" height="2em"></Toolbar>
 		<FlexBox id="chart_div" alignItems="Center" justifyContent="Center">
-
+			<items>
+				<Title text="{oUserFeedbackModel>/AVGRating}" titleStyle="H1" level="H1" class="userloggedCnt"/>
+			</items>
 		</FlexBox>
 	</VBox>
 </core:FragmentDefinition>
