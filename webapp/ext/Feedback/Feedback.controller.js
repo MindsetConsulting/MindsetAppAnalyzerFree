@@ -12,7 +12,7 @@ sap.ui.define(["sap/ovp/cards/generic/Card.controller"
 				"AVGRating": ""
 			};
 			var oUserFeedbackModel = new sap.ui.model.json.JSONModel(oUserFeedbackModelData);
-			oView.setModel(oUserFeedbackModel, "oUserLogonModel");
+			oView.setModel(oUserFeedbackModel, "oUserFeedbackModel");
 			var sUrl = "/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/";
 			var oDataModel = new sap.ui.model.odata.ODataModel(sUrl, false);
 			oView.setModel(oDataModel);
