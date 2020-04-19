@@ -50,8 +50,8 @@ builder:
       configuration: 
         resources:
           pattern: "**/*.*"
-        connection:
-          server: https://s4hana.mindsetconsulting.com:44301  
+        # connection:
+        #   server: https://s4hana.mindsetconsulting.com:44301  
         # authentication:
         #   user: myUser
         #   password: myPassword
