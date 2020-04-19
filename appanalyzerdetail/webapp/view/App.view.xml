@@ -1,0 +1,56 @@
+<mvc:View 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" 
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	controllerName="com.mindset.analyzerdetail.AppAnalyzerDetail.controller.App"
+	displayBlock="true">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>appTitle}">
+					<content>
+						<VBox fitContainer="true">
+							<!--<smartFilterBar:SmartFilterBar 
+								id="smartFilterBar" 
+								entitySet="DetailSet" 
+								persistencyKey="SmartFilter_Explored"
+								basicSearchFieldName="UserID" 
+								enableBasicSearch="true">
+								<smartFilterBar:controlConfiguration>
+									<smartFilterBar:ControlConfiguration key="UserID">
+										<smartFilterBar:defaultFilterValues>
+											<smartFilterBar:SelectOption low=""></smartFilterBar:SelectOption>
+										</smartFilterBar:defaultFilterValues>
+									</smartFilterBar:ControlConfiguration>
+								</smartFilterBar:controlConfiguration>
+								<smartFilterBar:layoutData>
+									<FlexItemData shrinkFactor="0"/>
+								</smartFilterBar:layoutData>
+							</smartFilterBar:SmartFilterBar>-->
+							<smartTable:SmartTable 
+								id="LineItemsSmartTable" 
+								entitySet="DetailSet" 
+								tableType="ResponsiveTable"
+								useVariantManagement="false" 
+								useTablePersonalisation="true" 
+								header="User Details"
+								showRowCount="true" 
+								demandPopin="true"
+								enableAutoBinding="true" 
+								initiallyVisibleFields="UserId,AppDescription,Browser,DeviceType,LogTime"
+								class="sapUiResponsiveContentPadding">
+								<!-- layout data used to make the table growing but the filter bar fixed -->
+								<smartTable:layoutData>
+									<FlexItemData growFactor="1" baseSize="0%"/>
+								</smartTable:layoutData>
+							</smartTable:SmartTable>
+						</VBox>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

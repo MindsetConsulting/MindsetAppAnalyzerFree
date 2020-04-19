@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="MINDSET.FIORI_MONITOR_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="AppLogIn" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="SemanticObject"/><PropertyRef Name="SemanticAction"/></Key>
+				<Property Name="SemanticObject" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Semantic Object" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="SemanticAction" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Action" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="AppDescription" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="App Description" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="TotalLoggedIn" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Total Logged In" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="TotalMinutes" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Total Minutes" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Pageviews" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Pageviews" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="BrowserLogIn" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="IE"/><PropertyRef Name="Chrome"/><PropertyRef Name="Edge"/><PropertyRef Name="Firefox"/><PropertyRef Name="Opera"/><PropertyRef Name="Safari"/></Key>
+				<Property Name="IE" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="IE" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Chrome" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Chrome" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Edge" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Edge" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Firefox" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Firefox" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Opera" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Opera" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Safari" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Safari" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="DeviceLogIn" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="Phone"/><PropertyRef Name="Tablet"/><PropertyRef Name="Desktop"/></Key>
+				<Property Name="Phone" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Phone" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Tablet" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Tablet" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Desktop" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Desktop" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="FLPInfo" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="UserID"/></Key>
+				<Property Name="UserID" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="UserID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Browser" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Browser" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="BrowserVersion" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Browser Version"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Latitude" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Latitude" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Longitude" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Longitude" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DeviceType" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Device Type"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="OS" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Operating System" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="OSDetails" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Operating System Details"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="FLPLogIn" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="UserID"/></Key>
+				<Property Name="BrowserVersion" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Browser Version"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="UserID" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Browser" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Latitude" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Latitude" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DeviceType" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Longitude" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Longitude" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="LastLoginAt" Type="Edm.Decimal" Nullable="false" Precision="19" Scale="0" sap:unicode="false" sap:label="Total Logged In"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Os" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Operating System" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="OsDetails" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="OS Details"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="AppDescription" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="App" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="AppInfo" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="UserID"/></Key>
+				<Property Name="UserID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="UserID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="SemanticObject" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Semantic Object" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="SemanticAction" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Action" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="AppDescription" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="AppUrl" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="App Url" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="GeoLogIn" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="pos"/></Key>
+				<Property Name="pos" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Position" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="tooltip" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Tooltip" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="radius" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Radius" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="text" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Text" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityContainer Name="MINDSET_FIORI_MONITOR_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+				<EntitySet Name="AppLogInSet" EntityType="MINDSET.FIORI_MONITOR_SRV.AppLogIn" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				<EntitySet Name="BrowserLogInSet" EntityType="MINDSET.FIORI_MONITOR_SRV.BrowserLogIn" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				<EntitySet Name="DeviceLogInSet" EntityType="MINDSET.FIORI_MONITOR_SRV.DeviceLogIn" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				<EntitySet Name="FLPInfoSet" EntityType="MINDSET.FIORI_MONITOR_SRV.FLPInfo" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				<EntitySet Name="FLPLogInSet" EntityType="MINDSET.FIORI_MONITOR_SRV.FLPLogIn" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:addressable="true" sap:content-version="1"/>
+				<EntitySet Name="AppInfoSet" EntityType="MINDSET.FIORI_MONITOR_SRV.AppInfo" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				<EntitySet Name="GeoLogInSet" EntityType="MINDSET.FIORI_MONITOR_SRV.GeoLogIn" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+			</EntityContainer>
+			<atom:link rel="self" href="http://vhcals4hci.mindsetconsulting.com:50000/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/><atom:link rel="latest-version" href="http://vhcals4hci.mindsetconsulting.com:50000/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
