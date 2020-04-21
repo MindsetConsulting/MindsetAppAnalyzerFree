@@ -1,10 +1,6 @@
 name: ABAPLint Checks
 
-on:
-  pull_request:
-  push:
-      branches:
-        - master
+on: [push, pull_request]
 
 jobs:
   build:
@@ -16,8 +12,8 @@ jobs:
     - name: Setup Node.js for use with actions
       uses: actions/setup-node@v1.1.0
     - name: NPM Install
-      run: npm ci 
-      
+      run: npm ci
+
   abaplint:
 
     runs-on: ubuntu-latest
@@ -28,4 +24,4 @@ jobs:
     - name: abaplint Action
       uses: abaplint/actions-abaplint@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
