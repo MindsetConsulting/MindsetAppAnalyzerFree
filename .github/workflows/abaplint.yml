@@ -1,4 +1,4 @@
-name: Main CI Checks
+name: ABAPLint Checks
 
 on:
   pull_request:
