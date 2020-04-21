@@ -175,10 +175,7 @@
       "exclude": [],
       "reason": ""
     },
-    "implement_methods": {
-      "exclude": [],
-      "reason": ""
-    },
+    "implement_methods": true,
     "in_statement_indentation": false,
     "indentation": false,
     "inline_data_old_versions": {
