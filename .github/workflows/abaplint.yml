@@ -1,13 +1,17 @@
 name: ABAPLint Checks
 
-on: [push, pull_request]
+on:
+  pull_request:
+  push:
+      branches:
+        - master
 
 jobs:
   abaplint:
     runs-on: ubuntu-latest
     name: ABAPLint
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: abaplint Action
       uses: abaplint/actions-abaplint@master
       env:
