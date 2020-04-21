@@ -25,6 +25,21 @@
     font-size: 65px !important;
 }
 
+.feedbackGreen {
+    color: #008000 !important;
+    font-size: 65px !important;
+}
+
+.feedbackYellow {
+    color: #FFFF00 !important;
+    font-size: 65px !important;
+}
+
+ .feedbackRed {
+    color: #FF0000 !important;
+    font-size: 65px !important;
+}
+
 .userloggedCnt {
     color: #469eff !important;
     font-size: 65px !important;
