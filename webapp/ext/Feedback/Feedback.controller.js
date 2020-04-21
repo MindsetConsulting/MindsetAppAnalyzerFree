@@ -18,21 +18,21 @@ sap.ui.define(["sap/ovp/cards/generic/Card.controller"],
 				var sPath = "/FeedbackSet/$count";
 				oDataModel.read(sPath, {
 					success: function (oData, oRes) {
-						var avgnum = that.getView().getId("idAVG");
+						var avgnum = that.getView().byId("idAVG");
 						switch (oRes.body) {
-						case 1:
+						case "1":
 							avgnum.addStyleClass("feedbackRed");
 							break;
-						case 2:
+						case "2":
 							avgnum.addStyleClass("feedbackRed");
 							break;
-						case 3:
+						case "3":
 							avgnum.addStyleClass("feedbackYellow");
 							break;
-						case 4:
+						case "4":
 							avgnum.addStyleClass("feedbackGreen");
 							break;
-						case 5:
+						case "5":
 							avgnum.addStyleClass("feedbackGreen");
 							break;
 						}
