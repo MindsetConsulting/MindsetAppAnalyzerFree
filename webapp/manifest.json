@@ -97,7 +97,6 @@
 	"sap.ovp": {
 		"globalFilterModel": "fiorimoni",
 		"globalFilterEntityType": "",
-		"containerLayout": "resizable",
 		"enableLiveFilter": false,
 		"considerAnalyticalParameters": false,
 		"cards": {
