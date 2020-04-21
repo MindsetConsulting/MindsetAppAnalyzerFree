@@ -61,7 +61,7 @@ CLASS /MINDSET/CL_FIORI_MONI_DPC_EXT IMPLEMENTATION.
 *** FILL appinfo and flpinfo every time a user clicks a semantic object
     io_data_provider->read_entry_data( IMPORTING es_data = ls_appinfo ).
 
-* sdfsd
+* sdfsdsdf
     ls_appinfo_db         = CORRESPONDING #( ls_appinfo ).
     ls_flpinfo_db         = CORRESPONDING #( ls_appinfo ).
 
