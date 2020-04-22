@@ -7,25 +7,12 @@ on:
         - master
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup Node.js for use with actions
-      uses: actions/setup-node@v1.1.0
-    - name: NPM Install
-      run: npm ci 
-      
   abaplint:
-
     runs-on: ubuntu-latest
     name: ABAPLint
-    needs: [build]
-
     steps:
+    - uses: actions/checkout@v2
     - name: abaplint Action
       uses: abaplint/actions-abaplint@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
