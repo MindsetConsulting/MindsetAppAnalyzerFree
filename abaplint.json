@@ -23,11 +23,7 @@
       "exclude": [],
       "reason": ""
     },
-    "abapdoc": {
-      "exclude": [],
-      "reason": "",
-      "checkLocal": false
-    },
+    "abapdoc": false,
     "allowed_object_naming": {
       "exclude": [],
       "reason": ""
