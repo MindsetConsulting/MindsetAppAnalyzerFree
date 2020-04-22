@@ -171,6 +171,13 @@
 					"title": "{{ContactUs}}",
 					"stopResizing": false
 				}
+			},
+			"card08": {
+				"model": "fiorimoni",
+				"template": "com.mindset.appanalyzer.ext.Feedback",
+				"settings": {
+					"title": "{{VoE}}"
+				}
 			}
 		}
 	},

@@ -23,6 +23,8 @@ protected section.
     redefinition .
   methods DEVICELOGINSET_GET_ENTITYSET
     redefinition .
+  methods FEEDBACKSET_CREATE_ENTITY
+    redefinition .
   methods FLPINFOSET_CREATE_ENTITY
     redefinition .
   methods FLPLOGINSET_GET_ENTITY
@@ -30,6 +32,8 @@ protected section.
   methods FLPLOGINSET_GET_ENTITYSET
     redefinition .
   methods GEOLOGINSET_GET_ENTITYSET
+    redefinition .
+  methods FEEDBACKSET_GET_ENTITYSET
     redefinition .
   PRIVATE SECTION.
 ENDCLASS.
@@ -95,6 +99,34 @@ CLASS /MINDSET/CL_FIORI_MONI_DPC_EXT IMPLEMENTATION.
 
   METHOD deviceloginset_get_entityset.
     et_entityset = o_util->get_device_logins( ).
+  ENDMETHOD.
+
+
+  METHOD feedbackset_create_entity.
+    DATA: ls_feedback    TYPE /mindset/cl_fiori_moni_mpc_ext=>ts_feedback,
+          ls_feedback_db TYPE /mindset/feedbck.
+
+    io_data_provider->read_entry_data( IMPORTING es_data = ls_feedback ).
+
+    ls_feedback_db = CORRESPONDING #( ls_feedback ).
+
+    GET TIME STAMP FIELD ls_feedback_db-log_time.
+
+    INSERT /mindset/feedbck FROM ls_feedback_db.
+
+    COMMIT WORK AND WAIT.
+
+  ENDMETHOD.
+
+
+  METHOD feedbackset_get_entityset.
+    DATA lv_cnt TYPE i.
+
+    SELECT AVG( rating ) FROM /mindset/feedbck INTO @DATA(lv_mean).
+    lv_cnt = trunc( lv_mean ).
+
+    es_response_context-count = es_response_context-inlinecount = lv_cnt.
+
   ENDMETHOD.
 
 
