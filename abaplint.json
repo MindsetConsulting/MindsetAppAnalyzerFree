@@ -469,10 +469,7 @@
       "reason": "",
       "pattern": "^TY_.+$"
     },
-    "unknown_types": {
-      "exclude": [],
-      "reason": ""
-    },
+    "unknown_types":false,
     "unreachable_code": {
       "exclude": [],
       "reason": ""
