@@ -4,8 +4,9 @@
   "description": "",
   "private": true,
   "devDependencies": {
-    "@ui5/cli": "1.7.0",
+    "@abaplint/cli": "^2.32.1",
     "@sap/ui5-builder-webide-extension": "1.0.9",
+    "@ui5/cli": "1.7.0",
     "eslint": "^6.8.0",
     "eslint-plugin-ui5": "^0.1.0"
   },
