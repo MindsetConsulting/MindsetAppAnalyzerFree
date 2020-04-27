@@ -4,7 +4,7 @@ sap.ui.define(["sap/ovp/cards/generic/Card.controller",
 			"sap/ui/model/odata/ODataModel"],
 function (Controller, JSONModel, ODataModel) {
     "use strict";
-    return Controller.extend("com.mindset.appanalyzer.ext.AvgFioriLaunchTime.AvgFioriLaunchTimes", {
+    sap.ui.controller("com.mindset.appanalyzer.ext.AvgFioriLaunchTime.AvgFioriLaunchTimes", {
 
 		onInit: function () {
 			var that = this;
