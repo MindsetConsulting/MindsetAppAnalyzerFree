@@ -1,14 +1,14 @@
-/* global sap */
-sap.ui.define(["sap/ovp/cards/generic/Card.controller", 
-			"sap/ui/model/json/JSONModel",
-			"sap/ui/model/odata/ODataModel"],
-function (Controller, JSONModel, ODataModel) {
-    "use strict";
-    return Controller.extend("com.mindset.appanalyzer.ext.DeviceType.DeviceTypes", {
+(function () {
+	"use strict";
+
+	/* controller for custom card  */
+
+	sap.ui.controller("com.mindset.appanalyzer.ext.DeviceType.DeviceTypes", {
+
 		onInit: function () {
 			var me = this;
 			var oView = me.getView();
-            var sMobilepath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Mobile.jpg");
+          var sMobilepath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Mobile.jpg");
 			var stabletpath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Tablet.jpg");
 			var sSystemPath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/System.jpg");
 			var MobileImage = oView.byId("MobileImage");
@@ -43,19 +43,6 @@ function (Controller, JSONModel, ODataModel) {
 			});
 
 		},
-		
-		handleUserLoggedPressed: function (oEvent) {
-			//var oTable = this.byId("idUserList");
-			this._getDialog().open();
-		},
-		
-		_getDialog: function () {
-			if (!this._oDialog) {
-				this._oDialog = sap.ui.xmlfragment("com.mindset.appanalyzer.ext.DeviceType.DeviceList");
-				this.getView().addDependent(this._oDialog);
-			}	
-			return this._oDialog;
-		},
 
 		onAfterRendering: function () {
 
@@ -66,4 +53,4 @@ function (Controller, JSONModel, ODataModel) {
 		}
 
 	});
-});
+})();
