@@ -108,7 +108,7 @@
 					"title": "{{UserLoggedIn}}",
 					"entitySet": "FLPLogInSet",
 					"identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#userDetail1",
-					"stopResizing": false
+					"stopResizing": true
 				}
 			},
 			"card01": {
@@ -116,7 +116,7 @@
 				"template": "com.mindset.appanalyzer.ext.Broswertype",
 				"settings": {
 					"title": "{{BrowserTypes}}",
-					"stopResizing": false
+					"stopResizing": true
 				}
 			},
 			"card02": {
@@ -124,7 +124,7 @@
 				"template": "com.mindset.appanalyzer.ext.DeviceType",
 				"settings": {
 					"title": "{{DeviceType}}",
-					"stopResizing": false
+					"stopResizing": true
 				}
 			},
 			"card03": {
@@ -132,7 +132,7 @@
 				"template": "com.mindset.appanalyzer.ext.AvgFioriLaunchTime",
 				"settings": {
 					"title": "{{AvgFioriAppLaunchTime}}",
-					"stopResizing": false
+					"stopResizing": true
 				}
 			},
 			"card04": {
@@ -176,7 +176,8 @@
 				"model": "fiorimoni",
 				"template": "com.mindset.appanalyzer.ext.Feedback",
 				"settings": {
-					"title": "{{VoE}}"
+					"title": "{{VoE}}",
+					"stopResizing": true
 				}
 			}
 		}
