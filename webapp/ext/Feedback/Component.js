@@ -1,49 +1,48 @@
 /* global sap */
-sap.ui.define(["sap/ovp/cards/custom/Component"],
+(function () {
+	"use strict";
 
-	function (Component) {
-		"use strict";
+	/* component for custom card */
 
-		return Component.extend("com.mindset.appanalyzer.ext.Feedback.Component", {
-			
-			metadata: {
-				properties: {
-					"contentFragment": {
-						"type": "string",
-						"defaultValue": "com.mindset.appanalyzer.ext.Feedback.Feedback"
-					},
-					"controllerName": {
-						"type": "string",
-						"defaultValue": "com.mindset.appanalyzer.ext.Feedback.Feedback"
-					},
-					"headerFragment": {
-						"type": "string",
-						"defaultValue": ""
-					},
-					"footerFragment": {
-						"type": "string",
-						"defaultValue": ""
-					}
+	jQuery.sap.declare("com.mindset.appanalyzer.ext.Feedback.Component");
+	jQuery.sap.require("sap.ovp.cards.custom.Component");
+
+	sap.ovp.cards.custom.Component.extend("com.mindset.appanalyzer.ext.Feedback.Component", {
+		// use inline declaration instead of component.json to save 1 round trip
+		metadata: {
+			properties: {
+				"contentFragment": {
+					"type": "string",
+					"defaultValue": "com.mindset.appanalyzer.ext.Feedback.Feedback"
 				},
-
-				version: "@version@",
-
-				library: "sap.ovp",
-
-				includes: [],
-
-				dependencies: {
-					libs: ["sap.m"],
-					components: []
+				"headerFragment": {
+					"type": "string",
+					"defaultValue": ""
 				},
-				config: {},
-				customizing: {
-					"sap.ui.controllerExtensions": {
-						"sap.ovp.cards.generic.Card": {
-							controllerName: "com.mindset.appanalyzer.ext.Feedback.Feedback"
-						}
+				"footerFragment": {
+					"type": "string",
+					"defaultValue": ""
+				}
+			},
+
+			version: "@version@",
+
+			library: "sap.ovp",
+
+			includes: [],
+
+			dependencies: {
+				libs: ["sap.m"],
+				components: []
+			},
+			config: {},
+			customizing: {
+				"sap.ui.controllerExtensions": {
+					"sap.ovp.cards.generic.Card": {
+						controllerName: "com.mindset.appanalyzer.ext.Feedback.Feedback"
 					}
 				}
 			}
-		});
+		}
 	});
+})();

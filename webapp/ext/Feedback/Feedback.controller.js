@@ -2,7 +2,7 @@
 sap.ui.define(["sap/ovp/cards/generic/Card.controller"],
 	function (Controller) {
 		"use strict";
-		return Controller.extend("com.mindset.appanalyzer.ext.Feedback.Feedback", {
+		sap.ui.controller("com.mindset.appanalyzer.ext.Feedback.Feedback", {
 
 			onInit: function () {
 				var oView = this.getView();
