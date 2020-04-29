@@ -55,16 +55,18 @@
 				}
 			});
 			this.byId("idVizFrame").setLegendVisible(false);
-
+			
+			var valueAction = [{
+                        type: 'action',
+                        text: 'Action',
+                        press: function() {
+                            console.log('This is a callback function from "Action Button" Action.');
+                        }
+                    }];
+			
 			var oPopOver = this.getView().byId("idPopOver");
 			oPopOver.connect(oVizFrame.getVizUid());
-			oPopOver.setActionItems({
-				type: 'action',
-				text: 'Details',
-				press: function () {
-					console.log('This is a callback function from "Action Button" Action.');
-				}
-			});
+			oPopOver.setActionItems(valueAction);
 		},
 
 		dataSort: function (dataset) {
