@@ -55,15 +55,20 @@
 				}
 			});
 			this.byId("idVizFrame").setLegendVisible(false);
-			
+
 			var valueAction = [{
-                        type: 'action',
-                        text: 'Action',
-                        press: function() {
-                            console.log('This is a callback function from "Action Button" Action.');
-                        }
-                    }];
-			
+				type: 'action',
+				text: 'Details',
+				press: function (oEvent) {
+					var oCrossAppNav = sap.ushell && sap.ushell.Container && sap.ushell.Container.getService("CrossApplicationNavigation");
+					var href_For_Product_display = (oCrossAppNav && oCrossAppNav.toExternal({
+						target: {
+							shellHash: "AnalyzerDetail-display"
+						}
+					})) || "";
+				}
+			}];
+
 			var oPopOver = this.getView().byId("idPopOver");
 			oPopOver.connect(oVizFrame.getVizUid());
 			oPopOver.setActionItems(valueAction);
