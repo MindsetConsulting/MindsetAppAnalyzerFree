@@ -5,12 +5,12 @@
   "private": true,
   "devDependencies": {
     "@sap/ui5-builder-webide-extension": "1.0.9",
-    "@ui5/cli": "^2.0.2",
+    "@ui5/cli": "^2.1.0",
     "eslint": "^6.8.0",
     "eslint-plugin-ui5": "^0.1.0",
-    "ui5-middleware-index": "^0.1.0",
-    "ui5-middleware-simpleproxy": "^0.2.1",
-    "ui5-task-nwabap-deployer": "^1.0.9"
+    "ui5-middleware-index": "^0.1.1",
+    "ui5-middleware-simpleproxy": "^0.2.2",
+    "ui5-task-nwabap-deployer": "^1.0.12"
   },
   "scripts": {
     "build": "ui5 build --include-task=generateManifestBundle generateCachebusterInfo"
