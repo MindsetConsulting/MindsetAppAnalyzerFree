@@ -1,43 +1,12 @@
-/* global sap */
-sap.ui.define(["sap/ovp/cards/generic/Card.controller", 
-			"sap/ui/model/json/JSONModel",
-			"sap/ui/model/odata/ODataModel"],
-function (Controller, JSONModel, ODataModel) {
-    "use strict";
-    return Controller.extend("com.mindset.appanalyzer.ext.UserPerApp.UserPerApps", {
-    	onInit: function () {
+(function () {
+	"use strict";
+
+	/* controller for custom card  */
+
+	sap.ui.controller("com.mindset.appanalyzer.ext.UserPerApp.UserPerApps", {
+
+		onInit: function () {
 			var me = this;
-			//Call the method when the route and pattern matches
-
-			/*	
-				
-					"card07": {
-				"model": "fiorimoni",
-				"template": "com.mindset.appanalyzer.ext.UserPerApp",
-				"settings": {
-					"title": "{{UserPerApp}}",
-					"defaultSpan": {
-						"cols": 3,
-						"rows": 8
-					}
-				}
-			}
-			
-			 */
-
-			/* 
-			 	"card07": {
-				"model": "fiorimoni",
-				"template": "sap.ovp.cards.charts.analytical",
-				"settings": {
-					"title": "{{AvgTimeOnApps}}",
-					"entitySet": "AppLogInSet",
-					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart",
-					"navigation": "dataPointNav"
-				}
-			}
-			 
-			 */
 			var oView = me.getView();
 			var oUserPerAppModel = new sap.ui.model.json.JSONModel();
 			me.getView().setModel(oUserPerAppModel, "oUserPerAppModel");
@@ -68,6 +37,7 @@ function (Controller, JSONModel, ODataModel) {
 					text: 'Appviews Today by App'
 				}
 			});
+
 			oVizFrame.setModel(oUserPerAppModel);
 			var sUrl = "/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/";
 			// var sUrl = "/sap/opu/odata/sap/ZMND_FIORI_MONITOR_SRV/";
@@ -85,9 +55,25 @@ function (Controller, JSONModel, ODataModel) {
 				}
 			});
 			this.byId("idVizFrame").setLegendVisible(false);
+
+			var valueAction = [{
+				type: 'action',
+				text: 'Details',
+				press: function (oEvent) {
+					var oCrossAppNav = sap.ushell && sap.ushell.Container && sap.ushell.Container.getService("CrossApplicationNavigation");
+					var href_For_Product_display = (oCrossAppNav && oCrossAppNav.toExternal({
+						target: {
+							shellHash: "AnalyzerDetail-display"
+						}
+					})) || "";
+				}
+			}];
+
 			var oPopOver = this.getView().byId("idPopOver");
-            oPopOver.connect(oVizFrame.getVizUid());
+			oPopOver.connect(oVizFrame.getVizUid());
+			oPopOver.setActionItems(valueAction);
 		},
+
 		dataSort: function (dataset) {
 			//let data sorted by revenue
 			if (dataset && dataset.hasOwnProperty("results")) {
@@ -107,4 +93,4 @@ function (Controller, JSONModel, ODataModel) {
 		}
 
 	});
-});
+})();
