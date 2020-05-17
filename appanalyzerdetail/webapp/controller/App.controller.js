@@ -9,12 +9,18 @@ sap.ui.define([
 			oModel = new ODataModel("/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/", {});
 			oView = this.getView();
 			oView.setModel(oModel);
+			var oStartupParameters = this.getMyComponent().getComponentData().startupParameters;
 		},
 		/**
 		 *@memberOf com.mindset.analyzerdetail.AppAnalyzerDetail.controller.App
 		 */
 		onSearch: function (oEvent) {
-			
+
+		},
+		getMyComponent: function () {
+			"use strict";
+			var sComponentId = sap.ui.core.Component.getOwnerIdFor(this.getView());
+			return sap.ui.component(sComponentId);
 		}
 	});
 });
