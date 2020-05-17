@@ -1,10 +1,10 @@
-/* global sap */
-sap.ui.define(["sap/ovp/cards/generic/Card.controller", 
-			"sap/ui/model/json/JSONModel",
-			"sap/ui/model/odata/ODataModel"],
-function (Controller, JSONModel, ODataModel) {
-    "use strict";
-    return Controller.extend("com.mindset.appanalyzer.ext.Broswertype.BroserTypes", {
+(function () {
+	"use strict";
+
+	/* controller for custom card  */
+
+	sap.ui.controller("com.mindset.appanalyzer.ext.Broswertype.BroserTypes", {
+
 		onInit: function () {
 			var me = this;
 			var oView = me.getView();
@@ -72,4 +72,4 @@ function (Controller, JSONModel, ODataModel) {
 		}
 
 	});
-});
+})();
