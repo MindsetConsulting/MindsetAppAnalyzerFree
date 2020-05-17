@@ -13,7 +13,9 @@
     "ui5-task-nwabap-deployer": "^1.0.9"
   },
   "scripts": {
-    "build": "ui5 build --include-task=generateManifestBundle generateCachebusterInfo"
+    "build": "ui5 build --exclude-task=ui5-task-nwabap-deployer",
+    "deploy": "ui5 build",
+    "serve": "ui5 serve --h2"
   },
   "ui5": {
     "dependencies": [
