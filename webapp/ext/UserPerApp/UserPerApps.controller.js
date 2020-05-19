@@ -6,10 +6,10 @@
 	sap.ui.controller("com.mindset.appanalyzer.ext.UserPerApp.UserPerApps", {
 
 		onInit: function () {
-			var me = this;
-			var oView = me.getView();
+			var that = this;
+			var oView = that.getView();
 			var oUserPerAppModel = new sap.ui.model.json.JSONModel();
-			me.getView().setModel(oUserPerAppModel, "oUserPerAppModel");
+			that.getView().setModel(oUserPerAppModel, "oUserPerAppModel");
 			var oVizFrame = this.oVizFrame = this.getView().byId("idVizFrame");
 
 			oVizFrame.setVizProperties({
@@ -46,7 +46,7 @@
 			var sPath = "/AppLogInSet";
 			oDataModel.read(sPath, {
 				success: function (oData, oRes) {
-					var results = me.dataSort(oData);
+					var results = that.dataSort(oData);
 					oUserPerAppModel.setData(results);
 					oUserPerAppModel.updateBindings(true);
 				},
@@ -55,27 +55,23 @@
 				}
 			});
 			this.byId("idVizFrame").setLegendVisible(false);
+			this.byId("idVizFrame").attachSelectData(that.navToDetail, that);
+		},
 
-			var valueAction = [{
-				type: 'action',
-				text: 'Details',
-				press: function (oEvent) {
-					var oCrossAppNav = sap.ushell && sap.ushell.Container && sap.ushell.Container.getService("CrossApplicationNavigation");
-					var href_For_Product_display = (oCrossAppNav && oCrossAppNav.toExternal({
-						target: {
-							shellHash: "AnalyzerDetail-display"
-						}
-					})) || "";
+		navToDetail: function (oEvent) {
+			var descr = oEvent.getParameter("data")[0]["data"]["AppDescription"];
+			var oCrossAppNav = sap.ushell && sap.ushell.Container && sap.ushell.Container.getService("CrossApplicationNavigation");
+			oCrossAppNav.toExternal({
+				target: {
+					shellHash: "AnalyzerDetail-display"
+				},
+				params: {
+					"App": descr
 				}
-			}];
-
-			var oPopOver = this.getView().byId("idPopOver");
-			oPopOver.connect(oVizFrame.getVizUid());
-			oPopOver.setActionItems(valueAction);
+			});
 		},
 
 		dataSort: function (dataset) {
-			//let data sorted by revenue
 			if (dataset && dataset.hasOwnProperty("results")) {
 				var arr = dataset.results;
 				arr = arr.sort(function (a, b) {
@@ -84,6 +80,7 @@
 				return dataset;
 			}
 		},
+
 		onAfterRendering: function () {
 
 		},
