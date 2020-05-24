@@ -6,18 +6,20 @@
     "extends": "eslint:recommended",
     "globals": {
         "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
+        "SharedArrayBuffer": "readonly",
+        "sap": "readonly"
     },
     "parserOptions": {
         "ecmaVersion": 2018
     },
     "rules": {
         "ui5/no-global-id": 2,
-        "ui5/no-global-name": 2,
+        "ui5/no-global-name": 0,
         "ui5/no-for-in": 2,
         "ui5/no-boolean-literal-compare": 2
     },
     "plugins": [
         "ui5"
-    ]
+    ],
+    "ignorePatterns": [ "**/node_modules/**", "**/localService/**", "**/dist/**" ] 
 }

@@ -5,6 +5,7 @@ on:
   push:
       branches:
         - master
+        - multiple-ui5-apps
 
 jobs:
   abaplint:
