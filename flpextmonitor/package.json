@@ -1,0 +1,26 @@
+{
+  "name": "flpextmonitor",
+  "version": "0.0.1",
+  "description": "Fiori Launchpad Plugin for Mindset App Analyzer",
+  "main": "Component.js",
+  "devDependencies": {
+    "@ui5/cli": "2.0.1",
+    "@sap/ui5-builder-webide-extension": "1.0.9",
+    "eslint": "^6.8.0",
+    "eslint-plugin-ui5": "^0.1.0",
+    "ui5-middleware-simpleproxy": "^0.2.2",
+    "ui5-task-nwabap-deployer": "^1.0.9"
+  },
+  "scripts": {
+    "build": "ui5 build --exclude-task=ui5-task-nwabap-deployer",
+    "deploy": "ui5 build",
+    "serve": "ui5 serve --h2"
+  },
+  "ui5": {
+    "dependencies": [
+      "@sap/ui5-builder-webide-extension",
+      "ui5-middleware-simpleproxy",
+      "ui5-task-nwabap-deployer"
+    ]
+  }
+}

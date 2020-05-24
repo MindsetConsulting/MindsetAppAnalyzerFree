@@ -1,0 +1,9 @@
+{
+	"applications": {},
+	"bootstrapPlugins": {
+		"flpextmonitor": {
+			"component": "com.mindset.flpExt",
+			"url": "../../../../../webapp/"
+		}
+	}
+}

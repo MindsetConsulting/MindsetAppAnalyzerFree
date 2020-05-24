@@ -1,0 +1,28 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="/MINDSET/FIORI_MONITOR_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="FLPLogIn" sap:content-version="1">
+				<Key><PropertyRef Name="TotalLoggedIn"/></Key><Property Name="TotalLoggedIn" Type="Edm.Int16" Nullable="false" sap:label="Total Logged In" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="AppLogIn" sap:content-version="1">
+				<Key><PropertyRef Name="AppID"/></Key><Property Name="AppID" Type="Edm.String" Nullable="false" sap:label="App ID" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="AppDesc" Type="Edm.String" Nullable="false" sap:label="App Description" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TotalLoggedIn" Type="Edm.Int16" Nullable="false" sap:label="Total Logged In" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="FLPInfo" sap:content-version="1">
+				<Key><PropertyRef Name="UserID"/></Key><Property Name="UserID" Type="Edm.String" Nullable="false" sap:label="UserID" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Browser" Type="Edm.String" Nullable="false" sap:label="Browser" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="BrowserVersion" Type="Edm.String" Nullable="false" sap:label="Browser Version" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Latitude" Type="Edm.String" Nullable="false" sap:label="Latitude" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Longitude" Type="Edm.String" Nullable="false" sap:label="Longitude" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="DeviceType" Type="Edm.String" Nullable="false" sap:label="Device Type" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="OS" Type="Edm.String" Nullable="false" sap:label="Operating System" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="OS_DETAILS" Type="Edm.String" Nullable="false" sap:label="Operating System Details" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityContainer Name="/MINDSET/FIORI_MONITOR_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="FLPLogInSet" EntityType="/MINDSET/FIORI_MONITOR_SRV.FLPLogIn" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="AppLogInSet" EntityType="/MINDSET/FIORI_MONITOR_SRV.AppLogIn" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="FLPInfoSet" EntityType="/MINDSET/FIORI_MONITOR_SRV.FLPInfo" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/></EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./mindset/FIORI_MONITOR_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./mindset/FIORI_MONITOR_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
