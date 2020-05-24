@@ -3,7 +3,9 @@
 
 	/* component for custom card */
 
+	// eslint-disable-next-line no-undef
 	jQuery.sap.declare("com.mindset.appanalyzer.ext.AvgFioriLaunchTime.Component");
+	// eslint-disable-next-line no-undef
 	jQuery.sap.require("sap.ovp.cards.custom.Component");
 
 	sap.ovp.cards.custom.Component.extend("com.mindset.appanalyzer.ext.AvgFioriLaunchTime.Component", {

@@ -26,14 +26,14 @@
 					oUserLogonModel.setProperty("/NoUsersLoggedIn", oRes.body);
 					oUserLogonModel.updateBindings(true);
 				},
-				error: function (data) {
+				error: function () {
 
 				}
 			});
 
 		},
 		
-		handleUserLoggedPressed: function (oEvent) {
+		handleUserLoggedPressed: function () {
 			
 			this._getDialog().open();
 			

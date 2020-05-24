@@ -1,6 +1,6 @@
 (function () {
 	"use strict";
-	/*global sap, jQuery */
+	/*global jQuery */
 
 	/**
 	 * @fileOverview Application component to display information on entities from the GWSAMPLE_BASIC

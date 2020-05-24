@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 (function () {
 	"use strict";
 
@@ -37,20 +38,20 @@
 			oView.setModel(oDataModel);
 			var sPath = "/BrowserLogInSet";
 			oDataModel.read(sPath, {
-				success: function (oData, oRes) {
+				success: function (oData) {
 					oBrowserModel.setProperty("/Edge", oData.results[0].Edge);
 					oBrowserModel.setProperty("/Firefox", oData.results[0].Firefox);
 					oBrowserModel.setProperty("/Chrome", oData.results[0].Chrome);
 					oBrowserModel.setProperty("/Safari", oData.results[0].Safari);
 					oBrowserModel.updateBindings(true);
 				},
-				error: function (data) {
+				error: function () {
 
 				}
 			});
 		},
 		
-		handleUserLoggedPressed: function (oEvent) {
+		handleUserLoggedPressed: function () {
 			//var oTable = this.byId("idUserList");
 			this._getDialog().open();
 		},

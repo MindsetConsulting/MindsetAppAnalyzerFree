@@ -1,10 +1,12 @@
+/* eslint-disable ui5/no-boolean-literal-compare */
+/* eslint-disable ui5/no-global-id */
 sap.ui.define([
 	"sap/ui/core/Component",
 	"sap/m/Button",
 	"sap/m/Bar",
 	"sap/ushell/services/ShellNavigation",
 	"sap/m/MessageToast"
-], function (Component, Button, Bar, ShellNavigation, MessageToast) {
+], function (Component) {
 
 	return Component.extend("com.mindset.flpExt.Component", {
 
@@ -17,7 +19,6 @@ sap.ui.define([
 			var that = this;
 			var oSementicObject = "";
 			var oAction = "";
-			var hash = "";
 			var sAppDesc = "";
 			var oUser = new sap.ushell.services.UserInfo();
 			me.userId = oUser.getUser().getId();
@@ -33,7 +34,6 @@ sap.ui.define([
 
 			// This is example code. Please replace with your implementation!
 			var browser = sap.ui.Device.browser.name;
-			var postion = "";
 			var latitude = "";
 			var longitude = "";
 			var Device = "";
@@ -89,7 +89,7 @@ sap.ui.define([
 					}
 
 					// MessageToast.show("browser:" + browser + "   Device:" + Device + " latitude:" + latitude + "longitude: " + longitude + "");
-				}, function (error) {
+				}, function () {
 					me.onUserInfo(browser, Device, os, latitude, longitude);
 				});
 
@@ -110,21 +110,17 @@ sap.ui.define([
 				}, true, true);
 			});*/
 
+			// eslint-disable-next-line no-undef
 			$(document).on('click', '.sapUshellTileInner', function (e) {
 				try {
-					hash = e.currentTarget.hash;
 					oSementicObject = e.currentTarget.hash.split("-")[0].substring(1);
 					oAction = e.currentTarget.hash.split("-")[1].split("?")[0];
 					var appUrl = e.currentTarget.baseURI;
 					var userId = me.userId;
 					sAppDesc = e.currentTarget.textContent;
 					me.onCallAppLogInSet(oSementicObject, oAction, appUrl, userId, sAppDesc, browser, Device, os, latitude, longitude);
-					var chance = 5;//Math.round(Math.random() * 10);
-/*					if (chance == 5) {
-						that.onFeedbackPress();
-					}*/
 				} catch (err) {
-
+					// TODO: Handle issues here
 				}
 			});
 
@@ -182,7 +178,7 @@ sap.ui.define([
 						}),
 						new sap.m.Button({
 							text: "Comments",
-							press: function (e) {
+							press: function () {
 								var vis = sap.ui.getCore().byId("idComments").getVisible();
 								if (vis === false) {
 									sap.ui.getCore().byId("idComments").setVisible(true);
@@ -214,7 +210,9 @@ sap.ui.define([
 									"Userid": userId
 								};
 								oDataModel.create("/FeedbackSet", oFeedbackData, {
+									// eslint-disable-next-line no-unused-vars
 									success: function (oData, oResponse) {},
+									// eslint-disable-next-line no-unused-vars
 									error: function (error, resp1, resp2) {
 										var oError = JSON.parse(error.response.body).error.message.value;
 										sap.m.MessageBox.show(oError, {
@@ -275,7 +273,9 @@ sap.ui.define([
 			};
 
 			oDataModel.create("/AppInfoSet", oAppLogInInfoData, {
+				// eslint-disable-next-line no-unused-vars
 				success: function (oData, oResponse) {},
+				// eslint-disable-next-line no-unused-vars
 				error: function (error, resp1, resp2) {
 					var oError = JSON.parse(error.response.body).error.message.value;
 					sap.m.MessageBox.show(oError, {
@@ -307,6 +307,7 @@ sap.ui.define([
 			};
 
 			oDataModel.create("/FLPInfoSet", oUserInfoData, {
+				// eslint-disable-next-line no-unused-vars
 				success: function (oData, oResponse) {
 					/*	sap.m.MessageBox.show(
 										"TU Successfully Created.", {
@@ -317,6 +318,7 @@ sap.ui.define([
 										});*/
 
 				},
+				// eslint-disable-next-line no-unused-vars
 				error: function (error, resp1, resp2) {
 					var oError = JSON.parse(error.response.body).error.message.value;
 					sap.m.MessageBox.show(oError, {
@@ -344,9 +346,11 @@ sap.ui.define([
 		 */
 		_getRenderer: function () {
 			var that = this,
+				// eslint-disable-next-line no-undef
 				oDeferred = new jQuery.Deferred(),
 				oRenderer;
 
+			// eslint-disable-next-line no-undef
 			that._oShellContainer = jQuery.sap.getObject("sap.ushell.Container");
 			if (!that._oShellContainer) {
 				oDeferred.reject(

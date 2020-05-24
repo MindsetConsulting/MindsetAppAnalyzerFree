@@ -1,4 +1,3 @@
-/* global sap */
 sap.ui.define(["sap/ovp/cards/generic/Component"],
  
     function (CardComponent) {

@@ -9,12 +9,11 @@ sap.ui.define([
 			oModel = new ODataModel("/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/", {});
 			oView = this.getView();
 			oView.setModel(oModel);
-			var oStartupParameters = this.getMyComponent().getComponentData().startupParameters;
 		},
 		/**
 		 *@memberOf com.mindset.analyzerdetail.AppAnalyzerDetail.controller.App
 		 */
-		onSearch: function (oEvent) {
+		onSearch: function () {
 
 		},
 		getMyComponent: function () {

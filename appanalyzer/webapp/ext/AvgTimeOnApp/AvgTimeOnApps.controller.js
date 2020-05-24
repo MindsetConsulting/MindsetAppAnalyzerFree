@@ -1,15 +1,11 @@
-/* global sap */
-sap.ui.define(["sap/ovp/cards/generic/Card.controller",
-		"sap/ui/model/json/JSONModel",
-		"sap/ui/model/odata/ODataModel"
+sap.ui.define(["sap/ovp/cards/generic/Card.controller"
 	],
-	function (Controller, JSONModel, ODataModel) {
+	function (Controller) {
 		"use strict";
 		return Controller.extend("com.mindset.appanalyzer.ext.AvgTimeOnApp.AvgTimeOnApps", {
 			onInit: function () {
 				var me = this;
 				//Call the method when the route and pattern matches
-				var oView = me.getView();
 				var data = {
 					"apps": [{
 						"Appname": "Rebates App",

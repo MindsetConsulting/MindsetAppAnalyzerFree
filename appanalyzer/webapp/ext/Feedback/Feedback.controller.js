@@ -1,6 +1,5 @@
-/* global sap */
 sap.ui.define(["sap/ovp/cards/generic/Card.controller"],
-	function (Controller) {
+	function () {
 		"use strict";
 		sap.ui.controller("com.mindset.appanalyzer.ext.Feedback.Feedback", {
 
@@ -39,7 +38,7 @@ sap.ui.define(["sap/ovp/cards/generic/Card.controller"],
 						oUserFeedbackModel.setProperty("/AVGRating", oRes.body);
 						oUserFeedbackModel.updateBindings(true);
 					},
-					error: function (data) {
+					error: function () {
 
 					}
 				});

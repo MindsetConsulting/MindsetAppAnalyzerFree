@@ -45,12 +45,13 @@
 			oView.setModel(oDataModel);
 			var sPath = "/AppLogInSet";
 			oDataModel.read(sPath, {
+				// eslint-disable-next-line no-unused-vars
 				success: function (oData, oRes) {
 					var results = me.dataSort(oData);
 					oUserPerAppModel.setData(results);
 					oUserPerAppModel.updateBindings(true);
 				},
-				error: function (data) {
+				error: function () {
 
 				}
 			});
@@ -59,13 +60,13 @@
 			var valueAction = [{
 				type: 'action',
 				text: 'Details',
-				press: function (oEvent) {
+				press: function () {
 					var oCrossAppNav = sap.ushell && sap.ushell.Container && sap.ushell.Container.getService("CrossApplicationNavigation");
-					var href_For_Product_display = (oCrossAppNav && oCrossAppNav.toExternal({
+					oCrossAppNav && oCrossAppNav.toExternal({
 						target: {
 							shellHash: "AnalyzerDetail-display"
 						}
-					})) || "";
+					});
 				}
 			}];
 
@@ -76,13 +77,14 @@
 
 		dataSort: function (dataset) {
 			//let data sorted by revenue
+			// eslint-disable-next-line no-prototype-builtins
 			if (dataset && dataset.hasOwnProperty("results")) {
-				var arr = dataset.results;
-				arr = arr.sort(function (a, b) {
+				// WARNING: Array.sort is an in-place sort, so we make this explicit
+				dataset.results.sort(function (a, b) {
 					return b.Pageviews - a.Pageviews;
 				});
-				return dataset;
 			}
+			return dataset
 		},
 		onAfterRendering: function () {
 

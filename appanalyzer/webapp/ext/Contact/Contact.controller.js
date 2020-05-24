@@ -1,14 +1,12 @@
-/* global sap */
-sap.ui.define(["sap/ovp/cards/generic/Card.controller", 
-			"sap/ui/model/json/JSONModel",
-			"sap/ui/model/odata/ODataModel"],
-function (Controller, JSONModel, ODataModel) {
+sap.ui.define([],
+function () {
     "use strict";
     sap.ui.controller("com.mindset.appanalyzer.ext.Contact.Contact", {
 
 		onInit: function () {
 			var me = this;
 			var oView = me.getView();
+			// eslint-disable-next-line no-undef
 			var smindImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/MindsetLogowhitespace.png");
 			var sMindsetimage = oView.byId("mindsetimage");
 			sMindsetimage.setSrc(smindImagePath);
