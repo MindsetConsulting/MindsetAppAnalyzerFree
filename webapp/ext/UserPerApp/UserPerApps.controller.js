@@ -61,11 +61,16 @@
 				text: 'Details',
 				press: function (oEvent) {
 					var oCrossAppNav = sap.ushell && sap.ushell.Container && sap.ushell.Container.getService("CrossApplicationNavigation");
-					var href_For_Product_display = (oCrossAppNav && oCrossAppNav.toExternal({
+					var href = oCrossAppNav.hrefForExternal({
 						target: {
-							shellHash: "AnalyzerDetail-display"
+							semanticObject : "AnalyzerDetail",
+							action : "display" 
+						},
+						params: {
+							
 						}
-					})) || "";
+					});
+					oCrossAppNav.toExternal(href);
 				}
 			}];
 

@@ -1,18 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:ovp="sap.ovp.ui" xmlns:layout="sap.ui.layout"
 	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
-	<VBox class="bgWhite" height="22em" fitContainer="true">
-		<Toolbar class="toolbarbottamdesign" height="3em">
-			<Title text="{i18n>Top5Errors}" titleStyle="H4" level="H4" class="cursor"/>
-		</Toolbar>
-		<FlexBox items="{oUserPerAppModel>/Errors}" class="marginline" direction="Column" alignItems="Start">
-			<items>
-				<Link text="{oUserPerAppModel>Error}" wrapping="true" target="_blank" href="http://www.sap.com"
-					class="ErrorColor sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
-			</items>
-		</FlexBox>
-		<Toolbar class="toolbarbottamdesign">
-			<Title text="{i18n>note}" titleStyle="H4" level="H4"/>
-			<Title text="mock-up" titleStyle="H4" level="H4"/>
-		</Toolbar>
-	</VBox>
+		<List items="{ path: '/ERRORLOGSET' }">
+			<StandardListItem title="{Username}"/>
+		</List>
 </core:FragmentDefinition>

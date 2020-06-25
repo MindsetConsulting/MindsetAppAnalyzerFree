@@ -5,10 +5,10 @@
       "path": "/sap/opu/odata",
       "target": {
         "type": "destination",
-        "name": "gateway1_dev",
+        "name": "S4H_MWHIGHAM",
         "entryPath": "/sap/opu/odata"
       },
-      "description": "Mindset Gateway - Developer - webIDE"
+      "description": "Mindset Gateway - S4H 1909 trial"
     },
     {
       "path": "/resources",
