@@ -10,28 +10,17 @@
 		},
 		"title": "{{app_title}}",
 		"dataSources": {
-			"fiorimoni": {
-				"uri": "/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/",
+			"FIORI_MONITOR_SRV": {
+				"uri": "/sap/opu/odata/mindset/FIORI_MONITOR_SRV/",
 				"type": "OData",
 				"settings": {
-					"odataVersion": "2.0",
-					"localUri": "localService/appanalyzer/metadata.xml",
-					"annotations": [
-						"AvgAppUsageToday"
-					]
-				}
-			},
-			"AvgAppUsageToday": {
-				"type": "ODataAnnotation",
-				"uri": "AvgAppUsageToday.xml",
-				"settings": {
-					"localUri": "AvgAppUsageToday.xml"
+					"localUri": "localService/metadata.xml"
 				}
 			}
 		},
 		"sourceTemplate": {
-			"id": "OVP.smartovptemplate",
-			"version": "1.41.1"
+			"id": "OVP.cardtemplate",
+			"version": "0.0.0"
 		}
 	},
 	"sap.ui": {
@@ -50,7 +39,7 @@
 	},
 	"sap.ui5": {
 		"dependencies": {
-			"minUI5Version": "1.52.15",
+			"minUI5Version": "1.65.6",
 			"libs": {
 				"sap.ovp": {
 					"minVersion": "1.52.3"
@@ -80,10 +69,15 @@
 				"uri": "i18n/i18n.properties"
 			},
 			"fiorimoni": {
-				"dataSource": "fiorimoni",
+				"type": "sap.ui.model.odata.v2.ODataModel",
 				"settings": {
-					"defaultCountMode": "Inline"
-				}
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"useBatch": true
+				},
+				"dataSource": "FIORI_MONITOR_SRV",
+				"preload": true
 			}
 		},
 		"extends": {
@@ -147,7 +141,8 @@
 				"model": "fiorimoni",
 				"template": "com.mindset.appanalyzer.ext.TopError",
 				"settings": {
-					"title": "{{Top5Errors}}"
+					"title": "{{Top5Errors}}",
+					"stopResizing": true
 				}
 			},
 			"card06": {
