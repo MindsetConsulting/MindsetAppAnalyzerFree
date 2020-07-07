@@ -62,12 +62,8 @@
 			var descr = oEvent.getParameter("data")[0]["data"]["AppDescription"];
 			var oCrossAppNav = sap.ushell && sap.ushell.Container && sap.ushell.Container.getService("CrossApplicationNavigation");
 			oCrossAppNav.toExternal({
-				target: {
-					shellHash: "AnalyzerDetail-display"
-				},
-				params: {
-					"App": descr
-				}
+				target: { semanticObject : "AnalyzerDetail", action : "display" },
+				params: { "App": descr }
 			});
 		},
 
