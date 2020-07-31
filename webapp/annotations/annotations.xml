@@ -1,0 +1,33 @@
+<Annotations Target="FIORI_MONITOR_SRV.UserFilter">
+	<Annotation Term="com.sap.vocabularies.UI.v1.TextArrangement" EnumMember="com.sap.vocabularies.UI.v1.TextArrangementType/TextLast"/>
+	<Annotation Term="UI.SelectionFields">
+		<Collection>
+			<Record>
+				<PropertyPath>UserGroup</PropertyPath>
+			</Record>
+			<Record>
+				<PropertyPath>UserID</PropertyPath>
+			</Record>
+		</Collection>
+	</Annotation>
+</Annotations>
+<Annotations Target="FIORI_MONITOR_SRV.UserFilter/UserID">
+	<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+		<Record>
+			<PropertyValue Property="Label" String="UserID"/>
+			<PropertyValue Property="CollectionPath" String="UserFilter"/>
+			<PropertyValue Property="SearchSupported" Bool="true"/>
+			<PropertyValue Property="Parameters">
+				<Collection>
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+						<PropertyValue Property="LocalDataProperty" PropertyPath="UserID"/>
+						<PropertyValue Property="ValueListProperty" String="UserID"/>
+					</Record>
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+						<PropertyValue Property="ValueListProperty" String="UserID"/>
+					</Record>
+				</Collection>
+			</PropertyValue>
+		</Record>
+	</Annotation>
+</Annotations>

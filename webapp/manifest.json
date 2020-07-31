@@ -14,7 +14,17 @@
 				"uri": "/sap/opu/odata/mindset/FIORI_MONITOR_SRV/",
 				"type": "OData",
 				"settings": {
-					"localUri": "localService/metadata.xml"
+					"localUri": "localService/metadata.xml",
+					"annotations": [
+						"FilterAnnotation"
+					]
+				}
+			},
+			"FilterAnnotation": {
+				"uri": "annotations/annotations.xml",
+				"type": "ODataAnnotation",
+				"settings": {
+					"localUri": "annotations/annotations.xml"
 				}
 			}
 		},
@@ -142,7 +152,7 @@
 				"template": "com.mindset.appanalyzer.ext.TopError",
 				"settings": {
 					"title": "{{Top5Errors}}",
-					"stopResizing": true
+					"stopResizing": false
 				}
 			},
 			"card06": {

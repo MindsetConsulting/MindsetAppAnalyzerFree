@@ -1,6 +1,28 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:ovp="sap.ovp.ui" xmlns:layout="sap.ui.layout"
 	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
-		<List items="{ path: '/ERRORLOGSET' }">
-			<StandardListItem title="{Username}"/>
-		</List>
+	<ScrollContainer vertical="true">
+		<Table items="{path: '/ErrorLogSet'}" growing="true" growingThreshold="5">
+					<headerToolbar>
+			<OverflowToolbar>
+				<Title text="{i18n>Top5Errors}" titleStyle="H4" level="H4" class="cursor"/>
+			</OverflowToolbar>
+		</headerToolbar>
+			<columns>
+				<Column width="12em">
+					<Text text="Error"/>
+				</Column>
+				<Column width="12em">
+					<Text text="Service"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<ObjectIdentifier title="{Username}" text="{ErrorText}"/>
+						<Text text="{ServiceName}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		</ScrollContainer>
 </core:FragmentDefinition>
