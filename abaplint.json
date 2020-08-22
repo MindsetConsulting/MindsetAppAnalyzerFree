@@ -14,7 +14,7 @@
   ],
   "syntax": {
     "version": "v740sp08",
-    "errorNamespace": "^(Z|Y)",
+    "errorNamespace": "^(Z|Y|\/mindset\/)",
     "globalConstants": [],
     "globalMacros": []
   },
@@ -228,17 +228,7 @@
     },
     "parser_error": true,
     "prefer_returning_to_exporting": true,
-    "preferred_compare_operator": {
-      "badOperators": [
-        "EQ",
-        "><",
-        "NE",
-        "GE",
-        "GT",
-        "LT",
-        "LE"
-      ]
-    },
+    "preferred_compare_operator": false,
     "prefix_is_current_class": {
       "omitMeInstanceCalls": true
     },
