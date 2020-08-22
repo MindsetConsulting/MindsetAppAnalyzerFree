@@ -13,12 +13,20 @@
     }
   ],
   "syntax": {
-    "version": "v740sp02",
+    "version": "v740sp08",
     "errorNamespace": "^(Z|Y)",
     "globalConstants": [],
     "globalMacros": []
   },
   "rules": {
+    "begin_single_include": true,
+    "downport": false,
+    "forbidden_void_type": false,
+    "line_break_multiple_parameters": false,
+    "names_no_dash": true,
+    "parser_missing_space": true,
+    "prefer_inline": false,
+    "reduce_string_templates": true,
     "7bit_ascii": true,
     "abapdoc": false,
     "allowed_object_naming": true,
@@ -34,7 +42,7 @@
       "communication": true,
       "statics": true,
       "systemCall": true,
-      "defaultKey": true,
+      "defaultKey": false,
       "break": true
     },
     "begin_end_names": true,
@@ -50,6 +58,9 @@
     "check_text_elements": true,
     "check_transformation_exists": true,
     "class_attribute_names": {
+      "ignoreInterfaces": false,
+      "ignoreLocal": false,
+      "constants": "",
       "patternKind": "required",
       "ignoreNames": [],
       "ignorePatterns": [],
@@ -122,6 +133,8 @@
       "ignoreLowerClassImplmentationStatement": true,
       "ignoreGlobalClassDefinition": false,
       "ignoreGlobalInterface": false,
+      "ignoreGlobalClassBoundaries": false,
+      "ignoreKeywords": [],
       "ignoreFunctionModuleName": false
     },
     "line_length": {
@@ -181,25 +194,29 @@
       "patternKind": "required",
       "ignoreNames": [],
       "ignorePatterns": [],
-      "clas": "^ZC(L|X)\\_",
-      "intf": "^ZIF\\_",
-      "prog": "^Z",
-      "fugr": "^Z",
-      "tabl": "^Z",
-      "ttyp": "^Z",
-      "dtel": "^Z",
-      "doma": "^Z",
-      "msag": "^Z",
-      "tran": "^Z",
-      "enqu": "^EZ",
       "auth": "^Z",
-      "pinf": "^Z",
+      "clas": "^\/mindset\/C(L|X)\\_",
+      "doma": "^Z",
+      "dtel": "^Z",
+      "enqu": "^EZ",
+      "fugr": "^Z",
       "idoc": "^Z",
+      "intf": "^\/mindset\/IF\\_",
+      "msag": "^Z",
+      "pinf": "^Z",
+      "prog": "^Z",
+      "shlp": "^Z",
+      "ssfo": "^Z",
+      "ssst": "^Z",
+      "tabl": "^\/mindset\/",
+      "tran": "^Z",
+      "ttyp": "^Z",
       "xslt": "^Z"
     },
     "obsolete_statement": {
       "refresh": true,
       "compute": true,
+      "withHeaderLine": true,
       "add": true,
       "subtract": true,
       "multiply": true,
@@ -226,9 +243,7 @@
       "omitMeInstanceCalls": true
     },
     "release_idoc": true,
-    "remove_descriptions": {
-      "ignoreExceptions": false
-    },
+    "remove_descriptions": false,
     "rfc_error_handling": true,
     "selection_screen_naming": {
       "patternKind": "required",
