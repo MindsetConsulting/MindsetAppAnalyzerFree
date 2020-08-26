@@ -46,6 +46,16 @@ sap.ui.define(["sap/ovp/cards/generic/Card.controller"],
 
 			},
 
+			navToDetail: function (oEvent) {
+				var oCrossAppNav = sap.ushell && sap.ushell.Container && sap.ushell.Container.getService("CrossApplicationNavigation");
+				oCrossAppNav.toExternal({
+					target: {
+						semanticObject: "voe_detail",
+						action: "display"
+					}
+				});
+			},
+
 			onAfterRendering: function () {
 
 			},
