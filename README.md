@@ -7,7 +7,7 @@ Welcome to the Mindset Fiori App Analyzer.  This is a free application that let'
 This repository contains the Fiori App Analyzer UI5 code in case you want to check it out in Web IDE and the SAP transport for backend gateway service code and the deployed UI5 apps. 
 
 There are 2 files in the ABAPTransports folder in the .zip file.
-K901172.S4H & R901172.S4H <- Transport of copies containing all code and configurations
+K901172.S4H & R901172.S4H <- Transport of copies containing all code and configurations.  We maintain the last 2 releases in the transports folder.  The latest is Release 2.4
 
 
 ## Installation Steps
@@ -35,7 +35,7 @@ K901172.S4H & R901172.S4H <- Transport of copies containing all code and configu
  ###  Release Notes - Version 2.1
  In this sprint we’ve added detailed informational popovers for 3 cards.  Total Active Users, Browser Types, and Device Type cards can now have a button users can click to show specific details behind the numbers you see on the card.  You access this popover by clicking on the glasses button in the upper right corner of the card.  This showcases a table of information for the users that are logged in including:  SAP UserName, Last logged on time stamp, Internet Browser the user logged in with, and the Device Type the user logged in with.  
 
-####  Question:  What other data fields would you like to see here?
+
 <img src="http://www.mindsetconsulting.com/wp-content/uploads/2020/03/Appanalyzerrelease21blog1.jpg">
 
 <img src="http://www.mindsetconsulting.com/wp-content/uploads/2020/03/Appanalyzerrelease21blog2.jpg">
@@ -55,4 +55,15 @@ K901172.S4H & R901172.S4H <- Transport of copies containing all code and configu
  Contact Us card.  We’ve added a Contact Us card so if you have any questions about Mindset, questions about the application, our services, anything else, you can click on the card and our Mindset website will load in a new tab.  
 
 <img src="http://www.mindsetconsulting.com/wp-content/uploads/2020/03/ContactUs.jpg">
+
+###  Release Notes - Version 2.4
+ We have lot's of new things to share in Release 2.4!  In this release we have worked on detailed applications for both App Analyzer and our new feature set called Voice of the Employee.  We have also added a few new OVP cards.  One for looking at GW error logging (thanks to customer feedback this is something that was prioritized and developed!) and one for tracking Employee Feedback.  More on that below.
+ 
+ #### Voice of the Employee
+ Our VoE (Voice of the Employee) functionality relies on end users and a feedback mechanism that is tied into the Fiori Launchpad.
+ 
+ #### New OVP card for Most Recent Errors
+ This card shows the most recent GW error logs from the backend.  Now you can quickly see things that could be a trend of something wrong in your Fiori environment.  This shows you the most recent errors from the GW error log from most recent to least recent.  You can continue to scroll and load more errors if you'd like and/or use this to start your research into a possible problem.
+ 
+##  Question:  What other data fields would you like to see in our Fiori App Analyzer?
 
