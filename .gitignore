@@ -8,7 +8,7 @@ sap-ui-cachebuster-info.json
 mock_preview_sapui5.html
 .*/mock_preview_sapui5.html
 UIAdaptation_index.html
-changes_preview.js
+
 AppVariant_index.html
 APIExternalProducer.js
 .*/APIExternalProducer.js
@@ -19,3 +19,14 @@ mergedManifestDescriptor.json
 /node_modules/
 /.che/
 .env
+
+node_modules/
+dist/
+.scp/
+.env
+Makefile*.mta
+mta_archives
+mta-*
+resources
+archive.zip
+.*_mta_build_tmp

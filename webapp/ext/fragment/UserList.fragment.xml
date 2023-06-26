@@ -31,8 +31,8 @@
 				</ColumnListItem>
 			</items>
 		</Table>
-		<!--<endButton>
+		<endButton>
 			<Button text="Close" press=".onDialogClose"/>
-		</endButton>-->
+		</endButton>
 	</Dialog>
 </core:FragmentDefinition>

@@ -51,10 +51,14 @@
 		
 		_getDialog: function () {
 			if (!this._oDialog) {
-				this._oDialog = sap.ui.xmlfragment("com.mindset.appanalyzer.ext.DeviceType.DeviceList");
+				this._oDialog = sap.ui.xmlfragment("com.mindset.appanalyzer.ext.DeviceType.DeviceList", this);
 				this.getView().addDependent(this._oDialog);
 			}	
 			return this._oDialog;
+		},
+
+		onDialogClose: function(){
+			this._oDialog.close();
 		},
 
 		onAfterRendering: function () {

@@ -1,194 +1,195 @@
 {
-	"_version": "1.7.0",
-	"start_url": "start.html",
-	"sap.app": {
-		"id": "com.mindset.appanalyzer",
-		"type": "application",
-		"i18n": "i18n/i18n.properties",
-		"applicationVersion": {
-			"version": "1.0.0"
-		},
-		"title": "{{app_title}}",
-		"dataSources": {
-			"FIORI_MONITOR_SRV": {
-				"uri": "/sap/opu/odata/mindset/FIORI_MONITOR_SRV/",
-				"type": "OData",
-				"settings": {
-					"localUri": "localService/metadata.xml",
-					"annotations": [
-						"FilterAnnotation"
-					]
-				}
-			},
-			"FilterAnnotation": {
-				"uri": "annotations/annotations.xml",
-				"type": "ODataAnnotation",
-				"settings": {
-					"localUri": "annotations/annotations.xml"
-				}
-			}
-		},
-		"sourceTemplate": {
-			"id": "OVP.cardtemplate",
-			"version": "0.0.0"
-		}
-	},
-	"sap.ui": {
-		"technology": "UI5",
-		"icons": {
-			"icon": ""
-		},
-		"deviceTypes": {
-			"desktop": true,
-			"tablet": true,
-			"phone": true
-		},
-		"supportedThemes": [
-			"sap_belize"
-		]
-	},
-	"sap.ui5": {
-		"dependencies": {
-			"minUI5Version": "1.65.6",
-			"libs": {
-				"sap.ovp": {
-					"minVersion": "1.52.3"
-				},
-				"sap.ui.core": {},
-				"sap.ui.layout": {},
-				"sap.ui.vbm": {},
-				"sap.viz": {},
-				"sap.m": {}
-			}
-		},
-		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
-		},
-		"models": {
-			"i18n": {
-				"type": "sap.ui.model.resource.ResourceModel",
-				"uri": "i18n/i18n.properties"
-			},
-			"@i18n": {
-				"preload": true,
-				"type": "sap.ui.model.resource.ResourceModel",
-				"uri": "i18n/i18n.properties"
-			},
-			"fiorimoni": {
-				"type": "sap.ui.model.odata.v2.ODataModel",
-				"settings": {
-					"defaultOperationMode": "Server",
-					"defaultBindingMode": "OneWay",
-					"defaultCountMode": "Request",
-					"useBatch": true
-				},
-				"dataSource": "FIORI_MONITOR_SRV",
-				"preload": true
-			}
-		},
-		"extends": {
-			"extensions": {}
-		},
-		"contentDensities": {
-			"compact": true,
-			"cozy": true
-		}
-	},
-	"sap.ovp": {
-		"globalFilterModel": "fiorimoni",
-		"globalFilterEntityType": "",
-		"containerLayout": "fixed",
-		"enableLiveFilter": false,
-		"considerAnalyticalParameters": false,
-		"cards": {
-			"card00": {
-				"model": "fiorimoni",
-				"template": "com.mindset.appanalyzer.ext.fragment",
-				"settings": {
-					"title": "{{UserLoggedIn}}",
-					"entitySet": "FLPLogInSet",
-					"identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#userDetail1",
-					"stopResizing": true
-				}
-			},
-			"card01": {
-				"model": "fiorimoni",
-				"template": "com.mindset.appanalyzer.ext.Broswertype",
-				"settings": {
-					"title": "{{BrowserTypes}}",
-					"stopResizing": true
-				}
-			},
-			"card02": {
-				"model": "fiorimoni",
-				"template": "com.mindset.appanalyzer.ext.DeviceType",
-				"settings": {
-					"title": "{{DeviceType}}",
-					"stopResizing": true
-				}
-			},
-			"card03": {
-				"model": "fiorimoni",
-				"template": "com.mindset.appanalyzer.ext.AvgFioriLaunchTime",
-				"settings": {
-					"title": "{{AvgFioriAppLaunchTime}}",
-					"stopResizing": true
-				}
-			},
-			"card04": {
-				"model": "fiorimoni",
-				"template": "com.mindset.appanalyzer.ext.Feedback",
-				"settings": {
-					"title": "{{VoE}}",
-					"stopResizing": true
-				}
-			},
-			"card05": {
-				"model": "fiorimoni",
-				"template": "com.mindset.appanalyzer.ext.TopError",
-				"settings": {
-					"title": "{{Top5Errors}}",
-					"stopResizing": false
-				}
-			},
-			"card06": {
-				"model": "fiorimoni",
-				"template": "com.mindset.appanalyzer.ext.UserPerApp",
-				"settings": {
-					"title": "{{UserPerApp}}",
-					"defaultSpan": {
-						"cols": 3,
-						"rows": 8
-					}
-				}
-			},
-			"card07": {
-				"model": "fiorimoni",
-				"template": "com.mindset.appanalyzer.ext.Region",
-				"settings": {
-					"title": "{{Region}}",
-					"defaultSpan": {
-						"cols": 2,
-						"rows": 8
-					}
-				}
-			},
-			"card08": {
-				"model": "fiorimoni",
-				"template": "com.mindset.appanalyzer.ext.Contact",
-				"settings": {
-					"title": "{{ContactUs}}",
-					"stopResizing": false
-				}
-			}
-		}
-	},
-	"sap.platform.abap": {
-		"uri": "/sap/bc/ui5_ui5/mindset/app_analyzer/webapp",
-		"_version": "1.1.0"
-	}
+    "_version": "1.7.0",
+    "start_url": "start.html",
+    "sap.app": {
+        "id": "com.mindset.appanalyzer",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{app_title}}",
+        "dataSources": {
+            "FIORI_MONITOR_SRV": {
+                "uri": "/sap/opu/odata/mindset/FIORI_MONITOR_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml",
+                    "annotations": [
+                        "FilterAnnotation"
+                    ]
+                }
+            },
+            "FilterAnnotation": {
+                "uri": "annotations/annotations.xml",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "annotations/annotations.xml"
+                }
+            }
+        },
+        "sourceTemplate": {
+            "id": "OVP.cardtemplate",
+            "version": "0.0.0",
+            "toolsId": "2456a9ab-a6a3-4b5b-946d-eaf074d3107d"
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_belize"
+        ]
+    },
+    "sap.ui5": {
+        "dependencies": {
+            "minUI5Version": "1.65.6",
+            "libs": {
+                "sap.ovp": {
+                    "minVersion": "1.52.3"
+                },
+                "sap.ui.core": {},
+                "sap.ui.layout": {},
+                "sap.ui.vbm": {},
+                "sap.viz": {},
+                "sap.m": {}
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "@i18n": {
+                "preload": true,
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "fiorimoni": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request",
+                    "useBatch": true
+                },
+                "dataSource": "FIORI_MONITOR_SRV",
+                "preload": true
+            }
+        },
+        "extends": {
+            "extensions": {}
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    },
+    "sap.ovp": {
+        "globalFilterModel": "fiorimoni",
+        "globalFilterEntityType": "",
+        "containerLayout": "fixed",
+        "enableLiveFilter": false,
+        "considerAnalyticalParameters": false,
+        "cards": {
+            "card00": {
+                "model": "fiorimoni",
+                "template": "com.mindset.appanalyzer.ext.fragment",
+                "settings": {
+                    "title": "{{UserLoggedIn}}",
+                    "entitySet": "FLPLogInSet",
+                    "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#userDetail1",
+                    "stopResizing": true
+                }
+            },
+            "card01": {
+                "model": "fiorimoni",
+                "template": "com.mindset.appanalyzer.ext.Broswertype",
+                "settings": {
+                    "title": "{{BrowserTypes}}",
+                    "stopResizing": true
+                }
+            },
+            "card02": {
+                "model": "fiorimoni",
+                "template": "com.mindset.appanalyzer.ext.DeviceType",
+                "settings": {
+                    "title": "{{DeviceType}}",
+                    "stopResizing": true
+                }
+            },
+            "card03": {
+                "model": "fiorimoni",
+                "template": "com.mindset.appanalyzer.ext.AvgFioriLaunchTime",
+                "settings": {
+                    "title": "{{AvgFioriAppLaunchTime}}",
+                    "stopResizing": true
+                }
+            },
+            "card04": {
+                "model": "fiorimoni",
+                "template": "com.mindset.appanalyzer.ext.Feedback",
+                "settings": {
+                    "title": "{{VoE}}",
+                    "stopResizing": true
+                }
+            },
+            "card05": {
+                "model": "fiorimoni",
+                "template": "com.mindset.appanalyzer.ext.TopError",
+                "settings": {
+                    "title": "{{Top5Errors}}",
+                    "stopResizing": false
+                }
+            },
+            "card06": {
+                "model": "fiorimoni",
+                "template": "com.mindset.appanalyzer.ext.UserPerApp",
+                "settings": {
+                    "title": "{{UserPerApp}}",
+                    "defaultSpan": {
+                        "cols": 3,
+                        "rows": 8
+                    }
+                }
+            },
+            "card07": {
+                "model": "fiorimoni",
+                "template": "com.mindset.appanalyzer.ext.Region",
+                "settings": {
+                    "title": "{{Region}}",
+                    "defaultSpan": {
+                        "cols": 2,
+                        "rows": 8
+                    }
+                }
+            },
+            "card08": {
+                "model": "fiorimoni",
+                "template": "com.mindset.appanalyzer.ext.Contact",
+                "settings": {
+                    "title": "{{ContactUs}}",
+                    "stopResizing": false
+                }
+            }
+        }
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/mindset/app_analyzer/webapp",
+        "_version": "1.1.0"
+    }
 }

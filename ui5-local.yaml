@@ -2,6 +2,26 @@ specVersion: "2.6"
 metadata:
   name: com.mindset.appanalyzer
 type: application
+framework:
+  name: SAPUI5
+  version: 1.79.0
+  libraries:
+    - name: sap.ovp
+    - name: sap.ui.core
+    - name: sap.ui.layout
+    - name: sap.ui.vbm
+    - name: sap.viz
+    - name: sap.m
+    - name: sap.fe.templates
+    - name: sap.f
+    - name: sap.ushell
+    - name: sap.ui.generic.app
+    - name: sap.ui.comp
+    - name: sap.suite.ui.generic.template
+    - name: sap.ui.rta
+    - name: themelib_sap_belize
+    - name: themelib_sap_bluecrystal
+    - name: themelib_sap_fiori_3
 server:
   customMiddleware:
     - name: fiori-tools-proxy
@@ -13,11 +33,6 @@ server:
             url: http://s4h2020cf:44300
             client: "100"
             destination: MWHIGHAM_S4H
-        ui5:
-          path:
-            - /resources
-            - /test-resources
-          url: https://ui5.sap.com
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

@@ -1,36 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/apr_style.css" media="screen" />
-<title>com.mindset.appanalyzer</title>
-
-<script id='sap-ui-bootstrap' type='text/javascript'
-src="resources/sap-ui-core.js"
-data-sap-ui-theme='sap_bluecrystal'
-data-sap-ui-libs='sap.m, sap.ui.layout,sap.ui.unified'
-data-sap-ui-xx-bindingSyntax="complex"
-data-sap-ui-resourceroots='{ "com.mindset.appanalyzer" : "./" }'>
-</script>
-<script>
-var shell = new sap.m.Shell("Shell", {
-showLogout : false,
-app : new sap.ui.core.ComponentContainer({
-name: "com.mindset.appanalyzer"
-}),
-homeIcon : {
-'phone' : 'img/57_iPhone_Desktop_Launch.png',
-'phone@2' : 'img/114_iPhone-Retina_Web_Clip.png',
-'tablet' : 'img/72_iPad_Desktop_Launch.png',
-'tablet@2' : 'img/144_iPad_Retina_Web_Clip.png',
-'favicon' : 'img/favicon.ico',
-'precomposed': false
-}
-});
-shell.placeAt("content");
-</script>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<style>
+		html, body, body > div, #container, #container-uiarea {
+			height: 100%;
+		}
+	</style>
+	<script
+			id="sap-ui-bootstrap"
+			src="resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_fiori_3"
+			data-sap-ui-resourceroots='{
+            "com.mindset.appanalyzer": "."
+        }'
+			data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-async="true"
+			data-sap-ui-preload="async"
+			data-sap-ui-libs="sap.m">
+	</script>
 </head>
-<body class="sapUiBody" id="content">
+<body class="sapUiBody sapUiSizeCompact" id="content">
+<div data-sap-ui-component data-name="com.mindset.appanalyzer" data-id="container" data-settings='{"id" : "com.mindset.appanalyzer"}' data-handle-validation="true"></div>
 </body>
 </html>
