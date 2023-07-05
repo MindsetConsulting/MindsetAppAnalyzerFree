@@ -26,10 +26,15 @@
 				"Edge": "",
 				"Firefox": "",
 				"Opera": "",
-				"Safari": ""
+				"Safari": "",
+				"Users": [],
+				"UniqueUserCount" : 0
 			};
 			var oBrowserModel = new sap.ui.model.json.JSONModel(oBrowserModelData);
 			oView.setModel(oBrowserModel, "oBrowserModel");
+
+			//Get List of Users who logged in from different browsers
+			this.getBrowserUserList();
 
 			var sUrl = "/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/";
 			var oDataModel = new sap.ui.model.odata.ODataModel(sUrl, true, "", "");
@@ -49,6 +54,38 @@
 			});
 		},
 		
+		getBrowserUserList: function(){
+			var that = this;
+			var oBrowserModel = that.getView().getModel('oBrowserModel');
+			var oDataModel = that.getView().getModel('fiorimoni');
+			var sPath = "/FLPBrowserSet";
+			var aUniqItms=[], aItems, aFinal=[];
+			oBrowserModel.setProperty('/UniqueUserCount', aFinal.length);
+			oDataModel.read(sPath, {
+				success: function (oData, oRes) {
+					if(oData.results.length > 0){
+						aUniqItms = [... new Set(oData.results.map(function(el){
+							return el.Browser.trim() + "|" + el.UserID.trim();
+						}))];
+						for(var i=0; i<aUniqItms.length; i++){
+							aItems = oData.results.filter(function(el){
+								return el.Browser.trim() === aUniqItms[i].split('|')[0] && 
+								el.UserID.trim() === aUniqItms[i].split('|')[1];
+							});
+							aItems.sort(function(a, b) {
+								return b.LastLoginAt-a.LastLoginAt;
+							});
+							aFinal.push(aItems[0]);
+						}
+					}
+					oBrowserModel.setProperty('/Users', $.extend(true, [], aFinal));
+					oBrowserModel.setProperty('/UniqueUserCount', aFinal.length);
+				},
+				error: function (data) {
+
+				}
+			});
+		},
 		handleUserLoggedPressed: function (oEvent) {
 			//var oTable = this.byId("idUserList");
 			this._getDialog().open();

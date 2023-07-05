@@ -19,7 +19,7 @@ builder:
         app:
           name: /MINDSET/APP_ANALYZER
           description: ""
-          package: /mindset/app_analyzer
+          package: /MINDSET/APP_ANALYZER
           transport: S4HK902301
         exclude:
           - /test/

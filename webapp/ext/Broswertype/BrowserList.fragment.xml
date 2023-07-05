@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<Dialog title="List of Users" resizable="true">
-		<Table id="isBrowserList" inset="false" items="{/FLPLogInSet}">
+	<Dialog title="List of Users ({oBrowserModel>/UniqueUserCount})" resizable="true">
+		<Table id="isBrowserList" inset="false" items="{path: 'oBrowserModel>/Users', sorter: {path: 'LastLoginAt',descending: true}}">
 			<columns>
 				<Column>
 					<Text text="Browser"/>
@@ -14,19 +14,19 @@
 				<Column>
 					<Text text="Last Login"/>
 				</Column>
-				<Column>
+				<!-- <Column>
 					<Text text="Device Type"/>
-				</Column>
+				</Column> -->
 			</columns>
 			<items>
 				<ColumnListItem>
 					<cells>
-						<Text text="{Browser}"/>
-						<Text text="{UserID}"/>
+						<Text text="{oBrowserModel>Browser}"/>
+						<Text text="{oBrowserModel>UserID}"/>
 						<!--<Text text="{App}"/>-->
-						<Text text="{ path: 'LastLoginAt', type: 'sap.ui.model.type.DateTime', formatOptions: { source: { pattern: 'yyyyMMddTHHmmss' }, style: 'long' }}"/>
+						<Text text="{ path: 'oBrowserModel>LastLoginAt', type: 'sap.ui.model.type.DateTime', formatOptions: { source: { pattern: 'yyyyMMddTHHmmss' }, style: 'long', UTC: false }}"/>
 						
-						<Text text="{DeviceType}"/>
+						<!-- <Text text="{DeviceType}"/> -->
 					</cells>
 				</ColumnListItem>
 			</items>
