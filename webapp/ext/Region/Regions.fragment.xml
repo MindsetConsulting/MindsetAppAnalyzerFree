@@ -7,9 +7,9 @@
 		<vbm:AnalyticMap id="vbi" xmlns:l="sap.ui.layout" width="100%" initialPosition="0;10;0" regionClick="onRegionClick"
 			regionContextMenu="onRegionContextMenu">
 			<vbm:vos>
-				<vbm:Circles items="{/GeoLogInSet}" click="onClickItem" contextMenu="onContextMenuItem">
-					<vbm:Circle position="{pos}" tooltip="{tooltip}" radius="{radius}" color="rgba(92,186,230,0.6)"
-						colorBorder="rgb(255,255,255)" hotDeltaColor="rgba(92,186,230,0.8)" click="onClickCircle" contextMenu="onContextMenuCircle"/>
+				<vbm:Circles items="{GeoModel>/GeoLocations}">
+					<vbm:Circle position="{GeoModel>pos}" radius="{GeoModel>radius}" tooltip="{GeoModel>tooltip}" color="rgba(92,186,230,0.6)"
+						colorBorder="rgb(255,255,255)" hotDeltaColor="rgba(92,186,230,0.8)" />
 				</vbm:Circles>
 				<!--<vbm:Spots items="{mapModel>/Circles}" click="onClickItem" contextMenu="onContextMenuItem">
 					<vbm:Spot position="{mapModel>pos}" tooltip="{mapModel>tooltip}" type="Hidden" labelPos="5" labelType="Success" labelText="{mapModel>text}"

@@ -20,11 +20,16 @@
 			var oDeviceModelData = {
 				"Phone": "",
 				"Tablet": "",
-				"Desktop": ""
-
+				"Desktop": "",
+				"Users": [],
+				"UniqueUserCount" : 0
 			};
 			var oDeviceModel = new sap.ui.model.json.JSONModel(oDeviceModelData);
 			oView.setModel(oDeviceModel, "oDeviceModel");
+
+			//Get List of Users who logged in from different devices
+			this.getDeviceUserList();
+
 			var sUrl = "/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/";
 			// var sUrl = "/sap/opu/odata/sap/ZMND_FIORI_MONITOR_SRV/";
 			var oDataModel = new sap.ui.model.odata.ODataModel(sUrl, true, "", "");
@@ -43,7 +48,38 @@
 			});
 
 		},
-		
+		getDeviceUserList: function(){
+			var that = this;
+			var oDeviceModel = that.getView().getModel('oDeviceModel');
+			var oDataModel = that.getView().getModel('fiorimoni');
+			var sPath = "/FLPDeviceSet";
+			var aUniqItms=[], aItems, aFinal=[];
+			oDeviceModel.setProperty('/UniqueUserCount', aFinal.length);
+			oDataModel.read(sPath, {
+				success: function (oData, oRes) {
+					if(oData.results.length > 0){
+						aUniqItms = [... new Set(oData.results.map(function(el){
+							return el.DeviceType.trim() + "|" + el.UserID.trim();
+						}))];
+						for(var i=0; i<aUniqItms.length; i++){
+							aItems = oData.results.filter(function(el){
+								return el.DeviceType.trim() === aUniqItms[i].split('|')[0] && 
+								el.UserID.trim() === aUniqItms[i].split('|')[1];
+							});
+							aItems.sort(function(a, b) {
+								return b.LastLoginAt-a.LastLoginAt;
+							});
+							aFinal.push(aItems[0]);
+						}
+					}
+					oDeviceModel.setProperty('/Users', $.extend(true, [], aFinal));
+					oDeviceModel.setProperty('/UniqueUserCount', aFinal.length);
+				},
+				error: function (data) {
+
+				}
+			});
+		},
 		handleUserLoggedPressed: function (oEvent) {
 			//var oTable = this.byId("idUserList");
 			this._getDialog().open();

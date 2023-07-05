@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<Dialog title="List of Users" resizable="true">
-		<Table id="isUserList" inset="false" items="{/FLPLogInSet}">
+		<Table id="isUserList" inset="false" items="{path: '/FLPLogInSet', sorter: {path: 'LastLoginAt',descending: true}}">
 			<columns>
 				<Column>
 					<Text text="User"/>
@@ -24,7 +24,7 @@
 						<Text text="{UserID}"/>
 					<!--	<Text text="{App}"/>-->
 						<Text
-							text="{ path: 'LastLoginAt', type: 'sap.ui.model.type.DateTime', formatOptions: { source: { pattern: 'yyyyMMddTHHmmss' }, style: 'long' }}"/>
+							text="{ path: 'LastLoginAt', type: 'sap.ui.model.type.DateTime', formatOptions: { source: { pattern: 'yyyyMMddTHHmmss' }, style: 'long', UTC: false }}"/>
 						<Text text="{Browser}"/>
 						<Text text="{DeviceType}"/>
 					</cells>
