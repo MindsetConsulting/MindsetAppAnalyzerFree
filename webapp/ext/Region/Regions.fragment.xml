@@ -4,23 +4,24 @@
 		<Toolbar class="toolbarbottamdesign" height="3em">
 			<Title text="{i18n>Region}" titleStyle="H4" level="H4" class="cursor"/>
 		</Toolbar>
-		<vbm:AnalyticMap id="vbi" xmlns:l="sap.ui.layout" width="100%" initialPosition="0;10;0" regionClick="onRegionClick"
-			regionContextMenu="onRegionContextMenu">
+		<vbm:AnalyticMap id="vbi" xmlns:l="sap.ui.layout" width="100%" initialPosition="0;10;0">
 			<vbm:vos>
-				<vbm:Circles items="{GeoModel>/GeoLocations}">
-					<vbm:Circle position="{GeoModel>pos}" radius="{GeoModel>radius}" tooltip="{GeoModel>tooltip}" color="rgba(92,186,230,0.6)"
+				<!-- <vbm:Circles items="{GeoModel>/GeoLocations}">
+					<vbm:Circle position="{GeoModel>pos}" radius="{GeoModel>radius}" color="rgba(92,186,230,0.6)"
 						colorBorder="rgb(255,255,255)" hotDeltaColor="rgba(92,186,230,0.8)" />
-				</vbm:Circles>
-				<!--<vbm:Spots items="{mapModel>/Circles}" click="onClickItem" contextMenu="onContextMenuItem">
-					<vbm:Spot position="{mapModel>pos}" tooltip="{mapModel>tooltip}" type="Hidden" labelPos="5" labelType="Success" labelText="{mapModel>text}"
-						labelArrow="true" click="onClickSpot" contextMenu="onContextMenuSpot"/>
-				</vbm:Spots>-->
+				</vbm:Circles> -->
+				<vbm:Spots items="{/GeoLogInSet}">
+					<vbm:Spot position="{pos}"
+						labelType="Default"
+						labelPos="{radius}">
+					</vbm:Spot>
+				</vbm:Spots>
 			</vbm:vos>
-			<vbm:legend>
+			<!-- <vbm:legend>
 				<vbm:Legend id="legend" caption="Legend">
 					<vbm:LegendItem text="Circle – radius in px" color="rgba(92,186,230,0.6)"/>
 				</vbm:Legend>
-			</vbm:legend>
+			</vbm:legend> -->
 		</vbm:AnalyticMap>
 		<Toolbar class="toolbarbottamdesign">
 			<Title text="mock-up" titleStyle="H4" level="H4" class="cursor"/>
