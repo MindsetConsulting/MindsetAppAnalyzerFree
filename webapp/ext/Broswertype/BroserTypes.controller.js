@@ -56,8 +56,11 @@
 		
 		getBrowserUserList: function(){
 			var that = this;
+			var oView = that.getView();
 			var oBrowserModel = that.getView().getModel('oBrowserModel');
-			var oDataModel = that.getView().getModel('fiorimoni');
+			var sUrl = "/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/";
+			var oDataModel = new sap.ui.model.odata.ODataModel(sUrl, true, "", "");
+			oView.setModel(oDataModel);
 			var sPath = "/FLPBrowserSet";
 			var aUniqItms=[], aItems, aFinal=[];
 			oBrowserModel.setProperty('/UniqueUserCount', aFinal.length);
