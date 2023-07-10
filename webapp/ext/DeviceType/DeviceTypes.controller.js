@@ -50,8 +50,11 @@
 		},
 		getDeviceUserList: function(){
 			var that = this;
+			var oView = that.getView();
 			var oDeviceModel = that.getView().getModel('oDeviceModel');
-			var oDataModel = that.getView().getModel('fiorimoni');
+			var sUrl = "/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/";
+			var oDataModel = new sap.ui.model.odata.ODataModel(sUrl, true, "", "");
+			oView.setModel(oDataModel);
 			var sPath = "/FLPDeviceSet";
 			var aUniqItms=[], aItems, aFinal=[];
 			oDeviceModel.setProperty('/UniqueUserCount', aFinal.length);
