@@ -8,9 +8,9 @@
 		onInit: function () {
 			var me = this;
 			var oView = me.getView();
-        	var sMobilepath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Mobile.jpg");
-			var stabletpath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Tablet.jpg");
-			var sSystemPath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/System.jpg");
+        	var sMobilepath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Device_Mobile.jpg");
+			var stabletpath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Device_Tablet.jpg");
+			var sSystemPath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Device_System.jpg");
 			var MobileImage = oView.byId("MobileImage");
 			var TabletImage = oView.byId("TabletImage");
 			var SystemImage = oView.byId("SystemImage");

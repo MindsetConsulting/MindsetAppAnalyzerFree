@@ -10,13 +10,6 @@
 			<items>
 				<FlexBox class="width20" direction="Column" alignItems="Center">
 					<items>
-						<Image id="Chromeimage" class="sapUiTinyMarginBottom" width="4rem" height="4rem"></Image>
-						<Title text="Chrome" class="sapUiTinyMarginBegin" titleStyle="H4" level="H4"></Title>
-						<Title text="{oBrowserModel>/Chrome}" class="sapUiTinyMarginBegin BroswerTypeCnt" titleStyle="H1" level="H1"/>
-					</items>
-				</FlexBox>
-				<FlexBox class="width20" direction="Column" alignItems="Center">
-					<items>
 						<Image id="FireFoximage" class="sapUiTinyMarginBottom" width="4rem" height="4rem"></Image>
 						<Title text="Firefox" class="sapUiTinyMarginBegin" titleStyle="H4" level="H4"></Title>
 						<Title text="{oBrowserModel>/Firefox}" class="sapUiTinyMarginBegin BroswerTypeCnt" titleStyle="H1" level="H1"/>
@@ -29,6 +22,15 @@
 						<Title text="{oBrowserModel>/Safari}" class="sapUiTinyMarginBegin BroswerTypeCnt" titleStyle="H1" level="H1"/>
 					</items>
 				</FlexBox>
+				<FlexBox class="width20" direction="Column" alignItems="Center">
+					<items>
+						<Image id="Chromeimage" class="sapUiTinyMarginBottom" width="4rem" height="4rem"></Image>
+						<Title text="Chrome" class="sapUiTinyMarginBegin" titleStyle="H4" level="H4"></Title>
+						<Title text="{oBrowserModel>/Chrome}" class="sapUiTinyMarginBegin BroswerTypeCnt" titleStyle="H1" level="H1"/>
+					</items>
+				</FlexBox>
+				
+				
 				<FlexBox class="width20" direction="Column" alignItems="Center">
 					<items>
 						<Image id="OtherBrowimage" class="sapUiTinyMarginBottom" width="4rem" height="4rem"></Image>

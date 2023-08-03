@@ -16,16 +16,17 @@
 				</FlexBox>
 				<FlexBox direction="Column" alignItems="Center">
 					<items>
-						<Image id="TabletImage" class="sapUiTinyMarginBottom"></Image>
-						<Title text="{oDeviceModel>/Tablet}" class="sapUiTinyMarginBegin userloggedCnts marginLeft" titleStyle="H1" level="H1"></Title>
-					</items>
-				</FlexBox>
-				<FlexBox direction="Column" alignItems="Center">
-					<items>
 						<Image id="SystemImage" class="sapUiTinyMarginBottom"></Image>
 						<Title text="{oDeviceModel>/Desktop}" class="sapUiTinyMarginBegin userloggedCnts" titleStyle="H1" level="H1"></Title>
 					</items>
 				</FlexBox>
+				<FlexBox direction="Column" alignItems="Center">
+					<items>
+						<Image id="TabletImage" class="sapUiTinyMarginBottom"></Image>
+						<Title text="{oDeviceModel>/Tablet}" class="sapUiTinyMarginBegin userloggedCnts marginLeft" titleStyle="H1" level="H1"></Title>
+					</items>
+				</FlexBox>
+				
 			</items>
 		</FlexBox>
 	</VBox>

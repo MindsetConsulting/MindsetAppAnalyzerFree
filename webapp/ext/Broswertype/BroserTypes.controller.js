@@ -8,10 +8,10 @@
 		onInit: function () {
 			var me = this;
 			var oView = me.getView();
-			var schromeImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Chrome.png");
-			var sFireFoxImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/FireFox.png");
-			var sSafariImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Safari.png");
-			var sOtherImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/OtherBro.png");
+			var schromeImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Browser_Chrome.png");
+			var sFireFoxImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Browser_Firefox.png");
+			var sSafariImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Browser_Safari.png");
+			var sOtherImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Browser_Others.png");
 			var sChromeimage = oView.byId("Chromeimage");
 			var sSafariimage = oView.byId("Safariimage");
 			var sFireFoximage = oView.byId("FireFoximage");

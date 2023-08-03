@@ -9,7 +9,7 @@ function (Controller, JSONModel, ODataModel) {
 		onInit: function () {
 			var me = this;
 			var oView = me.getView();
-			var smindImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/MindsetLogowhitespace.png");
+			var smindImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Logo_Mindset.png");
 			var sMindsetimage = oView.byId("mindsetimage");
 			sMindsetimage.setSrc(smindImagePath);
 			//var oBrowserModel = new sap.ui.model.json.JSONModel(oBrowserModelData);
