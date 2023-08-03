@@ -1,0 +1,49 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:ovp="sap.ovp.ui"
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
+	<VBox class="bgWhite" height="14em">
+		<Toolbar class="toolbarbottamdesign" height="3em">
+			<Title text="{i18n>BrowserTypes}" titleStyle="H4" level="H4" class="cursor"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://display" press="handleUserLoggedPressed"/>
+		</Toolbar>
+		<FlexBox alignItems="Center" width="17em" class="sapUiMediumMarginBegin sapUiTinyMarginTop">
+			<items>
+				<FlexBox class="width20" direction="Column" alignItems="Center">
+					<items>
+						<Image id="Chromeimage" class="sapUiTinyMarginBottom" width="3rem" height="3rem"></Image>
+						<Title text="Chrome" class="sapUiTinyMarginBegin" titleStyle="H6" level="H4"></Title>
+						<Title text="{oBrowserModel>/Chrome}" class="sapUiTinyMarginBegin BroswerTypeCnt" titleStyle="H1" level="H1"/>
+					</items>
+				</FlexBox>
+				<!-- <FlexBox class="width20" direction="Column" alignItems="Center">
+					<items>
+						<Image id="MicroSoftimage" class="sapUiTinyMarginBottom" width="3rem" height="3rem"></Image>
+						<Title text="Edge" class="sapUiTinyMarginBegin" titleStyle="H6" level="H4"></Title>
+						<Title text="{oBrowserModel>/Edge}" class="sapUiTinyMarginBegin BroswerTypeCnt" titleStyle="H1" level="H1"/>
+					</items>
+				</FlexBox> -->
+				<FlexBox class="width20" direction="Column" alignItems="Center">
+					<items>
+						<Image id="FireFoximage" class="sapUiTinyMarginBottom" width="3rem" height="3rem"></Image>
+						<Title text="Firefox" class="sapUiTinyMarginBegin" titleStyle="H6" level="H4"></Title>
+						<Title text="{oBrowserModel>/Firefox}" class="sapUiTinyMarginBegin BroswerTypeCnt" titleStyle="H1" level="H1"/>
+					</items>
+				</FlexBox>
+				<FlexBox class="width20" direction="Column" alignItems="Center">
+					<items>
+						<Image id="Safariimage" class="sapUiTinyMarginBottom" width="3rem" height="3rem"></Image>
+						<Title text="Safari" class="sapUiTinyMarginBegin" titleStyle="H6" level="H4"></Title>
+						<Title text="{oBrowserModel>/Safari}" class="sapUiTinyMarginBegin BroswerTypeCnt" titleStyle="H1" level="H1"/>
+					</items>
+				</FlexBox>
+				<FlexBox class="width20" direction="Column" alignItems="Center">
+					<items>
+						<Image id="OtherBrowimage" class="sapUiTinyMarginBottom" width="3rem" height="3rem"></Image>
+						<Title text="Others" class="sapUiTinyMarginBegin" titleStyle="H6" level="H4"></Title>
+						<Title text="{oBrowserModel>/Others}" class="sapUiTinyMarginBegin BroswerTypeCnt" titleStyle="Auto" level="H1"/>
+					</items>
+				</FlexBox>
+			</items>
+		</FlexBox>
+	</VBox>
+</core:FragmentDefinition>

@@ -1,0 +1,224 @@
+{
+    "_version": "1.49.0",
+    "sap.app": {
+        "id": "com.mindset.appanalyzer",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:ovp",
+            "version": "1.10.1",
+            "toolsId": "6d8c9822-7630-4f8b-a362-4aebaf9dbdde"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/mindset/FIORI_MONITOR_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "annotation"
+                    ],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "annotation": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation.xml",
+                "settings": {
+                    "localUri": "annotations/annotation.xml"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "com-mindset-appanalyzer-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "appanalyzer",
+                    "action": "experience",
+                    "title": "{{flpTitle}}",
+                    "icon": ""
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.115.1",
+            "libs": {
+                "sap.ovp": {
+                    "minVersion": "1.52.3"
+                },
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.f": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.rta": {},
+                "sap.ui.layout": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.mindset.appanalyzer.i18n.i18n"
+                }
+            },
+            "fiorimoni": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": [{
+                "uri": "css/style.css"
+            }]
+        },
+        "routing": {
+            "config": {},
+            "routes": [],
+            "targets": {}
+        }
+    },
+    "sap.ovp": {
+        "globalFilterModel": "fiorimoni",
+        "globalFilterEntityType": "",
+        "containerLayout": "fixed",
+        "enableLiveFilter": false,
+        "considerAnalyticalParameters": false,
+        "cards": {
+            "card00": {
+                "model": "fiorimoni",
+                "template": "com.mindset.appanalyzer.ext.fragment",
+                "settings": {
+                    "title": "{{UserLoggedIn}}",
+                    "entitySet": "FLPLogInSet",
+                    "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#userDetail1",
+                    "stopResizing": true
+                }
+            },
+            "card01": {
+                "model": "fiorimoni",
+                "template": "com.mindset.appanalyzer.ext.Broswertype",
+                "settings": {
+                    "title": "{{BrowserTypes}}",
+                    "stopResizing": true
+                }
+            },
+            "card02": {
+                "model": "fiorimoni",
+                "template": "com.mindset.appanalyzer.ext.DeviceType",
+                "settings": {
+                    "title": "{{DeviceType}}",
+                    "stopResizing": true
+                }
+            },
+            "card03": {
+                "template": "com.mindset.appanalyzer.ext.AvgFioriLaunchTime",
+                "model": "fiorimoni",
+                "settings": {
+                    "title": "{{AvgFioriAppLaunchTime}}",
+                    "stopResizing": true
+                }
+            },
+            "card04": {
+                "model": "fiorimoni",
+                "template": "com.mindset.appanalyzer.ext.Feedback",
+                "settings": {
+                    "title": "{{VoE}}",
+                    "stopResizing": true
+                }
+            },
+            "card05": {
+                "model": "fiorimoni",
+                "template": "com.mindset.appanalyzer.ext.TopError",
+                "settings": {
+                    "title": "{{Top5Errors}}",
+                    "stopResizing": false
+                }
+            },
+            "card06": {
+                "model": "fiorimoni",
+                "template": "com.mindset.appanalyzer.ext.UserPerApp",
+                "settings": {
+                    "title": "{{UserPerApp}}",
+                    "defaultSpan": {
+                        "cols": 3,
+                        "rows": 8
+                    }
+                }
+            },
+            "card07": {
+                "model": "fiorimoni",
+                "template": "com.mindset.appanalyzer.ext.Region",
+                "settings": {
+                    "title": "{{Region}}",
+                    "defaultSpan": {
+                        "cols": 2,
+                        "rows": 8
+                    }
+                }
+            },
+            "card08": {
+                "model": "fiorimoni",
+                "template": "com.mindset.appanalyzer.ext.Contact",
+                "settings": {
+                    "title": "{{ContactUs}}",
+                    "stopResizing": false
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "analytical"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "commindsetappanalyzer"
+    }
+}

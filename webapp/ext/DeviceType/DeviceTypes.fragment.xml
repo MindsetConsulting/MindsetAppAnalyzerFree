@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:ovp="sap.ovp.ui"
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
+	<VBox class="panel bgWhite" height="14em">
+		<Toolbar class="toolbarbottamdesign" height="3em">
+			<Title text="{i18n>DeviceType}" titleStyle="H4" level="H4" class="cursor"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://display" press="handleUserLoggedPressed"/>
+		</Toolbar>
+		<FlexBox alignItems="Center" class="marginTop sapUiMediumMarginBegin sapUiMediumMarginEnd" justifyContent="SpaceBetween">
+			<items>
+				<FlexBox direction="Column" alignItems="Center">
+					<items>
+						<Image id="MobileImage" class="sapUiTinyMarginBottom"></Image>
+						<Title text="{oDeviceModel>/Phone}" class="sapUiTinyMarginBegin userloggedCnts" titleStyle="H1" level="H1"></Title>
+					</items>
+				</FlexBox>
+				<FlexBox direction="Column" alignItems="Center">
+					<items>
+						<Image id="TabletImage" class="sapUiTinyMarginBottom"></Image>
+						<Title text="{oDeviceModel>/Tablet}" class="sapUiTinyMarginBegin userloggedCnts marginLeft" titleStyle="H1" level="H1"></Title>
+					</items>
+				</FlexBox>
+				<FlexBox direction="Column" alignItems="Center">
+					<items>
+						<Image id="SystemImage" class="sapUiTinyMarginBottom"></Image>
+						<Title text="{oDeviceModel>/Desktop}" class="sapUiTinyMarginBegin userloggedCnts" titleStyle="H1" level="H1"></Title>
+					</items>
+				</FlexBox>
+			</items>
+		</FlexBox>
+	</VBox>
+</core:FragmentDefinition>

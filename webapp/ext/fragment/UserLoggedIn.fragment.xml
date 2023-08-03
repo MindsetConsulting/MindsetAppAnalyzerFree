@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:ovp="sap.ovp.ui"
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
+	<VBox class="bgWhite" height="14em">
+		<Toolbar class="toolbarbottamdesign" height="3em">
+			<Title text="{i18n>UserLoggedIn}" titleStyle="H4" level="H4" class="cursor"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://display" press="handleUserLoggedPressed"/>
+		</Toolbar>
+		<Toolbar class="toolbarbottamdesign" height="2em"></Toolbar>
+		<FlexBox alignItems="Center" justifyContent="Center">
+			<items>
+				<Title text="{oUserLogonModel>/NoUsersLoggedIn}" titleStyle="H1" level="H1" class="userloggedCnt"/>
+			</items>
+		</FlexBox>
+	</VBox>
+</core:FragmentDefinition>

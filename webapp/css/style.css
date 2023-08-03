@@ -1,0 +1,193 @@
+.sapUshellEasyScanLayoutInner .sapMTitleStyleH4, .sapUshellEasyScanLayoutInner .sapMTitleStyleH6{ color:#333 !important;}
+
+
+ /*CSS for number in Binstatus Card*/
+.devicemargin{
+	margin-left:33px !important;
+}
+.systemvalues{ padding-left:20px !important;}
+.padding20{padding-left:20px !important;}
+.padding15{padding-left:15px !important;}
+.margin10{
+	margin-top:10px !important;
+	
+}
+.marginTop{
+    margin-top: 0.2em !important;
+}
+.margin20{
+	margin-top:30px !important;
+	margin-left:1px !important;
+	
+}
+.timenumber{
+	    color: #000 !important;
+    font-size: 65px !important;
+}
+
+.feedbackGreen {
+    color: #74C446 !important;
+    font-size: 65px !important;
+}
+
+.feedbackYellow {
+    color: #FFCD28 !important;
+    font-size: 65px !important;
+}
+
+ .feedbackRed {
+    color: #FF0000 !important;
+    font-size: 65px !important;
+}
+
+.userloggedCnt {
+    color: #469eff !important;
+    font-size: 65px !important;
+}
+.marginLeft {
+	margin-left: 0.3rem !important;
+}
+.userloggedCnts{
+	  color: #469eff !important;
+    font-size: 30px !important;
+}
+.BinStatusBegin {
+	margin-left: 100px !important;
+    font-size: 45px;
+    color: #396089;
+}
+
+/*css for Binstatus Value*/
+.binstatusValue {
+	font-size: 45px !important;
+    color: #396089 !important;
+}
+
+/*White background for all cards*/
+.userloggedCnt {
+    color: #469eff !important;
+    font-size: 32px;
+}
+.topusercolor{
+	  color: #469eff !important;
+}
+
+.BroswerTypeCnt {
+    color: #469eff !important;
+    font-size: 30px;
+}
+
+.ErrorColor {
+    color: #e55c22 !important;
+}
+.bgWhite {
+    background: #ffffff;
+    
+}
+
+.bgWhite .header {
+    background: #E7E5E6;
+    padding: 26px 23px;
+    
+}
+
+/*.panel .sapMPanel {
+	background: #ffffff !important;
+}*/
+
+/*Removing border bottom for Toolbar*/
+.toolbarbottamdesign {
+    border-bottom-style: none !important;
+}
+
+.sapMPanelBGTranslucent .sapMPanelContent {
+	background: white !important;
+}
+
+
+.panel .sapMPanelContent:not(.sapMPanelBGTransparent) {
+    border-bottom-style: none !important;
+}
+
+/*CSS for small cards*/
+.smallPanel .sapMPanelContent:not(.sapMPanelBGTransparent) {
+	background: white !important;
+    border-bottom-style: none !important;
+}
+
+.white {
+	background: white;
+}
+
+/*Padding for all cards*/
+.panel .sapMPanelContent{
+	padding:0rem 0rem !important;
+}
+
+/* Font size for number in Cycle Count Card*/
+.cycleCount {
+font-size: 3em;
+}
+
+/* Font size for number in Scrap Dollars Card*/
+.scrapDollars {
+font-size: 3em;
+}
+.width20{
+	width: 24% !important;
+}
+.width33{
+	width: 32% !important;
+	text-align:center;
+}
+.width33 .sapMFlexItemAlignAuto{
+	width:100% !important;
+}
+
+
+.marginline{
+	margin:0.2rem 0.5rem !important;
+}
+/* Font size for number in Open VAS HUs Card*/
+.openVASHUs {
+	font-size: 3em;
+}
+
+/* Height for empty label */
+.emptyLabel {
+	height : 1.3em;
+}
+
+
+.bgWhite a {
+    text-decoration: none !important;
+    font-size: 1em !important;
+    color: #e55c22 !important;
+}
+
+ 
+
+.cursor {
+	cursor: pointer !important;
+	 font-weight: bold!important;
+	     margin-left: 12px !important;
+}
+
+.liststyle {
+	height:114px !important;
+}
+
+/*Labor management big card Link*/
+
+.laborMgmtBig {
+    color: #396089;
+    font-size: 7rem;
+}
+
+/*Background color for Page*/
+.page {
+	background : #4A92A9 !important;
+}
+
+ 
+

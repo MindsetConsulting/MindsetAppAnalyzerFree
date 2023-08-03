@@ -1,0 +1,7 @@
+{
+  "xsappname": "commindsetappanalyzer",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+  "scopes": [],
+  "role-templates": []
+}

@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:ovp="sap.ovp.ui" xmlns:micro="sap.suite.ui.microchart"
+	xmlns:vbm="sap.ui.vbm" xmlns:layout="sap.ui.layout" xmlns:viz.data="sap.viz.ui5.data" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:viz="sap.viz.ui5.controls" xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
+	<VBox class="bgWhite" height="36em">
+		<Toolbar class="toolbarbottamdesign" height="3em">
+			<Title text="{i18n>AvgTimeOnApps}" titleStyle="H4" level="H4" class="cursor" wrapping="true"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://display" press="detailNav"/>
+		</Toolbar>
+		<viz:VizFrame id="idAvgTimeOnAppsViz" uiConfig="{applicationSet:'fiori'}" vizType='vertical_bullet'>
+			<viz:dataset>
+				<viz.data:FlattenedDataset data="{oUserPerAppModel>/apps}">
+					<viz.data:dimensions>
+						<viz.data:DimensionDefinition name="Appname" value="{oUserPerAppModel>Appname}"/>
+					</viz.data:dimensions>
+					<viz.data:measures>
+						<viz.data:MeasureDefinition name="Time" value="{oUserPerAppModel>Time}"/>
+					</viz.data:measures>
+				</viz.data:FlattenedDataset>
+			</viz:dataset>
+			<viz:feeds>
+				<viz.feeds:FeedItem id="feedActualValues" uid="actualValues" type="Measure" values="Time"/>
+				<viz.feeds:FeedItem id="feedCategoryAxis" uid="categoryAxis" type="Dimension" values="Appname"/>
+			</viz:feeds>
+		</viz:VizFrame>
+	</VBox>
+</core:FragmentDefinition>
