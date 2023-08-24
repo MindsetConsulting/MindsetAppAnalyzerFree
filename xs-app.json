@@ -5,7 +5,7 @@
     {
       "source": "^/sap/(.*)$",
       "target": "/sap/$1",
-      "destination": "MWHIGHAM_S4H",
+      "destination": "MINDSET_S4H",
       "authenticationType": "xsuaa",
       "csrfProtection": false
     },

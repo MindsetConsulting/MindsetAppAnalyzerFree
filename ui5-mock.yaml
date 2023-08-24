@@ -17,9 +17,9 @@ server:
           url: https://ui5.sap.com
         backend:
           - path: /sap
-            url: http://s4h2020cf:44300
+            url: http://s4h2022:443
             client: '100'
-            destination: MWHIGHAM_S4H
+            destination: MINDSET_S4H
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
