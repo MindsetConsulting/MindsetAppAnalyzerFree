@@ -14,12 +14,12 @@ builder:
       afterTask: generateCachebusterInfo
       configuration:
         target:
-          destination: MWHIGHAM_S4H
-          url: http://s4h2020cf:44300
+          destination: MINDSET_S4H
+          url: http://s4h2022:443
         app:
           name: /MINDSET/APP_ANALYZER
           description: ""
           package: /MINDSET/APP_ANALYZER
-          transport: S4HK902301
+          transport: S4HK902419
         exclude:
           - /test/
