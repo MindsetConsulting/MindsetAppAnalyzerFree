@@ -14,8 +14,8 @@
 
 			oVizFrame.setVizProperties({
 				plotArea: {
+					drawingEffect: "glossy",
 					dataLabel: {
-
 						visible: true
 					}
 				},
