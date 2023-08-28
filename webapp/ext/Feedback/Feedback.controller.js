@@ -50,7 +50,7 @@ sap.ui.define(["sap/ovp/cards/generic/Card.controller"],
 				var oCrossAppNav = sap.ushell && sap.ushell.Container && sap.ushell.Container.getService("CrossApplicationNavigation");
 				oCrossAppNav.toExternal({
 					target: {
-						semanticObject: "voe_detail",
+						semanticObject: "VoiceoftheEmployee",
 						action: "display"
 					}
 				});

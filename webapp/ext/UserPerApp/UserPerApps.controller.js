@@ -14,8 +14,8 @@
 
 			oVizFrame.setVizProperties({
 				plotArea: {
+					drawingEffect: "glossy",
 					dataLabel: {
-
 						visible: true
 					}
 				},
@@ -62,7 +62,7 @@
 			var descr = oEvent.getParameter("data")[0]["data"]["AppDescription"];
 			var oCrossAppNav = sap.ushell && sap.ushell.Container && sap.ushell.Container.getService("CrossApplicationNavigation");
 			oCrossAppNav.toExternal({
-				target: { semanticObject : "AnalyzerDetail", action : "display" },
+				target: { semanticObject : "AppAnalyzerDetail", action : "display" },
 				params: { "App": descr }
 			});
 		},
