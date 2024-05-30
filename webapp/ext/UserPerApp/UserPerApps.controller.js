@@ -6,54 +6,7 @@
 	sap.ui.controller("com.mindset.appanalyzer.ext.UserPerApp.UserPerApps", {
 
 		onInit: function () {
-			var that = this;
-			var oView = that.getView();
-			var oUserPerAppModel = new sap.ui.model.json.JSONModel();
-			that.getView().setModel(oUserPerAppModel, "oUserPerAppModel");
-			var oVizFrame = this.oVizFrame = this.getView().byId("idVizFrame");
-
-			oVizFrame.setVizProperties({
-				plotArea: {
-					drawingEffect: "glossy",
-					dataLabel: {
-						visible: true
-					}
-				},
-				valueAxis: {
-					label: {
-
-					},
-					title: {
-						visible: false
-					}
-				},
-				categoryAxis: {
-					title: {
-						visible: false
-					}
-				},
-				title: {
-					visible: false,
-					text: 'Appviews Today by App'
-				}
-			});
-
-			oVizFrame.setModel(oUserPerAppModel);
-			var oDataModel = this.getModel("fiorimoni");
-			oView.setModel(oDataModel);
-			var sPath = "/AppLogInSet";
-			oDataModel.read(sPath, {
-				success: function (oData, oRes) {
-					var results = that.dataSort(oData);
-					oUserPerAppModel.setData(results);
-					oUserPerAppModel.updateBindings(true);
-				},
-				error: function (data) {
-
-				}
-			});
-			this.byId("idVizFrame").setLegendVisible(false);
-			this.byId("idVizFrame").attachSelectData(that.navToDetail, that);
+			
 		},
 
 		navToDetail: function (oEvent) {
@@ -87,7 +40,54 @@
 		},
 
 		onAfterRendering: function () {
+			var that = this;
+			var oView = that.getView();
+			var oUserPerAppModel = new sap.ui.model.json.JSONModel();
+			that.getView().setModel(oUserPerAppModel, "oUserPerAppModel");
+			var oVizFrame = this.oVizFrame = this.getView().byId("idVizFrame");
 
+			oVizFrame.setVizProperties({
+				plotArea: {
+					drawingEffect: "glossy",
+					dataLabel: {
+						visible: true
+					}
+				},
+				valueAxis: {
+					label: {
+
+					},
+					title: {
+						visible: false
+					}
+				},
+				categoryAxis: {
+					title: {
+						visible: false
+					}
+				},
+				title: {
+					visible: false,
+					text: 'Appviews Today by App'
+				}
+			});
+
+			oVizFrame.setModel(oUserPerAppModel);
+			var oDataModel = this.getView().getModel("fiorimoni");
+			oView.setModel(oDataModel);
+			var sPath = "/AppLogInSet";
+			oDataModel.read(sPath, {
+				success: function (oData, oRes) {
+					var results = that.dataSort(oData);
+					oUserPerAppModel.setData(results);
+					oUserPerAppModel.updateBindings(true);
+				},
+				error: function (data) {
+
+				}
+			});
+			this.byId("idVizFrame").setLegendVisible(false);
+			this.byId("idVizFrame").attachSelectData(that.navToDetail, that);
 		},
 
 		onExit: function () {

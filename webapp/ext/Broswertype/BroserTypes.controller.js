@@ -6,58 +6,13 @@
 	sap.ui.controller("com.mindset.appanalyzer.ext.Broswertype.BroserTypes", {
 
 		onInit: function () {
-			var me = this;
-			var oView = me.getView();
-			var schromeImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Chrome.png");
-			var sFireFoxImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/FireFox.png");
-			var sSafariImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Safari.png");
-			var sOtherImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/OtherBro.png");
-			var sChromeimage = oView.byId("Chromeimage");
-			var sSafariimage = oView.byId("Safariimage");
-			var sFireFoximage = oView.byId("FireFoximage");
-			var sOthersimage = oView.byId("OtherBrowimage");
-			sChromeimage.setSrc(schromeImagePath);
-			sSafariimage.setSrc(sSafariImagePath);
-			sFireFoximage.setSrc(sFireFoxImagePath);
-			sOthersimage.setSrc(sOtherImagePath);
-			var oBrowserModelData = {
-				"IE": "",
-				"Chrome": "",
-				"Edge": "",
-				"Firefox": "",
-				"Opera": "",
-				"Safari": "",
-				"Users": [],
-				"UniqueUserCount" : 0
-			};
-			var oBrowserModel = new sap.ui.model.json.JSONModel(oBrowserModelData);
-			oView.setModel(oBrowserModel, "oBrowserModel");
-
-			//Get List of Users who logged in from different browsers
-			this.getBrowserUserList();
-
-			var oDataModel = this.getModel("fiorimoni");
-			oView.setModel(oDataModel);
-			var sPath = "/BrowserLogInSet";
-			oDataModel.read(sPath, {
-				success: function (oData, oRes) {
-					oBrowserModel.setProperty("/Edge", oData.results[0].Edge);
-					oBrowserModel.setProperty("/Firefox", oData.results[0].Firefox);
-					oBrowserModel.setProperty("/Chrome", oData.results[0].Chrome);
-					oBrowserModel.setProperty("/Safari", oData.results[0].Safari);
-					oBrowserModel.setProperty("/Others", oData.results[0].IE+oData.results[0].Edge+oData.results[0].Opera);
-					oBrowserModel.updateBindings(true);
-				},
-				error: function (data) {
-
-				}
-			});
+			
 		},
 
 		getBrowserUserList: function(){
 			var that = this;
 			var oBrowserModel = that.getView().getModel('oBrowserModel');
-			var oDataModel = that.getModel("fiorimoni");
+			var oDataModel = that.getView().getModel("fiorimoni");
 			var sPath = "/FLPBrowserSet";
 			var aUniqItms=[], aItems, aFinal=[];
 			oBrowserModel.setProperty('/UniqueUserCount', aFinal.length);
@@ -102,7 +57,52 @@
 			this._getDialog().close();
 		},
 		onAfterRendering: function () {
+			var me = this;
+			var oView = me.getView();
+			var schromeImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Chrome.png");
+			var sFireFoxImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/FireFox.png");
+			var sSafariImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/Safari.png");
+			var sOtherImagePath = $.sap.getModulePath("com.mindset.appanalyzer", "/images/OtherBro.png");
+			var sChromeimage = oView.byId("Chromeimage");
+			var sSafariimage = oView.byId("Safariimage");
+			var sFireFoximage = oView.byId("FireFoximage");
+			var sOthersimage = oView.byId("OtherBrowimage");
+			sChromeimage.setSrc(schromeImagePath);
+			sSafariimage.setSrc(sSafariImagePath);
+			sFireFoximage.setSrc(sFireFoxImagePath);
+			sOthersimage.setSrc(sOtherImagePath);
+			var oBrowserModelData = {
+				"IE": "",
+				"Chrome": "",
+				"Edge": "",
+				"Firefox": "",
+				"Opera": "",
+				"Safari": "",
+				"Users": [],
+				"UniqueUserCount" : 0
+			};
+			var oBrowserModel = new sap.ui.model.json.JSONModel(oBrowserModelData);
+			oView.setModel(oBrowserModel, "oBrowserModel");
 
+			//Get List of Users who logged in from different browsers
+			this.getBrowserUserList();
+
+			var oDataModel = this.getView().getModel("fiorimoni");
+			oView.setModel(oDataModel);
+			var sPath = "/BrowserLogInSet";
+			oDataModel.read(sPath, {
+				success: function (oData, oRes) {
+					oBrowserModel.setProperty("/Edge", oData.results[0].Edge);
+					oBrowserModel.setProperty("/Firefox", oData.results[0].Firefox);
+					oBrowserModel.setProperty("/Chrome", oData.results[0].Chrome);
+					oBrowserModel.setProperty("/Safari", oData.results[0].Safari);
+					oBrowserModel.setProperty("/Others", oData.results[0].IE+oData.results[0].Edge+oData.results[0].Opera);
+					oBrowserModel.updateBindings(true);
+				},
+				error: function (data) {
+
+				}
+			});
 		},
 
 		onExit: function () {

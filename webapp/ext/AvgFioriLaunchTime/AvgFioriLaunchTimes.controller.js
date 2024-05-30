@@ -7,6 +7,11 @@ function (Controller, JSONModel, ODataModel) {
     sap.ui.controller("com.mindset.appanalyzer.ext.AvgFioriLaunchTime.AvgFioriLaunchTimes", {
 
 		onInit: function () {
+			
+
+		},
+
+		onAfterRendering: function () {
 			var that = this;
 			var oView = that.getView();
 
@@ -15,7 +20,7 @@ function (Controller, JSONModel, ODataModel) {
 			};
 			var oLoadTimeModel = new JSONModel(oLoadTimeData);
 			oView.setModel(oLoadTimeModel, "oLoadTimeModel");
-			var oDataModel = this.getModel("fiorimoni");
+			var oDataModel = this.getView().getModel("fiorimoni");
 			oView.setModel(oDataModel);
 			var sPath = "/AppInfoSet('')";
 			oDataModel.read(sPath, {
@@ -27,11 +32,6 @@ function (Controller, JSONModel, ODataModel) {
 
 				}
 			});
-
-		},
-
-		onAfterRendering: function () {
-
 		},
 
 		onExit: function () {

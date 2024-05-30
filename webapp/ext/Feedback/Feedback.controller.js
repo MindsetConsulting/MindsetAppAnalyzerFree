@@ -5,6 +5,21 @@ sap.ui.define(["sap/ovp/cards/generic/Card.controller"],
 		sap.ui.controller("com.mindset.appanalyzer.ext.Feedback.Feedback", {
 
 			onInit: function () {
+				
+
+			},
+
+			navToDetail: function (oEvent) {
+				var oCrossAppNav = sap.ushell && sap.ushell.Container && sap.ushell.Container.getService("CrossApplicationNavigation");
+				oCrossAppNav.toExternal({
+					target: {
+						semanticObject: "voe_detail",
+						action: "display"
+					}
+				});
+			},
+
+			onAfterRendering: function () {
 				var oView = this.getView();
 				var that = this;
 				var oUserFeedbackModelData = {
@@ -12,7 +27,7 @@ sap.ui.define(["sap/ovp/cards/generic/Card.controller"],
 				};
 				var oUserFeedbackModel = new sap.ui.model.json.JSONModel(oUserFeedbackModelData);
 				oView.setModel(oUserFeedbackModel, "oUserFeedbackModel");
-				var oDataModel = this.getModel("fiorimoni");
+				var oDataModel = this.getView().getModel("fiorimoni");
 				oView.setModel(oDataModel);
 				var sPath = "/FeedbackSet/$count";
 				oDataModel.read(sPath, {
@@ -42,21 +57,6 @@ sap.ui.define(["sap/ovp/cards/generic/Card.controller"],
 
 					}
 				});
-
-			},
-
-			navToDetail: function (oEvent) {
-				var oCrossAppNav = sap.ushell && sap.ushell.Container && sap.ushell.Container.getService("CrossApplicationNavigation");
-				oCrossAppNav.toExternal({
-					target: {
-						semanticObject: "voe_detail",
-						action: "display"
-					}
-				});
-			},
-
-			onAfterRendering: function () {
-
 			},
 
 			onExit: function () {

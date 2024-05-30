@@ -6,27 +6,7 @@
 	sap.ui.controller("com.mindset.appanalyzer.ext.fragment.UserLoggedIn", {
 
 		onInit: function () {
-			var me = this;
-			var oView = me.getView();
-
-			var oUserLogonModelData = {
-				"NoUsersLoggedIn": ""
-
-			};
-			var oUserLogonModel = new sap.ui.model.json.JSONModel(oUserLogonModelData);
-			oView.setModel(oUserLogonModel, "oUserLogonModel");
-			var oDataModel = this.getModel("fiorimoni");
-			oView.setModel(oDataModel);
-			var sPath = "/FLPLogInSet/$count";
-			oDataModel.read(sPath, {
-				success: function (oData, oRes) {
-					oUserLogonModel.setProperty("/NoUsersLoggedIn", oRes.body);
-					oUserLogonModel.updateBindings(true);
-				},
-				error: function (data) {
-
-				}
-			});
+			
 
 		},
 		
@@ -47,7 +27,27 @@
 			this._getDialog().close();
 		},
 		onAfterRendering: function () {
+			var me = this;
+			var oView = me.getView();
 
+			var oUserLogonModelData = {
+				"NoUsersLoggedIn": ""
+
+			};
+			var oUserLogonModel = new sap.ui.model.json.JSONModel(oUserLogonModelData);
+			oView.setModel(oUserLogonModel, "oUserLogonModel");
+			var oDataModel = this.getView().getModel("fiorimoni");
+			oView.setModel(oDataModel);
+			var sPath = "/FLPLogInSet/$count";
+			oDataModel.read(sPath, {
+				success: function (oData, oRes) {
+					oUserLogonModel.setProperty("/NoUsersLoggedIn", oRes.body);
+					oUserLogonModel.updateBindings(true);
+				},
+				error: function (data) {
+
+				}
+			});
 		},
 
 		onExit: function () {

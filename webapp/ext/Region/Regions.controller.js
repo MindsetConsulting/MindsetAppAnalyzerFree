@@ -12,6 +12,29 @@ function (AnalyticMap, JSONModel, Device) {
 	sap.ui.controller("com.mindset.appanalyzer.ext.Region.Regions", {
 
 		onInit: function () {
+			
+		},
+		getGeoPos: function(){
+			var that = this;
+			var oDataModel = this.getView().getModel("fiorimoni");
+			var oGeoModel = that.getView().getModel('GeoModel');
+			var sPath = "/GeoLogInSet";
+			oDataModel.read(sPath, {
+				success: function (oData, oRes) {
+					if(oData.results.length > 0){
+						for(var i=0; i<oData.results.length; i++){
+							oData.results[i]['tooltip'] = 'Loc'+i;
+						}
+						oGeoModel.setProperty('/GeoLocations', oData.results);
+						that.byId("vbi").setCenterPosition(oData.results[0].pos);
+					}
+				},
+				error: function (data) {
+
+				}
+			});
+		},
+		onAfterRendering: function () {
 			var oView = this.getView();
 			this.byId("vbi").setCenterPosition("-111.8976165;40.7689351;0");
 			this.byId("vbi").setLegendVisible(false);
@@ -35,29 +58,6 @@ function (AnalyticMap, JSONModel, Device) {
 			});
 			oView.setModel(oGeoModel, "GeoModel");
 			this.getGeoPos();
-		},
-		getGeoPos: function(){
-			var that = this;
-			var oDataModel = this.getModel("fiorimoni");
-			var oGeoModel = that.getView().getModel('GeoModel');
-			var sPath = "/GeoLogInSet";
-			oDataModel.read(sPath, {
-				success: function (oData, oRes) {
-					if(oData.results.length > 0){
-						for(var i=0; i<oData.results.length; i++){
-							oData.results[i]['tooltip'] = 'Loc'+i;
-						}
-						oGeoModel.setProperty('/GeoLocations', oData.results);
-						that.byId("vbi").setCenterPosition(oData.results[0].pos);
-					}
-				},
-				error: function (data) {
-
-				}
-			});
-		},
-		onAfterRendering: function () {
-			this.byId("vbi").setCenterPosition("-111.8976165;40.7689351;0");
 		},
 
 		onExit: function () {
