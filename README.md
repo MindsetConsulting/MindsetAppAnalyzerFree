@@ -19,7 +19,7 @@ Follow these steps to install the Fiori App Analyzer:
 <BR>Importing the data and cofiles files into the /usr/sap/trans directories.
 <BR>Adding them into the STMS import queue and initiating the import into the system.
 <BR>If you encounter any issues related to the component versioning, you may need to check the box for invalid component versioning during the transport process depending on what version of ECC or S/4 you are running. We have not seen any inconsistencies during installation when this option is selected. 
-If you or your basis team have any questions or require assistance with the import of these transports, please reach out to jonathanbragg@mindsetconsulting. 
+If you or your basis team have any questions or require assistance with the import of these transports, please reach out to jonathanbragg@mindsetconsulting.com. 
 
 For further assistance or support during the installation process, feel free to contact us. 
 
@@ -60,7 +60,7 @@ In this release, we introduced several enhancements to the Fiori App Analyzer. H
 Contact Us card.  We’ve added a Contact Us card so if you have any questions about Mindset, questions about the application, our services, anything else, you can click on the card and our Mindset website will load in a new tab.  
 
 ### Question:  
-What data is important to you to see about each application? Please send questions and suggestions to annabelleschwab@mindsetconsulting.com regarding important data or enhancements you'd like to see in future Fiori App Analyzer releases.
+What data is important to you to see about each application? Please send questions and suggestions to jonathanbragg@mindsetconsulting.com regarding important data or enhancements you'd like to see in future Fiori App Analyzer releases.
 
 ###  Release Notes - Version 2.4
 We are excited to present the new features and enhancements in Release 2.4 of the Fiori App Analyzer Here are the highlights:
@@ -88,4 +88,4 @@ The card is interactive, enabling you to zoom in/out and pan across the map for 
 
  
 ##  Question:  What other data fields would you like to see in our Fiori App Analyzer?
-Please send questions and suggestions to annabelleschwab@mindsetconsulting.com regarding additional data fields or enhancements you'd like to see in future Fiori App Analyzer releases.
+Please send questions and suggestions to jonathanbragg@mindsetconsulting.com regarding additional data fields or enhancements you'd like to see in future Fiori App Analyzer releases.
