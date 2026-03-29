@@ -1,30 +1,31 @@
-specVersion: '1.0'
+specVersion: "4.0"
 metadata:
-  name: MindsetAppAnalyzerFree
+  name: com.mindset.appanalyzer
 type: application
-resources:
-  configuration:
-    propertiesFileSourceEncoding: UTF-8
-builder:
-  customTasks:
-    - name: webide-extension-task-updateNeoApp
-      afterTask: generateVersionInfo
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
       configuration:
-        destDir: dist
-        appFolder: webapp
-        nameSpace: com/mindset/appanalyzer
-    - name: webide-extension-task-updateManifestJson
-      afterTask: webide-extension-task-updateNeoApp
+        ignoreCertErrors: false
+        backend:
+          - path: /sap
+            url: http://s4h:443
+            client: "100"
+            destination: MWHIGHAM_S4
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
       configuration:
-        appFolder: webapp
-        destDir: dist
-    - name: webide-extension-task-lint
-      afterTask: webide-extension-task-updateManifestJson
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
       configuration:
-        destDir: dist
-        appFolder: webapp
-        nameSpace: com/mindset/appanalyzer
-    - name: webide-extension-task-resources
-      afterTask: webide-extension-task-lint
-      configuration:
-        nameSpace: com/mindset/appanalyzer
+        component: com.mindset.appanalyzer
+        ui5Theme: sap_fiori_3

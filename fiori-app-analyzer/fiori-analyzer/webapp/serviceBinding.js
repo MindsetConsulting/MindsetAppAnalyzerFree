@@ -1,5 +1,2 @@
-function initModel() {
-	var sUrl = "/sap/opu/odata/mindset/FIORI_MONITOR_SRV/";
-	var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
-	sap.ui.getCore().setModel(oModel);
-}
+function initModel(){var a="/sap/opu/odata/mindset/FIORI_MONITOR_SRV/";var e=new sap.ui.model.odata.ODataModel(a,true);sap.ui.getCore().setModel(e)}
+//# sourceMappingURL=serviceBinding.js.map
