@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ovp/cards/generic/Card.controller"],function(n){"use strict";return n.extend("com.mindset.appanalyzer.ext.TopError.TopErrors",{onInit:function(){},onAfterRendering:function(){},onExit:function(){}})});                                  
+//# sourceMappingURL=TopErrors-dbg.controller.js.map                                                                                                                                                                                                           

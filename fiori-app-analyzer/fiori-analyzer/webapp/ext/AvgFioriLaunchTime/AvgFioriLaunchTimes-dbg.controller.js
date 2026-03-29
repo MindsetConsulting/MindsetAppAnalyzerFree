@@ -1,0 +1,33 @@
+sap.ui.define([
+	"sap/ui/model/json/JSONModel",
+	"sap/ui/model/odata/v2/ODataModel",
+	"sap/base/Log"
+], function (JSONModel, ODataModel, Log) {
+	"use strict";
+
+	var SERVICE_URL = "/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/";
+
+	return {
+
+		onInit: function () {
+			var that = this;
+			var oView = that.getView();
+
+			var oLoadTimeModel = new JSONModel({
+				"LoadTime": ""
+			});
+			oView.setModel(oLoadTimeModel, "oLoadTimeModel");
+
+			var oDataModel = new ODataModel(SERVICE_URL, { useBatch: false });
+			oDataModel.read("/AppInfoSet(' ')", {
+				success: function (oData, oRes) {
+					oLoadTimeModel.setProperty("/LoadTime", oRes.data.LoadTime);
+				},
+				error: function (oError) {
+					Log.error("Failed to load AppInfoSet", oError);
+				}
+			});
+		}
+
+	};
+});

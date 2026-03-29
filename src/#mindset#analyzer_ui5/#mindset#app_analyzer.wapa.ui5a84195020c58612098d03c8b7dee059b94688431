@@ -1,0 +1,2 @@
+{"version":3,"file":"TopErrors-dbg.controller.js","names":["sap","ui","define","CardController","extend","onInit","onAfterRendering","onExit"],"sources":["TopErrors-dbg-dbg.controller.js"],"mappings":"AAAAA,IAAIC,GAAGC,OAAO,CACb,yCACE,SAAUC,GACZ,aAEA,OAA+
+OA,EAAeC,OAAO,iDAAkD,CAE9EC,OAAQ,WACR,EAEAC,iBAAkB,WAClB,EAEAC,OAAQ,WACR,GAGF","ignoreList":[]}                                                                                                                                                                

@@ -1,0 +1,3 @@
+sap.ui.define(["sap/ui/core/UIComponent","sap/ui/Device","com/mindset/voe/FeedbackDetail/model/models"],function(e,t,i){"use strict";return e.extend("com.mindset.voe.FeedbackDetail.Component",{metadata:{manifest:"json"},init:function(){e.prototype.init.a+
+pply(this,arguments);this.getRouter().initialize();this.setModel(i.createDeviceModel(),"device")}})});                                                                                                                                                         
+//# sourceMappingURL=Component.js.map                                                                                                                                                                                                                          

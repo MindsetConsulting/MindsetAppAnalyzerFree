@@ -1,0 +1,80 @@
+sap.ui.define([
+	"sap/ui/model/json/JSONModel",
+	"sap/ui/model/odata/v2/ODataModel",
+	"sap/base/Log"
+], function (JSONModel, ODataModel, Log) {
+	"use strict";
+
+	var SERVICE_URL = "/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/";
+
+	return {
+
+		onInit: function () {
+			var that = this;
+			var oView = that.getView();
+			var oUserPerAppModel = new JSONModel();
+			oView.setModel(oUserPerAppModel, "oUserPerAppModel");
+			var oVizFrame = that.oVizFrame = oView.byId("idVizFrame");
+
+			oVizFrame.setVizProperties({
+				plotArea: {
+					drawingEffect: "glossy",
+					dataLabel: {
+						visible: true
+					}
+				},
+				valueAxis: {
+					label: {},
+					title: {
+						visible: false
+					}
+				},
+				categoryAxis: {
+					title: {
+						visible: false
+					}
+				},
+				title: {
+					visible: false,
+					text: "Appviews Today by App"
+				}
+			});
+
+			oVizFrame.setModel(oUserPerAppModel);
+
+			var oDataModel = new ODataModel(SERVICE_URL, { useBatch: false });
+			oDataModel.read("/AppLogInSet", {
+				success: function (oData) {
+					var results = that.dataSort(oData);
+					oUserPerAppModel.setData(results);
+				},
+				error: function (oError) {
+					Log.error("Failed to load AppLogInSet", oError);
+				}
+			});
+
+			that.byId("idVizFrame").setLegendVisible(false);
+			that.byId("idVizFrame").attachSelectData(that.navToDetail, that);
+		},
+
+		navToDetail: function (oEvent) {
+			var descr = oEvent.getParameter("data")[0]["data"]["AppDescription"];
+			var oCrossAppNav = sap.ushell && sap.ushell.Container &&
+				sap.ushell.Container.getService("CrossApplicationNavigation");
+			oCrossAppNav.toExternal({
+				target: { semanticObject: "AppAnalyzerDetail", action: "display" },
+				params: { "App": descr }
+			});
+		},
+
+		dataSort: function (dataset) {
+			if (dataset && dataset.hasOwnProperty("results")) {
+				dataset.results.sort(function (a, b) {
+					return b.Pageviews - a.Pageviews;
+				});
+				return dataset;
+			}
+		}
+
+	};
+});

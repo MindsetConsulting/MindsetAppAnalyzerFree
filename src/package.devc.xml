@@ -3,8 +3,7 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <DEVC>
-    <CTEXT>App Analyzer: Back-End Components</CTEXT>
-    <TPCLASS>X</TPCLASS>
+    <CTEXT>Mindset FAA Superpackage</CTEXT>
    </DEVC>
   </asx:values>
  </asx:abap>

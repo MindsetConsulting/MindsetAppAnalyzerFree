@@ -1,0 +1,1 @@
+{"version":3,"file":"serviceBinding.js","names":["initModel","sUrl","oModel","sap","ui","model","odata","ODataModel","getCore","setModel"],"sources":["serviceBinding-dbg.js"],"mappings":"AAAA,SAASA,YACR,IAAIC,EAAO,4CACX,IAAIC,EAAS,IAAIC,IAAIC,GAAGC,MAAMC,MAAMC,WAAWN,EAAM,MACrDE,IAAIC,GAAGI,UAAUC,SAASP,EAC3B"}

@@ -1,0 +1,58 @@
+sap.ui.define([
+	"sap/ui/model/json/JSONModel",
+	"sap/ui/model/odata/v2/ODataModel",
+	"sap/base/Log"
+], function (JSONModel, ODataModel, Log) {
+	"use strict";
+
+	var SERVICE_URL = "/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/";
+
+	return {
+
+		onInit: function () {
+			var that = this;
+			var oView = that.getView();
+
+			var oUserFeedbackModel = new JSONModel({
+				"AVGRating": ""
+			});
+			oView.setModel(oUserFeedbackModel, "oUserFeedbackModel");
+
+			var oDataModel = new ODataModel(SERVICE_URL, { useBatch: false });
+			oDataModel.read("/FeedbackSet/$count", {
+				success: function (oData, oRes) {
+					var avgnum = that.getView().byId("idAVG");
+					switch (oRes.body) {
+					case "1":
+					case "2":
+						avgnum.addStyleClass("feedbackRed");
+						break;
+					case "3":
+						avgnum.addStyleClass("feedbackYellow");
+						break;
+					case "4":
+					case "5":
+						avgnum.addStyleClass("feedbackGreen");
+						break;
+					}
+					oUserFeedbackModel.setProperty("/AVGRating", oRes.body);
+				},
+				error: function (oError) {
+					Log.error("Failed to load FeedbackSet count", oError);
+				}
+			});
+		},
+
+		navToDetail: function () {
+			var oCrossAppNav = sap.ushell && sap.ushell.Container &&
+				sap.ushell.Container.getService("CrossApplicationNavigation");
+			oCrossAppNav.toExternal({
+				target: {
+					semanticObject: "VoiceoftheEmployee",
+					action: "display"
+				}
+			});
+		}
+
+	};
+});

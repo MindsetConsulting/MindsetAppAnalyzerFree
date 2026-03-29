@@ -1,0 +1,3 @@
+sap.ui.define([],function(){"use strict";return{onInit:function(){var e=this.getView();var n=sap.ui.require.toUrl("com/mindset/appanalyzer/images/MindsetLogowhitespace.png");e.byId("mindsetimage").setSrc(n)},handleImagePress:function(){window.open("https+
+://www.mindsetconsulting.com/","_blank")}}});                                                                                                                                                                                                                  
+//# sourceMappingURL=Contact.controller.js.map                                                                                                                                                                                                                 

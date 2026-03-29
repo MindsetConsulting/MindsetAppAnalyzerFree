@@ -1,0 +1,54 @@
+sap.ui.define([
+	"sap/ui/model/json/JSONModel",
+	"sap/ui/model/odata/v2/ODataModel",
+	"sap/ui/core/Fragment",
+	"sap/base/Log"
+], function (JSONModel, ODataModel, Fragment, Log) {
+	"use strict";
+
+	var SERVICE_URL = "/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/";
+
+	return {
+
+		onInit: function () {
+			var that = this;
+			var oView = that.getView();
+
+			var oUserLogonModel = new JSONModel({
+				"NoUsersLoggedIn": ""
+			});
+			oView.setModel(oUserLogonModel, "oUserLogonModel");
+
+			var oDataModel = new ODataModel(SERVICE_URL, { useBatch: false });
+			oDataModel.read("/FLPLogInSet/$count", {
+				success: function (oData, oRes) {
+					oUserLogonModel.setProperty("/NoUsersLoggedIn", oRes.body);
+				},
+				error: function (oError) {
+					Log.error("Failed to load FLPLogInSet count", oError);
+				}
+			});
+		},
+
+		handleUserLoggedPressed: function () {
+			var that = this;
+			if (that._oDialog) {
+				that._oDialog.open();
+				return;
+			}
+			Fragment.load({
+				name: "com.mindset.appanalyzer.ext.fragment.UserList",
+				controller: that
+			}).then(function (oDialog) {
+				that.getView().addDependent(oDialog);
+				that._oDialog = oDialog;
+				oDialog.open();
+			});
+		},
+
+		onDialogClose: function () {
+			this._oDialog.close();
+		}
+
+	};
+});

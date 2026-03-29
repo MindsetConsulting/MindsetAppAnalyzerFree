@@ -1,0 +1,18 @@
+sap.ui.define([
+	"sap/ovp/cards/generic/Card.controller"
+], function (CardController) {
+	"use strict";
+
+	return CardController.extend("com.mindset.appanalyzer.ext.TopError.TopErrors", {
+
+		onInit: function () {
+		},
+
+		onAfterRendering: function () {
+		},
+
+		onExit: function () {
+		}
+
+	});
+});

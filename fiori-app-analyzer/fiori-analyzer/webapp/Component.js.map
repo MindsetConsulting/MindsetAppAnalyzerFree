@@ -1,0 +1,1 @@
+{"version":3,"file":"Component.js","names":["jQuery","sap","declare","require","ovp","app","Component","extend","metadata","manifest"],"sources":["Component-dbg.js"],"mappings":"CAAC,WACA,aAQAA,OAAOC,IAAIC,QAAQ,qCAEnBF,OAAOC,IAAIE,QAAQ,yBAEnBF,IAAIG,IAAIC,IAAIC,UAAUC,OAAO,oCAAqC,CACjEC,SAAU,CACTC,SAAU,SAIb,EAnBA"}

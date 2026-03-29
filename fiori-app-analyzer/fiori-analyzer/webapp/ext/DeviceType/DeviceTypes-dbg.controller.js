@@ -1,0 +1,99 @@
+sap.ui.define([
+	"sap/ui/model/json/JSONModel",
+	"sap/ui/model/odata/v2/ODataModel",
+	"sap/ui/core/Fragment",
+	"sap/base/Log"
+], function (JSONModel, ODataModel, Fragment, Log) {
+	"use strict";
+
+	var SERVICE_URL = "/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/";
+
+	return {
+
+		onInit: function () {
+			var that = this;
+			var oView = that.getView();
+
+			var sBasePath = "com/mindset/appanalyzer/images/";
+			oView.byId("MobileImage").setSrc(sap.ui.require.toUrl(sBasePath + "Mobile.jpg"));
+			oView.byId("TabletImage").setSrc(sap.ui.require.toUrl(sBasePath + "Tablet.jpg"));
+			oView.byId("SystemImage").setSrc(sap.ui.require.toUrl(sBasePath + "System.jpg"));
+
+			var oDeviceModel = new JSONModel({
+				"Phone": "",
+				"Tablet": "",
+				"Desktop": "",
+				"Users": [],
+				"UniqueUserCount": 0
+			});
+			oView.setModel(oDeviceModel, "oDeviceModel");
+
+			this.getDeviceUserList();
+
+			var oDataModel = new ODataModel(SERVICE_URL, { useBatch: false });
+			oDataModel.read("/DeviceLogInSet", {
+				success: function (oData) {
+					oDeviceModel.setProperty("/Phone", oData.results[0].Phone);
+					oDeviceModel.setProperty("/Tablet", oData.results[0].Tablet);
+					oDeviceModel.setProperty("/Desktop", oData.results[0].Desktop);
+				},
+				error: function (oError) {
+					Log.error("Failed to load DeviceLogInSet", oError);
+				}
+			});
+		},
+
+		getDeviceUserList: function () {
+			var that = this;
+			var oDeviceModel = that.getView().getModel("oDeviceModel");
+			var oDataModel = new ODataModel(SERVICE_URL, { useBatch: false });
+
+			oDataModel.read("/FLPDeviceSet", {
+				success: function (oData) {
+					var aFinal = [];
+					if (oData.results.length > 0) {
+						var aUniqItms = [... new Set(oData.results.map(function (el) {
+							return el.DeviceType.trim() + "|" + el.UserID.trim();
+						}))];
+						for (var i = 0; i < aUniqItms.length; i++) {
+							var aItems = oData.results.filter(function (el) {
+								return el.DeviceType.trim() === aUniqItms[i].split("|")[0] &&
+									el.UserID.trim() === aUniqItms[i].split("|")[1];
+							});
+							aItems.sort(function (a, b) {
+								return b.LastLoginAt - a.LastLoginAt;
+							});
+							aFinal.push(aItems[0]);
+						}
+					}
+					oDeviceModel.setProperty("/Users", JSON.parse(JSON.stringify(aFinal)));
+					oDeviceModel.setProperty("/UniqueUserCount", aFinal.length);
+				},
+				error: function (oError) {
+					Log.error("Failed to load FLPDeviceSet", oError);
+				}
+			});
+		},
+
+		handleUserLoggedPressed: function () {
+			var that = this;
+			if (that._oDialog) {
+				that._oDialog.open();
+				return;
+			}
+			Fragment.load({
+				name: "com.mindset.appanalyzer.ext.DeviceType.DeviceList",
+				controller: that
+			}).then(function (oDialog) {
+				that.getView().addDependent(oDialog);
+				that._oDialog = oDialog;
+				oDialog.open();
+			});
+		},
+
+		onDialogClose: function () {
+			this._oDialog.close();
+		}
+
+	};
+});

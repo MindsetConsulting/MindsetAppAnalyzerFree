@@ -1,0 +1,105 @@
+sap.ui.define([
+	"sap/ui/model/json/JSONModel",
+	"sap/ui/model/odata/v2/ODataModel",
+	"sap/ui/core/Fragment",
+	"sap/base/Log"
+], function (JSONModel, ODataModel, Fragment, Log) {
+	"use strict";
+
+	var SERVICE_URL = "/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/";
+
+	return {
+
+		onInit: function () {
+			var that = this;
+			var oView = that.getView();
+
+			var sBasePath = "com/mindset/appanalyzer/images/";
+			oView.byId("Chromeimage").setSrc(sap.ui.require.toUrl(sBasePath + "Chrome.png"));
+			oView.byId("Safariimage").setSrc(sap.ui.require.toUrl(sBasePath + "Safari.png"));
+			oView.byId("FireFoximage").setSrc(sap.ui.require.toUrl(sBasePath + "FireFox.png"));
+			oView.byId("OtherBrowimage").setSrc(sap.ui.require.toUrl(sBasePath + "OtherBro.png"));
+
+			var oBrowserModel = new JSONModel({
+				"IE": "",
+				"Chrome": "",
+				"Edge": "",
+				"Firefox": "",
+				"Opera": "",
+				"Safari": "",
+				"Users": [],
+				"UniqueUserCount": 0
+			});
+			oView.setModel(oBrowserModel, "oBrowserModel");
+
+			this.getBrowserUserList();
+
+			var oDataModel = new ODataModel(SERVICE_URL, { useBatch: false });
+			oDataModel.read("/BrowserLogInSet", {
+				success: function (oData) {
+					oBrowserModel.setProperty("/Firefox", oData.results[0].Firefox);
+					oBrowserModel.setProperty("/Chrome", oData.results[0].Chrome);
+					oBrowserModel.setProperty("/Safari", oData.results[0].Safari);
+					oBrowserModel.setProperty("/Others",
+						oData.results[0].IE + oData.results[0].Edge + oData.results[0].Opera);
+				},
+				error: function (oError) {
+					Log.error("Failed to load BrowserLogInSet", oError);
+				}
+			});
+		},
+
+		getBrowserUserList: function () {
+			var that = this;
+			var oBrowserModel = that.getView().getModel("oBrowserModel");
+			var oDataModel = new ODataModel(SERVICE_URL, { useBatch: false });
+
+			oDataModel.read("/FLPBrowserSet", {
+				success: function (oData) {
+					var aFinal = [];
+					if (oData.results.length > 0) {
+						var aUniqItms = [... new Set(oData.results.map(function (el) {
+							return el.Browser.trim() + "|" + el.UserID.trim();
+						}))];
+						for (var i = 0; i < aUniqItms.length; i++) {
+							var aItems = oData.results.filter(function (el) {
+								return el.Browser.trim() === aUniqItms[i].split("|")[0] &&
+									el.UserID.trim() === aUniqItms[i].split("|")[1];
+							});
+							aItems.sort(function (a, b) {
+								return b.LastLoginAt - a.LastLoginAt;
+							});
+							aFinal.push(aItems[0]);
+						}
+					}
+					oBrowserModel.setProperty("/Users", JSON.parse(JSON.stringify(aFinal)));
+					oBrowserModel.setProperty("/UniqueUserCount", aFinal.length);
+				},
+				error: function (oError) {
+					Log.error("Failed to load FLPBrowserSet", oError);
+				}
+			});
+		},
+
+		handleUserLoggedPressed: function () {
+			var that = this;
+			if (that._oDialog) {
+				that._oDialog.open();
+				return;
+			}
+			Fragment.load({
+				name: "com.mindset.appanalyzer.ext.Broswertype.BrowserList",
+				controller: that
+			}).then(function (oDialog) {
+				that.getView().addDependent(oDialog);
+				that._oDialog = oDialog;
+				oDialog.open();
+			});
+		},
+
+		onDialogClose: function () {
+			this._oDialog.close();
+		}
+
+	};
+});

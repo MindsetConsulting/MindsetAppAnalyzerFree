@@ -1,0 +1,3 @@
+sap.ui.define(["sap/ui/model/json/JSONModel","sap/ui/model/odata/v2/ODataModel","sap/base/Log"],function(e,a,o){"use strict";var t="/sap/opu/odata/MINDSET/FIORI_MONITOR_SRV/";return{onInit:function(){var d=this;var i=d.getView();var n=new e({LoadTime:""}+
+);i.setModel(n,"oLoadTimeModel");var r=new a(t,{useBatch:false});r.read("/AppInfoSet(' ')",{success:function(e,a){n.setProperty("/LoadTime",a.data.LoadTime)},error:function(e){o.error("Failed to load AppInfoSet",e)}})}}});                                 
+//# sourceMappingURL=AvgFioriLaunchTimes.controller.js.map                                                                                                                                                                                                     
