@@ -8,3 +8,8 @@ mta-*
 resources
 archive.zip
 .*_mta_build_tmp
+*-dbg.js
+*-dbg.controller.js
+*.js.map
+Component-preload.js
+Component-preload.js.map

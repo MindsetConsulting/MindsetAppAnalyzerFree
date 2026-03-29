@@ -1,7 +1,7 @@
 {
 	"applications": {},
 	"bootstrapPlugins": {
-		"nikeext": {
+		"flpext": {
 			"component": "com.mindset.flpext",
 			"url": "../../../../../"
 		}
