@@ -1,0 +1,31 @@
+specVersion: "4.0"
+metadata:
+  name: com.mindset.appanalyzerdetail
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertErrors: false
+        backend:
+          - path: /sap
+            url: http://s4h:443
+            client: "100"
+            destination: MWHIGHAM_S4
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: com.mindset.appanalyzerdetail
+        ui5Theme: sap_fiori_3

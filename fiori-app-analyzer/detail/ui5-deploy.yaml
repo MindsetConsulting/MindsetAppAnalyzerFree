@@ -1,0 +1,23 @@
+specVersion: "4.0"
+metadata:
+  name: com.mindset.appanalyzerdetail
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: MWHIGHAM_S4
+          url: http://s4h:443
+          client: "100"
+        app:
+          name: /MINDSET/ANALYZER_DETAIL
+          package: /MINDSET/ANALYZER_UI5
+          transport: S4HK903191
+        exclude:
+          - /test/
