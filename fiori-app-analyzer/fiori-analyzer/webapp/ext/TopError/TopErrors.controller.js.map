@@ -1,1 +1,0 @@
-{"version":3,"file":"TopErrors.controller.js","names":["sap","ui","define","Controller","JSONModel","ODataModel","extend","onInit","onAfterRendering","onExit"],"sources":["TopErrors-dbg.controller.js"],"mappings":"AACAA,IAAIC,GAAGC,OAAO,CAAC,wCACZ,8BACA,iCACH,SAAUC,EAAYC,EAAWC,GAC7B,aACA,OAAOF,EAAWG,OAAO,iDAAkD,CAC7EC,OAAQ,WAER,EAEAC,iBAAkB,WAElB,EAEAC,OAAQ,WAER,GAGF"}

@@ -19,3 +19,9 @@ mergedManifestDescriptor.json
 **/node_modules/
 /.che/
 .env
+.DS_Store
+**/*-dbg.js
+**/*-dbg.controller.js
+**/*.js.map
+**/Component-preload.js
+**/Component-preload.js.map

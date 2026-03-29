@@ -3,7 +3,7 @@
 specVersion: "4.0"
 metadata:
   name: com.mindset.flpext
-type: library
+type: application
 builder:
   resources:
     excludes:
