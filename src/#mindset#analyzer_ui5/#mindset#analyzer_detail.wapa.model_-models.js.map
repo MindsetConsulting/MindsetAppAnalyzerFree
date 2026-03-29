@@ -1,0 +1,2 @@
+{"version":3,"file":"models.js","names":["sap","ui","define","e","n","createDeviceModel","i","setDefaultBindingMode"],"sources":["models-dbg.js"],"mappings":"AAAAA,IAAIC,GAAGC,OAAO,CAAC,8BAA8B,iBAAiB,SAASC,EAAEC,GAAG,aAAa,MAAM,CAACC,kBAAkB,WAAW,IAAIC,EAA+
+E,IAAIH,EAAEC,GAAGE,EAAEC,sBAAsB,UAAU,OAAOD,CAAC,EAAE","ignoreList":[]}                                                                                                                                                                                        

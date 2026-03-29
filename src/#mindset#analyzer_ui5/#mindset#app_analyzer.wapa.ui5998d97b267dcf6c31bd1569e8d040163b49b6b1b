@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ovp/app/Component"],function(n){"use strict";return n.extend("com.mindset.appanalyzer.Component",{metadata:{manifest:"json"}})});                                                                                                          
+//# sourceMappingURL=Component-dbg.js.map                                                                                                                                                                                                                      

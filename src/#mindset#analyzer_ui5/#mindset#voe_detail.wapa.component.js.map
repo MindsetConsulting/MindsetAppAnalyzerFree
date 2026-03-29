@@ -1,0 +1,2 @@
+{"version":3,"file":"Component.js","names":["sap","ui","define","UIComponent","Device","models","extend","metadata","manifest","init","prototype","apply","this","arguments","getRouter","initialize","setModel","createDeviceModel"],"sources":["Component-db+
+g.js"],"mappings":"AAAAA,IAAIC,GAAGC,OAAO,CACb,0BACA,gBACA,+CACE,SAAUC,EAAaC,EAAQC,GACjC,aAEA,OAAOF,EAAYG,OAAO,2CAA4C,CAErEC,SAAU,CACTC,SAAU,QAQXC,KAAM,WAELN,EAAYO,UAAUD,KAAKE,MAAMC,KAAMC,WAGvCD,KAAKE,YAAYC,aAGjBH,KAAKI,SAASX,EAAOY,oBAAqB,SAC3C,GAEF"}    

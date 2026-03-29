@@ -1,0 +1,2 @@
+{"version":3,"file":"Component.js","names":["sap","ui","define","e","t","i","extend","metadata","manifest","init","prototype","apply","this","arguments","getRouter","initialize","setModel","createDeviceModel"],"sources":["Component-dbg.js"],"mappings":"A+
+AAAA,IAAIC,GAAGC,OAAO,CAAC,0BAA0B,gBAAgB,8CAA8C,SAASC,EAAEC,EAAEC,GAAG,aAAa,OAAOF,EAAEG,OAAO,0CAA0C,CAACC,SAAS,CAACC,SAAS,QAAQC,KAAK,WAAWN,EAAEO,UAAUD,KAAKE,MAAMC,KAAKC,WAAWD,KAAKE,YAAYC,aAAaH,KAAKI,SAASX,EAAEY,oBAAoB,SAAS,GAAG","ignoreList":[]}          

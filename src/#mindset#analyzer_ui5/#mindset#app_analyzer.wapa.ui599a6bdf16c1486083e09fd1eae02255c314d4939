@@ -1,0 +1,2 @@
+{"version":3,"file":"Contact-dbg.controller.js","names":["sap","ui","define","onInit","oView","this","getView","sImagePath","require","toUrl","byId","setSrc","handleImagePress","window","open"],"sources":["Contact-dbg-dbg.controller.js"],"mappings":"AAAA+
+A,IAAIC,GAAGC,OAAO,GAAI,WACjB,aAEA,MAAO,CAENC,OAAQ,WACP,IAAIC,EAAQC,KAAKC,UACjB,IAAIC,EAAaP,IAAIC,GAAGO,QAAQC,MAAM,4DACtCL,EAAMM,KAAK,gBAAgBC,OAAOJ,EACnC,EAEAK,iBAAkB,WACjBC,OAAOC,KAAK,qCAAsC,SACnD,EAGF","ignoreList":[]}                                   

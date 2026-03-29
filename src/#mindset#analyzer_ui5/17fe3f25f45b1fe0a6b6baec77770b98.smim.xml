@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_SMIM" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <URL>/SAP/BC/BSP/MINDSET/APP_ANALYZER.BAK/images/Mobile.jpg</URL>
+   <CLASS>M_IMAGE_L</CLASS>
+   <EXTRA>
+    <FILE_NAME>Mobile.jpg</FILE_NAME>
+    <MIMETYPE>image/jpeg</MIMETYPE>
+    <DESCRIPTION>Mobile.jpg</DESCRIPTION>
+    <PARENT_FOLDER_ID>17FE3F25F45B1FD0A6B4B8C2723EDE3F</PARENT_FOLDER_ID>
+   </EXTRA>
+  </asx:values>
+ </asx:abap>
+</abapGit>

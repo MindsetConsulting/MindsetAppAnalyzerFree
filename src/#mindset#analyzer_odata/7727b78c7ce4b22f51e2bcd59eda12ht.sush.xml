@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_SUSH" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <HEAD>
+    <NAME>7727B78C7CE4B22F51E2BCD59EDA12</NAME>
+    <TYPE>HT</TYPE>
+    <DISPLAY_NAME>R3TR IWSG /MINDSET/FIORI_MONITOR_SRV_0001</DISPLAY_NAME>
+    <OKFLAG>I</OKFLAG>
+   </HEAD>
+   <USOBX>
+    <USOBX>
+     <NAME>7727B78C7CE4B22F51E2BCD59EDA12</NAME>
+     <TYPE>HT</TYPE>
+     <OBJECT>S_SERVICE</OBJECT>
+     <OKFLAG>X</OKFLAG>
+    </USOBX>
+   </USOBX>
+   <USOBHASH>
+    <PGMID>R3TR</PGMID>
+    <OBJECT>IWSG</OBJECT>
+    <OBJ_NAME>/MINDSET/FIORI_MONITOR_SRV_0001</OBJ_NAME>
+   </USOBHASH>
+  </asx:values>
+ </asx:abap>
+</abapGit>
