@@ -1,0 +1,3 @@
+{"version":3,"file":"Component.js","names":["sap","ui","define","CustomComponent","extend","metadata","properties","contentFragment","type","defaultValue","headerFragment","footerFragment","version","library","includes","dependencies","libs","components"+
+,"config","customizing","controllerName"],"sources":["Component-dbg.js"],"mappings":"AAAAA,IAAIC,GAAGC,OAAO,CACb,kCACE,SAAUC,GACZ,aAEA,OAAOA,EAAgBC,OAAO,qDAAsD,CACnFC,SAAU,CACTC,WAAY,CACXC,gBAAmB,CAClBC,KAAQ,SACRC,aAAgB,0DAEjBC,eAAkB,CACjBF,KAAQ,SACRC,aA+
+AgB,IAEjBE,eAAkB,CACjBH,KAAQ,SACRC,aAAgB,KAGlBG,QAAS,YACTC,QAAS,UACTC,SAAU,GACVC,aAAc,CACbC,KAAM,CAAC,SACPC,WAAY,IAEbC,OAAQ,CAAC,EACTC,YAAa,CACZ,8BAA+B,CAC9B,6BAA8B,CAC7BC,eAAgB,8DAMtB","ignoreList":[]}                                                     
